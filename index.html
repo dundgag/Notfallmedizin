@@ -387,6 +387,16 @@ button,.tab,.chip,.item,.opt{touch-action:manipulation;-webkit-user-select:none;
   #app[data-v="topic"] .cols{column-count:3}
   #app[data-v="topic"] .stack{max-width:1400px}
 }
+
+/* Antwort hervorgehoben + weitere Infos */
+.flash .a.ans{margin-top:14px;padding:14px 16px;border-radius:16px;border:2px solid var(--ok);background:color-mix(in srgb,var(--ok) 13%,var(--glass-strong));box-shadow:0 6px 18px color-mix(in srgb,var(--ok) 22%,transparent),inset 0 1px 0 rgba(255,255,255,.5);font-weight:600;text-align:left}
+.ans-h{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ok);margin-bottom:6px}
+.more{margin-top:14px;padding:14px 16px;border-radius:16px;border:1px solid var(--glass-brd);background:var(--glass);text-align:left;font-size:14.5px;line-height:1.45}
+.more-h{font-weight:700;display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:2px}
+.more-g{color:var(--muted);font-size:13px;margin-bottom:6px}
+.more-r{padding:8px 0;border-top:1px solid color-mix(in srgb,var(--ink) 8%,transparent)}
+.more-r:first-of-type{border-top:0}
+.more-r b{display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
 </style>
 </head>
 <body>
@@ -1440,14 +1450,14 @@ const CARD_CATS=CAT_ORDER.concat(['Medikamente','Fallbeispiele']);
 const CARDS=[];
 (window.CARDS||[]).forEach(c=>CARDS.push({id:'m'+hash(c[1]),cat:c[0],q:c[1],a:c[2]}));
 DRUGS.forEach(d=>{
-  CARDS.push({id:'d'+hash(d.id+'i'),cat:'Medikamente',q:d.n+': Indikationen?',a:d.ind});
-  CARDS.push({id:'d'+hash(d.id+'d'),cat:'Medikamente',q:d.n+': Dosierung (Erwachsene)?',a:d.dose});
-  if(d.kids&&!/^(Nicht|—)/.test(d.kids)) CARDS.push({id:'d'+hash(d.id+'k'),cat:'Medikamente',q:d.n+': Dosierung / Hinweise bei Kindern?',a:d.kids});
-  CARDS.push({id:'d'+hash(d.id+'c'),cat:'Medikamente',q:d.n+': Kontraindikationen / Cave?',a:d.cave});
+  CARDS.push({id:'d'+hash(d.id+'i'),cat:'Medikamente',q:d.n+': Indikationen?',a:d.ind,did:d.id,key:'ind'});
+  CARDS.push({id:'d'+hash(d.id+'d'),cat:'Medikamente',q:d.n+': Dosierung (Erwachsene)?',a:d.dose,did:d.id,key:'dose'});
+  if(d.kids&&!/^(Nicht|—)/.test(d.kids)) CARDS.push({id:'d'+hash(d.id+'k'),cat:'Medikamente',q:d.n+': Dosierung / Hinweise bei Kindern?',a:d.kids,did:d.id,key:'kids'});
+  CARDS.push({id:'d'+hash(d.id+'c'),cat:'Medikamente',q:d.n+': Kontraindikationen / Cave?',a:d.cave,did:d.id,key:'cave'});
 });
 TOPICS.forEach(t=>{
-  if(t.merke&&t.merke.length) CARDS.push({id:'t'+hash(t.id+'m'),cat:t.cat,q:t.t+': Merksätze?',a:t.merke.join('\n')});
-  if(t.cave&&t.cave.length) CARDS.push({id:'t'+hash(t.id+'c'),cat:t.cat,q:t.t+': Worauf muss man achten (Cave)?',a:t.cave.join('\n')});
+  if(t.merke&&t.merke.length) CARDS.push({id:'t'+hash(t.id+'m'),cat:t.cat,q:t.t+': Merksätze?',a:t.merke.join('\n'),tid:t.id,key:'merke'});
+  if(t.cave&&t.cave.length) CARDS.push({id:'t'+hash(t.id+'c'),cat:t.cat,q:t.t+': Worauf muss man achten (Cave)?',a:t.cave.join('\n'),tid:t.id,key:'cave'});
 });
 
 const EXAMQ=window.EXAMQ||{};
@@ -1647,6 +1657,21 @@ function buildQueue(){
   L.res=[];
   L.queue=q;L.i=0;L.shown=false;L.done=0;L.active=true;
 }
+function moreInfo(c){
+  if(c.did){
+    const d=DRUGS.find(x=>x.id===c.did); if(!d) return '';
+    const F=[['ind','Indikation',d.ind],['dose','Dosierung Erwachsene',d.dose],['kids','Kinder',d.kids],['cave','Kontraindikationen / Cave',d.cave]].filter(r=>r[0]!==c.key&&r[2]);
+    const cl=dcls(d).map(k=>syr(k,CLS[k].n.split(' / ')[0].replace('Muskelrelaxans','Relaxans').replace('Nicht klassifiziert','Sonstige'))).join('');
+    return `<div class="more"><div class="more-h">Alle Infos zu ${esc(d.n)} ${cl}</div><div class="more-g">${esc(d.g||'')}</div>${F.map(r=>`<div class="more-r"><b>${r[1]}</b><div>${fmt(r[2])}</div></div>`).join('')}</div>`;
+  }
+  if(c.tid){
+    const t=TOPICS.find(x=>x.id===c.tid); if(!t) return '';
+    const L=a=>a&&a.length?a.map(x=>'• '+x).join('\n'):'';
+    const F=[['def','Definition',t.def],['merke','Merke',L(t.merke)],['cave','Cave',L(t.cave)],['meds','Medikamente',L(t.meds)]].filter(r=>r[0]!==c.key&&r[2]);
+    return `<div class="more"><div class="more-h">Mehr zu „${esc(t.t)}“</div>${F.map(r=>`<div class="more-r"><b>${r[1]}</b><div>${fmt(r[2])}</div></div>`).join('')}</div>`;
+  }
+  return '';
+}
 function vLearn(){
   const cats=['Alle'].concat(CARD_CATS);
   const st=stats(L.cat);
@@ -1666,7 +1691,7 @@ function vLearn(){
       const lab=[ '<10 min', ivLabel(Math.max(1,IV[Math.max(1,b)])), ivLabel(IV[Math.min(6,b+1)]||1), ivLabel(IV[Math.min(6,b+2)]) ];
       body=`<div class="row" style="justify-content:space-between"><span class="pill">${dot(c.cat)}${esc(c.cat)}</span><span class="small muted mono">${L.i+1} / ${L.queue.length}</span></div>
       <div class="bar"><i style="width:${Math.round(100*L.i/L.queue.length)}%"></i></div>
-      <div class="card flash"><div class="q">${fmt(c.q)}</div>${L.shown?`<div class="a">${fmt(c.a)}</div>`:'<div class="muted small">Erst überlegen, dann aufdecken.</div>'}</div>
+      <div class="card flash"><div class="q">${fmt(c.q)}</div>${L.shown?`<div class="a ans"><div class="ans-h">✓ Richtige Antwort</div>${fmt(c.a)}</div>${moreInfo(c)}`:'<div class="muted small">Erst überlegen, dann aufdecken.</div>'}</div>
       ${L.shown&&L.mode==='exam'?`<div class="rate"><button class="r0" data-a="ex" data-v="0">Nicht gewusst</button><button class="r3" data-a="ex" data-v="1">Gewusst</button></div>`:L.shown?`<div class="rate"><button class="r0" data-a="rate" data-v="0">Nochmal<small>${lab[0]}</small></button><button class="r1" data-a="rate" data-v="1">Schwer<small>${lab[1]}</small></button><button class="r2" data-a="rate" data-v="2">Gut<small>${lab[2]}</small></button><button class="r3" data-a="rate" data-v="3">Leicht<small>${lab[3]}</small></button></div>`:`<button class="btn primary" style="width:100%;justify-content:center;padding:14px" data-a="reveal">Antwort zeigen</button>`}
       <button class="back" data-a="stoplearn">Sitzung beenden</button>`;
     }
