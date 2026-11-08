@@ -385,9 +385,7 @@ button,.tab,.chip,.item,.opt{touch-action:manipulation;-webkit-user-select:none;
   .stats{grid-template-columns:repeat(4,1fr)}
   .modes{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
   /* Themendetail: zweispaltig */
-  #app[data-v="topic"] .stack,#app[data-v="drug"] .stack{max-width:1180px}
-  #app[data-v="topic"] .cols{display:block;column-count:2;column-gap:18px}
-  #app[data-v="topic"] .cols>.box{break-inside:avoid;margin:0 0 18px;display:inline-block;width:100%}
+  #app[data-v="topic"] .stack{max-width:860px}#app[data-v="drug"] .stack{max-width:1180px}
   /* Lernen & Werkzeuge: lesbare Breite */
   #app[data-tab="lernen"] .stack{max-width:860px}
   #app[data-tab="tools"] .stack{max-width:1000px}
@@ -399,8 +397,7 @@ button,.tab,.chip,.item,.opt{touch-action:manipulation;-webkit-user-select:none;
 @media (min-width:1500px){
   .list{grid-template-columns:repeat(3,minmax(0,1fr))}
   main.wrap{max-width:1500px}
-  #app[data-v="topic"] .cols{column-count:3}
-  #app[data-v="topic"] .stack{max-width:1400px}
+  #app[data-v="topic"] .stack{max-width:860px}
 }
 
 /* Antwort hervorgehoben + weitere Infos */
@@ -492,7 +489,6 @@ details.sect[open]>summary::after{content:'▾'}
 details.sect[open]>summary{margin-bottom:8px}
 @media (min-width:700px){
 .quick{grid-template-columns:repeat(4,minmax(0,1fr))}
-.quick>:last-child:nth-child(4n+3){grid-column:span 2}
 .modes{grid-template-columns:repeat(5,minmax(0,1fr))}
 .modes>:last-child:nth-child(odd){grid-column:auto}
 .mode{padding:10px 12px;min-width:0}
@@ -503,10 +499,37 @@ details.sect[open]>summary{margin-bottom:8px}
 .btn,.chip,.item,.tab{min-height:44px}
 .fcard summary,.chap-h,details.sect>summary{min-height:44px}
 }
-@media (min-width:700px) and (max-width:1023px){
-#app[data-v="topic"] .cols{display:block;column-count:2;column-gap:14px}
-#app[data-v="topic"] .cols>.box{break-inside:avoid;margin:0 0 14px;display:inline-block;width:100%}
-}
+/* Medikamente-Tab */
+.dq{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:12px;background:var(--surface);font-size:16px;color:var(--ink)}
+.gdot{width:14px;height:14px;border-radius:50%;border:1px solid rgba(0,0,0,.25);display:inline-block}
+.drg b{overflow-wrap:normal;word-break:normal}
+.drg .syr{font-size:.7rem;padding:1px 6px;white-space:nowrap}
+.drg{grid-template-columns:minmax(0,1fr)}
+.drg .chev.lab{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-start;order:3;margin-top:4px}
+.drg .chev.lab:empty{display:none}
+.drg .sub{order:2}
+.cmpbtn{margin:10px 14px 14px}
+.azl .grp-h{margin:0;padding:8px 14px 4px;background:color-mix(in srgb,var(--ink) 5%,transparent);grid-column:1/-1}
+/* alles untereinander */
+.quick,.stats,.modes,.folders,.wrapchips{grid-template-columns:minmax(0,1fr)!important}
+.list{grid-template-columns:minmax(0,1fr)!important}
+.stats{gap:6px}
+.stat{display:flex;flex-direction:row-reverse;justify-content:space-between;align-items:center;min-height:0;padding:10px 14px}
+.qt{min-height:60px}
+.mode{min-height:0;width:100%;text-align:left}
+.lcard{display:flex;flex-direction:column;gap:10px}
+.lcard h3{margin:0}
+.lbl{font-size:.85rem;color:var(--muted);font-weight:600;margin-top:2px}
+.sel{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:var(--surface);font-size:16px;color:var(--ink)}
+.kv{display:flex;justify-content:space-between;align-items:baseline;padding:6px 0;border-bottom:1px solid var(--line)}
+.kv:last-of-type{border-bottom:0}
+.kv b{font-family:var(--f-display);font-size:1.2rem}
+.plan-g,.grid2,.alg-cols,.fx{grid-template-columns:minmax(0,1fr)!important}
+.qt{min-height:0;padding-block:10px}
+.mode{padding:8px 12px}
+.mode b{font-size:1rem}
+.mode span{font-size:.8rem}
+.quick>*,.modes>*,.wrapchips>*,.folders>*{grid-column:auto!important}
 </style>
 </head>
 <body>
@@ -9300,12 +9323,12 @@ function vTopic(id,inL){
   ${sec('Definition','def',`<p style="margin:0">${fmt(t.def)}</p>`,1)}
   ${t.deep?'<div class="row"><button class="btn small" data-a="secall" data-v="1">Alle aufklappen</button></div>':''}
   <div class="cols">
-  ${sec('Ätiologie & Pathophysiologie','etio',ul(t.etio),!t.deep)}
-  ${sec('Symptome','sym',ul(t.sym),!t.deep)}
-  ${sec(t.deep?'Diagnostik':'Erkennen / Diagnostik','',ul(t.dx),!t.deep)}
-  ${sec(t.deep?'Notfalltherapie (präklinisch)':'Vorgehen','',steps,1)}
-  ${sec('Weiterführende Therapie (Klinik)','',ul(t.tx2),!t.deep)}
-  ${sec('Medikamente','',ul(t.meds),!t.deep)}
+  ${sec('Ätiologie & Pathophysiologie','s-etio',ul(t.etio),!t.deep)}
+  ${sec('Symptome','s-sym',ul(t.sym),!t.deep)}
+  ${sec(t.deep?'Diagnostik':'Erkennen / Diagnostik','s-dx',ul(t.dx),!t.deep)}
+  ${sec(t.deep?'Notfalltherapie (präklinisch)':'Vorgehen','s-tx',steps,1)}
+  ${sec('Weiterführende Therapie (Klinik)','s-tx2',ul(t.tx2),!t.deep)}
+  ${sec('Medikamente','s-meds',ul(t.meds),!t.deep)}
   ${sec('Kinder','kids',ul(t.kids),!t.deep)}
   ${sec('Cave','cave',ul(t.cave),1)}
   ${sec('Merke','merke',ul(t.merke),1)}
@@ -9344,19 +9367,38 @@ function groupBox(k){
 }
 function vDrugs(){
   const f=S.dgrp||'Alle';
-  const list=DRUGS.filter(d=>f==='Alle'||gOf(d)===f);
-  const sortm=S.dsort||store.get('dsort','az');
-  const itemH=d=>`<button class="item" data-a="drug" data-v="${d.id}"><b>${esc(d.n)}</b><span class="chev lab">${dcls(d).filter(k=>k!=='oth').map(k=>syr(k,CLS[k].n.split(' / ')[0].replace('Muskelrelaxans','Relaxans').replace('Nicht klassifiziert','Sonstige'))).join('')}</span><span class="sub">${esc(d.ind)}</span></button>`;
+  const q=(S.dq||'').trim().toLowerCase();
+  const sortm=S.dsort||store.get('dsort','grp');
+  const open=S.dOpen||(S.dOpen=store.get('dOpen',{}));
   const gk=Object.keys(GROUPS);
-  let listHtml;
-  if(sortm==='grp'&&f==='Alle'){
-    listHtml=gk.map(k=>{const l=list.filter(d=>gOf(d)===k); return l.length?`<button class="grp-h grp-link" data-a="dgrp" data-v="${k}">${esc(GROUPS[k].n)} <span class="muted">· Vergleich ›</span></button><div class="list">${l.map(itemH).join('')}</div>`:'';}).join('');
-  } else listHtml=`<div class="list">${list.map(itemH).join('')}</div>`;
-  return `<div class="stack"><div><div class="eyebrow">Nachschlagewerk</div><h1 class="h1">Notfallmedikamente</h1><p class="lead">Nach Wirkgruppen mit Vergleichstabelle; Spritzen-Aufkleber nach ISO 26825. Dosierungen immer mit Fachinformation abgleichen.</p></div>
-  <div class="chips wrapchips"><button class="chip" data-a="dgrp" data-v="Alle" aria-pressed="${f==='Alle'}">Alle</button>${gk.map(k=>`<button class="chip" data-a="dgrp" data-v="${k}" aria-pressed="${f===k}">${esc(GROUPS[k].n)}</button>`).join('')}</div>
-  ${f==='Alle'?`<div class="seg" role="tablist" style="max-width:320px"><button role="tab" data-a="dsort" data-v="az" aria-selected="${sortm==='az'}">A–Z</button><button role="tab" data-a="dsort" data-v="grp" aria-selected="${sortm==='grp'}">Nach Gruppe</button></div>`:`<h2 class="h2">${esc(GROUPS[f].n)}</h2>${groupBox(f)}<h3 class="more-h">Substanzen</h3>`}
-  ${listHtml}
-  <p class="small muted">Weiß = Substanz ohne Klassenfarbe im ISO-Schema (z. B. Amiodaron, Heparin, Glukose, Magnesium). Schräge Streifen = Antagonist bzw. Hypotensivum. Aufkleber der eigenen Klinik/des Rettungsdienstes entsprechen meist diesem Schema, aber nicht zwingend.</p>${disc()}</div>`;
+  const lab=d=>dcls(d).filter(k=>k!=='oth').map(k=>syr(k,CLS[k].n.split(' / ')[0].replace('Muskelrelaxans','Relaxans').replace('Nicht klassifiziert','Sonstige').replace(/.*-Antagonist$/,'Antagonist'))).join('');
+  const itemH=d=>`<button class="item drg" data-a="drug" data-v="${d.id}"><b>${esc(d.n)}</b><span class="chev lab">${lab(d)}</span><span class="sub">${esc(d.ind)}</span></button>`;
+  const match=d=>!q||(d.n+' '+d.ind+' '+(d.g||'')).toLowerCase().includes(q);
+  const legend=`<details class="exq"><summary>Legende: Spritzen-Aufkleber (ISO 26825)</summary><div class="exa small">Farbe = Wirkklasse nach ISO-Schema. Weiß = Substanz ohne Klassenfarbe (z. B. Amiodaron, Heparin, Glukose, Magnesium). Schräge Streifen = Antagonist bzw. Hypotensivum. Aufkleber der eigenen Klinik bzw. des Rettungsdienstes entsprechen meist diesem Schema, aber nicht zwingend. Dosierungen immer mit Fachinformation abgleichen.</div></details>`;
+  if(f!=='Alle'&&GROUPS[f]){
+    const l=DRUGS.filter(d=>gOf(d)===f);
+    return `<div class="stack"><button class="back" data-a="dgrp" data-v="Alle">‹ Alle Gruppen</button><div><div class="eyebrow">Wirkgruppe</div><h1 class="h1">${esc(GROUPS[f].n)}</h1></div>${groupBox(f)}<h3 class="more-h">Substanzen</h3><div class="list">${l.map(itemH).join('')}</div>${legend}${disc()}</div>`;
+  }
+  let body='';
+  if(q){
+    const l=DRUGS.filter(match);
+    body=`<p class="small muted">${l.length} Treffer</p>`+(l.length?`<div class="list">${l.map(itemH).join('')}</div>`:'<div class="card"><p class="muted" style="margin:0">Nichts gefunden. Anderen Namen oder eine Indikation versuchen.</p></div>');
+  } else if(sortm==='grp'){
+    const allOpen=gk.every(k=>open[k]);
+    body=`<div class="row"><button class="btn small" data-a="dchapall" data-v="${allOpen?0:1}">${allOpen?'Alle zuklappen':'Alle aufklappen'}</button></div><div class="chaps">`+gk.map(k=>{
+      const l=DRUGS.filter(d=>gOf(d)===k); if(!l.length) return '';
+      const o=!!open[k], d0=DRUGS.find(x=>x.id===GROUPS[k].ids[0])||l[0], c0=CLS[(dcls(d0).find(x=>x!=='oth'))||'oth'];
+      return `<div class="chap ${o?'open':''}"><button class="chap-h" data-a="dchap" data-v="${k}" aria-expanded="${o}"><span class="gdot" style="background:${c0.c}"></span><span class="chap-n">${esc(GROUPS[k].n)}</span><span class="mono small muted">${l.length}</span><span class="chap-c">${o?'▾':'▸'}</span></button>${o?`<div class="chap-b"><div class="list">${l.map(itemH).join('')}</div><button class="btn small cmpbtn" data-a="dgrp" data-v="${k}">Vergleichstabelle &amp; „Wann welches?“ ›</button></div>`:''}</div>`;
+    }).join('')+'</div>';
+  } else {
+    let cur='';
+    body=DRUGS.map(d=>{const L=d.n[0].toUpperCase(); const h=L!==cur?(cur=L,`<div class="grp-h">${L}</div>`):''; return h+itemH(d);}).join('');
+    body=`<div class="list azl">${body}</div>`;
+  }
+  return `<div class="stack"><div><div class="eyebrow">Nachschlagewerk</div><h1 class="h1">Medikamente</h1></div>
+  <input id="dq" class="dq" type="search" placeholder="Medikament oder Indikation suchen" value="${esc(S.dq||'')}" autocomplete="off">
+  ${q?'':`<div class="seg" role="tablist" style="max-width:320px"><button role="tab" data-a="dsort" data-v="grp" aria-selected="${sortm==='grp'}">Nach Gruppe</button><button role="tab" data-a="dsort" data-v="az" aria-selected="${sortm==='az'}">A–Z</button></div>`}
+  ${body}${legend}${disc()}</div>`;
 }
 function vDrug(id){
   const d=DRUGS.find(x=>x.id===id); if(!d) return backBtn();
@@ -9458,15 +9500,19 @@ function vLearn(){
   } else if(L.folder){
     body=vFolder();
   } else {
-    body=`<div class="stats"><div class="stat"><b>${st.due}</b><span>fällig</span></div><div class="stat"><b>${st.nw}</b><span>neu</span></div><div class="stat"><b>${st.mas}</b><span>sicher</span></div><div class="stat"><b>${st.total}</b><span>Karten</span></div></div>
+    const catOpts=cats.map(c=>`<option value="${esc(c)}" ${L.cat===c?'selected':''}>${c==='Alle'?'Alle Fachgebiete':esc(c)} (${stats(c).total})</option>`).join('');
+    body=`<div class="card lcard"><h3>Lernen starten</h3>
+    <label class="lbl" for="lcatsel">Fachgebiet</label><select id="lcatsel" class="sel">${catOpts}</select>
+    <div class="lbl">Modus</div>
     <div class="modes">${modes.map(m=>`<button class="mode" data-a="mode" data-v="${m[0]}" aria-pressed="${L.mode===m[0]}"><b>${m[1]}</b><span>${m[2]}</span></button>`).join('')}</div>
-    <button class="btn primary" style="width:100%;justify-content:center;padding:14px" data-a="startlearn">Starten</button>
-    <p class="small muted">Heute neu: ${newToday()} von ${newLimit()}. Fortschritt wird in diesem Browser gespeichert (auf iPhone, iPad und PC getrennt).</p>
-    <div class="row"><button class="btn small" data-a="resetsrs">${L.confirmReset?'Wirklich alles löschen? Nochmal tippen':'Fortschritt zurücksetzen'}</button></div>`;
+    <button class="btn primary" style="width:100%;justify-content:center;padding:14px" data-a="startlearn">Starten</button></div>
+    <div class="card lcard"><h3>Stand ${L.cat==='Alle'?'(alle Fachgebiete)':'· '+esc(L.cat)}</h3>
+    <div class="kv"><span>Fällig</span><b>${st.due}</b></div><div class="kv"><span>Neu</span><b>${st.nw}</b></div><div class="kv"><span>Sicher gelernt</span><b>${st.mas}</b></div><div class="kv"><span>Karten gesamt</span><b>${st.total}</b></div>
+    <p class="small muted" style="margin:8px 0 0">Heute neu: ${newToday()} von ${newLimit()}.</p></div>
+    <div><div class="grp-h">Sammlungen</div>${folderTiles()}</div>
+    <details class="exq"><summary>Mehr</summary><div class="exa small"><p style="margin-top:0">Fortschritt wird in diesem Browser gespeichert (auf iPhone, iPad und PC getrennt).</p><button class="btn small" data-a="resetsrs">${L.confirmReset?'Wirklich alles löschen? Nochmal tippen':'Fortschritt zurücksetzen'}</button></div></details>`;
   }
   return `<div class="stack"><div><div class="eyebrow">Wiederholung mit Intervallen</div><h1 class="h1">Lernkarten</h1></div>
-  ${L.active||L.folder?'':folderTiles()}
-  ${L.active||L.folder?'':`<div class="chips wrapchips">${cats.map(c=>`<button class="chip" data-a="lcat" data-v="${esc(c)}" aria-pressed="${L.cat===c}">${esc(c)}</button>`).join('')}</div>`}
   ${body}</div>`;
 }
 function rate(r){
@@ -9751,6 +9797,8 @@ document.addEventListener('click',e=>{
   else if(a==='back') back();
   else if(a==='cat'){S.cat=v;render();}
   else if(a==='dcls'||a==='dgrp'){S.dgrp=v;render();window.scrollTo(0,0);}
+  else if(a==='dchap'){ const o=S.dOpen||(S.dOpen={}); o[v]=!o[v]; store.set('dOpen',o); render(); }
+  else if(a==='dchapall'){ S.dOpen={}; if(v==='1') Object.keys(GROUPS).forEach(k=>S.dOpen[k]=true); store.set('dOpen',S.dOpen); render(); }
   else if(a==='dsort'){S.dsort=v;store.set('dsort',v);render();}
   else if(a==='topic'){ store.set('lastTopic',v); go('themen',{type:'topic',id:v},true); }
   else if(a==='chap'){ S.topOpen=S.topOpen||store.get('topOpen',{}); S.topOpen[v]=!S.topOpen[v]; store.set('topOpen',S.topOpen); render(); }
@@ -9787,6 +9835,7 @@ document.addEventListener('input',e=>{
   const t=e.target;
   if(t.dataset&&t.dataset.note){ const v=t.value; if(v.trim()) notes[t.dataset.note]=v; else delete notes[t.dataset.note]; store.set('notes',notes); return; }
   if(t.id==='q'){ S.q=t.value; if(S.q.trim().length>=2){ S.view={type:'search'}; } else if(S.view&&S.view.type==='search'){ S.view=null; } render(); const q=$('#q'); q.focus(); return; }
+  if(t.id==='dq'){ S.dq=t.value; const p=t.selectionStart; render(); const e=$('#dq'); if(e){e.focus(); try{e.setSelectionRange(p,p);}catch(_){}} return; }
   if(t.id==='exam'){store.set('exam',t.value);const o=$('#plan-out'); if(o) o.innerHTML=planOut(); return;}
   if(t.id==='newlim'){ const n=parseInt(t.value,10); if(n>=1){ store.set('newLimit',Math.min(300,n)); const o=$('#plan-out'); if(o) o.innerHTML=planOut(); } return; }
   if(t.id==='k-age'||t.id==='k-unit'||t.id==='k-kg'){ const k={age:$('#k-age').value,unit:$('#k-unit').value,kg:$('#k-kg').value}; store.set('kid',k); $('#k-out').innerHTML=kidOut(k); return; }
@@ -9797,6 +9846,7 @@ document.addEventListener('input',e=>{
 document.addEventListener('change',e=>{
   if(e.target.id==='newlim'){ const n=parseInt(e.target.value,10); store.set('newLimit',n>=1?Math.min(300,n):20); e.target.value=newLimit(); }
   if(e.target.id==='buf'){ store.set('planBuf',parseInt(e.target.value,10)||0); const o=$('#plan-out'); if(o) o.innerHTML=planOut(); }
+  if(e.target.id==='lcatsel'){ L.cat=e.target.value; render(); }
   if(e.target.id==='exam') render();
   if(e.target.id==='k-unit') e.target.dispatchEvent(new Event('input',{bubbles:true}));
 });
