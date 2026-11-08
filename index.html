@@ -169,7 +169,7 @@ tr:last-child td{border-bottom:0}
 .tbl{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
 .timer{font-family:var(--f-mono);font-size:2.4rem;font-weight:600;line-height:1}
 .cpr{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.cpr .big{padding:14px 8px;font-size:17px;font-weight:700;border-radius:12px}
+.cpr .big,.cpr1 .big{padding:14px 8px;font-size:17px;font-weight:700;border-radius:12px}
 .log{font-family:var(--f-mono);font-size:13.5px;max-height:180px;overflow:auto;display:flex;flex-direction:column;gap:2px}
 .alert{background:var(--accent);color:var(--accent-ink);border-radius:10px;padding:8px 12px;font-weight:700;text-align:center}
 .hl{background:color-mix(in srgb,var(--warn) 30%,transparent);border-radius:2px}
@@ -424,8 +424,27 @@ button,.tab,.chip,.item,.opt{touch-action:manipulation;-webkit-user-select:none;
 .fcard summary{cursor:pointer;display:flex;flex-direction:column;align-items:flex-start;gap:6px;list-style:none}
 .fcard summary::-webkit-details-marker{display:none}
 .fcard .ans{margin-top:12px;padding:12px 14px;border-radius:14px;border:2px solid var(--ok);background:color-mix(in srgb,var(--ok) 13%,var(--glass-strong));font-weight:600}
-.cpr .btn.go{background:linear-gradient(180deg,#3FA55A,#27743A);border:1px solid rgba(255,255,255,.3);color:#fff}
-.cpr .btn.stop{background:linear-gradient(180deg,#EC4A39,#C81E17);border:1px solid rgba(255,255,255,.35);color:#fff}
+.cpr .btn.go,.cpr1 .btn.go{background:linear-gradient(180deg,#3FA55A,#27743A);border:1px solid rgba(255,255,255,.3);color:#fff}
+.cpr .btn.stop,.cpr1 .btn.stop{background:linear-gradient(180deg,#EC4A39,#C81E17);border:1px solid rgba(255,255,255,.35);color:#fff}
+.alg{border:1px solid var(--line);border-radius:12px;padding:10px;display:grid;gap:8px;background:var(--surface)}
+.alg-h{font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.alg-cols{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.alg-c{border-radius:10px;padding:8px 10px;font-size:13px;line-height:1.35}
+.alg-c small{display:block;color:var(--muted);margin-bottom:4px}
+.alg-c ul{margin:0;padding-left:16px}
+.alg-c.sh{background:color-mix(in srgb,#D4231C 12%,transparent);border-left:4px solid #D4231C}
+.alg-c.ns{background:color-mix(in srgb,#1E88E5 12%,transparent);border-left:4px solid #1E88E5}
+.cpr .big small{display:block;font-size:12px;font-weight:500;line-height:1.25;color:var(--muted);margin-top:3px}
+.alg-m{font-size:13px;line-height:1.4}
+.cpr1 .btn{width:100%}
+.cpr1 .btn small{color:inherit}
+.rg{border-radius:12px;padding:8px;display:grid;gap:6px}
+.rg-h{font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.05em}
+.rg-h small{font-weight:500;color:var(--muted);text-transform:none;letter-spacing:0;margin-left:4px}
+.rg.sh{background:color-mix(in srgb,#D4231C 10%,transparent);border-left:4px solid #D4231C}
+.rg.ns{background:color-mix(in srgb,#1E88E5 10%,transparent);border-left:4px solid #1E88E5}
+.rg .cpr{grid-template-columns:1fr}
+.rg .cpr .big{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;text-align:left;gap:0}
 </style>
 </head>
 <body>
@@ -1217,6 +1236,19 @@ rows:[
 choose:['Meningitis/Sepsis → Antibiose so früh wie möglich','COPD → O₂ titrieren auf 88–92 %'],
 src:[['AWMF Leitlinienregister','https://register.awmf.org']]}
 };
+</script><script>window.ABK=[
+['CPR','Herz-Lungen-Wiederbelebung'],['ROSC','Wiederkehr des Spontankreislaufs'],['ALS','erweiterte Reanimationsmaßnahmen'],['BLS','Basismaßnahmen der Wiederbelebung'],
+['AED','automatisierter externer Defibrillator'],['VF','Kammerflimmern'],['pVT','pulslose Kammertachykardie'],['VT','Kammertachykardie'],['PEA','pulslose elektrische Aktivität'],
+['STEMI','ST-Hebungsinfarkt'],['NSTEMI','Herzinfarkt ohne ST-Hebung'],['ACS','akutes Koronarsyndrom'],['PCI','Herzkatheter-Eingriff'],
+['SVT','supraventrikuläre Tachykardie'],['AF','Vorhofflimmern'],['WPW','Wolff-Parkinson-White-Syndrom'],['AVNRT','AV-Knoten-Reentry-Tachykardie'],
+['RSI','Blitzintubation, Narkoseeinleitung beim nicht Nüchternen'],['SGA','supraglottische Atemwegshilfe'],['NIV','nichtinvasive Beatmung'],['CPAP','Atemhilfe mit kontinuierlichem Überdruck'],['PEEP','positiver endexspiratorischer Druck'],
+['COPD','chronisch obstruktive Lungenerkrankung'],['SpO₂','periphere Sauerstoffsättigung'],['SpO2','periphere Sauerstoffsättigung'],['EtCO₂','endexspiratorisches CO₂, Kapnographie'],
+['SBP','systolischer Blutdruck'],['MAP','mittlerer arterieller Druck'],['TXA','Tranexamsäure'],['TCA','trizyklische Antidepressiva'],['ECLS','extrakorporale Kreislaufunterstützung'],
+['DKA','diabetische Ketoazidose'],['HHS','hyperosmolares hyperglykämisches Syndrom'],['GCS','Glasgow-Koma-Skala'],['AVPU','Bewusstseinsstufen: wach, Stimme, Schmerz, bewusstlos'],
+['TIA','transitorische ischämische Attacke'],['LVO','Verschluss eines großen Hirngefäßes'],['ICB','intrazerebrale Blutung'],['ICP','Hirndruck'],['NRS','numerische Schmerzskala'],
+['PPH','postpartale Blutung'],['HELLP','Schwangerschaftskomplikation: Hämolyse, erhöhte Leberwerte, niedrige Thrombozyten'],['HIT','Heparin-induzierte Thrombozytopenie'],['MH','maligne Hyperthermie'],
+['CRM','Crew Resource Management, Teamführung'],['ISBAR','strukturierte Übergabe'],['SOP','Standardarbeitsanweisung'],['qSOFA','Sepsis-Schnelltest'],['SOFA','Score für Organversagen']
+];
 </script><script>window.DRUGS=(window.DRUGS||[]).concat([
 {id:'insulin',n:'Normalinsulin',g:'Insulin',ind:'Hyperkaliämie (Shift), hyperglykämische Entgleisung',dose:'Hyperkaliämie: 10 IE i.v. + 25 g Glukose über 15–30 min\nHyperglykämische Entgleisung: Klinik, Perfusor nach Schema',kids:'Nicht prähospital Standard; Klinik',cave:'Hypoglykämie (BZ-Kontrolle 4–6 h), Hypokaliämie.'},
 {id:'ppsb',n:'PPSB (Prothrombinkomplex)',g:'Gerinnungsfaktoren',ind:'Antagonisierung Vitamin-K-Antagonisten, Faktor-Xa-Hemmer (alternativ), Massivblutung',dose:'25–50 IE/kg i.v. (INR-/Gewichts-adaptiert), zusätzlich Vitamin K 10 mg i.v. bei Phenprocoumon',kids:'Nach Klinikprotokoll',cave:'Thromboembolierisiko, HIT II (heparinhaltige Präparate).'},
@@ -1683,6 +1715,28 @@ function stats(cat){
 }
 
 /* ---------- Render ---------- */
+
+/* Englische Abkürzungen: beim ersten Auftreten je Ansicht deutsche Erklärung in Klammern */
+const ABK_RX=(window.ABK||[]).map(a=>[a[0],a[1],new RegExp('(^|[^\\wÄÖÜäöüß/\\-])('+a[0].replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')(?![\\wÄÖÜäöüß₂\\-])')]);
+function expandAbk(root){
+  const skip='.noabk,h1,.h1,.h2,.eyebrow,script,style,textarea,input,svg,.syr,.timer,.chip,.tab,.tabs,.seg,.tst,.favb,.btn,.top,.brand,.mono,.qt,.stats,.stat';
+  const done={}; const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null); const nodes=[]; let n;
+  while((n=w.nextNode())) nodes.push(n);
+  nodes.forEach(t=>{
+    if(!t.nodeValue||t.nodeValue.length<2) return;
+    if(t.parentElement&&t.parentElement.closest(skip)) return;
+    let v=t.nodeValue, ch=false;
+    ABK_RX.forEach(a=>{
+      if(done[a[0]]) return;
+      const m=a[2].exec(v); if(!m) return;
+      const end=m.index+m[1].length+a[0].length;
+      done[a[0]]=1;
+      if(/^\s*\(/.test(v.slice(end))) return;
+      v=v.slice(0,end)+' ('+a[1]+')'+v.slice(end); ch=true;
+    });
+    if(ch) t.nodeValue=v;
+  });
+}
 function render(){
   $('#tabrow').innerHTML=TABS.map(t=>`<button class="tab" data-a="tab" data-v="${t[0]}" aria-current="${S.tab===t[0]}">${ico(t[2])}<span>${t[1]}</span></button>`).join('');
   const app=$('#app'); let html='';
@@ -1695,6 +1749,7 @@ function render(){
   app.dataset.tab=S.tab; app.dataset.v=S.view?S.view.type:'';
   app.innerHTML='<div class="fade">'+html+'</div>';
   const th=$('#top').offsetHeight; document.documentElement.style.setProperty('--toph',th+'px');
+  try{expandAbk(app);}catch(e){}
   if(S.tab==='tools'&&S.tool==='timer') updateTimer();
 }
 
@@ -1913,11 +1968,11 @@ function rate(r){
 }
 
 /* ---------- Tools ---------- */
-const TOOLS=[['timer','CPR-Timer'],['ekg','EKG'],['kind','Kinder'],['gcs','GCS'],['dosis','Dosis'],['scores','Scores']];
+const TOOLS=[['timer','CPR-Timer'],['ekg','EKG'],['kind','Kinder'],['gcs','GCS'],['dosis','Dosis'],['scores','Scores'],['abk','Abkürzungen']];
 function vTools(){
   const seg=`<div class="seg" role="tablist">${TOOLS.map(t=>`<button role="tab" data-a="tool" data-v="${t[0]}" aria-selected="${S.tool===t[0]}">${t[1]}</button>`).join('')}</div>`;
   let body='';
-  if(S.tool==='timer') body=toolTimer(); else if(S.tool==='kind') body=toolKind(); else if(S.tool==='ekg') body=toolEkg(); else if(S.tool==='gcs') body=toolGcs(); else if(S.tool==='dosis') body=toolDosis(); else body=toolScores();
+  if(S.tool==='timer') body=toolTimer(); else if(S.tool==='kind') body=toolKind(); else if(S.tool==='ekg') body=toolEkg(); else if(S.tool==='gcs') body=toolGcs(); else if(S.tool==='dosis') body=toolDosis(); else if(S.tool==='abk') body=toolAbk(); else body=toolScores();
   return `<div class="stack"><div><div class="eyebrow">Hilfsmittel</div><h1 class="h1">Tools</h1></div>${seg}${body}${disc()}</div>`;
 }
 
@@ -1927,13 +1982,21 @@ function tNow(){return T.acc+(T.run?Date.now()-T.t0:0);}
 const clk=()=>new Date().toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
 function tlog(s){T.log.unshift(clk()+' · '+mmss(tNow())+'  '+s);}
 function beep(f,d){try{if(!T.ac)T.ac=new (window.AudioContext||window.webkitAudioContext)();const o=T.ac.createOscillator(),g=T.ac.createGain();o.frequency.value=f||880;o.connect(g);g.connect(T.ac.destination);g.gain.value=.15;o.start();o.stop(T.ac.currentTime+(d||.12));}catch(e){}}
+function toolAbk(){
+  const seen={}; const rows=(window.ABK||[]).filter(a=>{const k=a[1];if(seen[k])return false;seen[k]=1;return true;}).slice().sort((a,b)=>a[0].localeCompare(b[0],'de'));
+  return `<div class="card stack noabk"><p class="small muted" style="margin:0">Englische Abkürzungen mit deutscher Erklärung. Im Text werden sie beim ersten Auftreten in Klammern erklärt.</p><div class="list">${rows.map(a=>`<div class="item"><b>${esc(a[0])}</b><span class="sub" style="white-space:normal">${esc(a[1])}</span></div>`).join('')}</div></div>`;
+}
 function toolTimer(){
   return `<div class="card stack"><div class="row" style="justify-content:space-between"><div><div class="eyebrow">Gesamtzeit <span id="t-st" class="tst ${T.run?'on':'off'}">${T.run?'● LÄUFT':(T.acc?'■ GESTOPPT':'Bereit')}</span></div><div class="timer" id="t-el">00:00</div><div class="small muted mono">Uhrzeit <b id="t-clk">${clk()}</b></div></div><div><div class="eyebrow">Zyklus (2 min)</div><div class="timer" id="t-cyc">02:00</div></div></div>
   <div id="t-hint" class="alert" hidden></div>
   <div class="row small"><span>Schocks: <b id="t-sh">0</b></span><span>Adrenalin: <b id="t-ad">0</b> <span class="muted" id="t-adt"></span></span><span>Amiodaron: <b id="t-am">0</b></span></div>
-  <div class="cpr"><button class="btn big ${T.run?'stop':'go'}" data-a="t-run" id="t-runb">${T.run?'⏸ STOPP':(T.acc?'▶ WEITER':'▶ START')}</button><button class="btn big" data-a="t-shock">⚡ Schock</button><button class="btn big" data-a="t-adr">Adrenalin 1 mg</button><button class="btn big" data-a="t-amio">Amiodaron</button><button class="btn big" data-a="t-metro" aria-pressed="${T.metro}">Metronom ${T.metro?'an':'aus'} (110/min)</button><button class="btn big ok" data-a="t-rosc">ROSC</button></div>
+  <div class="cpr1"><button class="btn big ${T.run?'stop':'go'}" data-a="t-run" id="t-runb">${T.run?'⏸ STOPP':(T.acc?'▶ WEITER':'▶ START')}</button></div>
+  <div class="rg sh"><div class="rg-h">⚡ Schockbar <small>VF / pVT</small></div><div class="cpr"><button class="btn big" data-a="t-shock">⚡ Schock<small>danach sofort 2 min Herzdruckmassage</small></button><button class="btn big" data-a="t-adr">Adrenalin 1 mg<small>nach 3. Schock, dann alle 3–5 min</small></button><button class="btn big" data-a="t-amio">Amiodaron<small>300 mg nach 3. Schock, 150 mg nach 5.</small></button></div></div>
+  <div class="rg ns"><div class="rg-h">— Nicht schockbar <small>Asystolie / PEA</small></div><div class="cpr"><button class="btn big" data-a="t-adr" data-v="ns">Adrenalin 1 mg<small>so früh wie möglich, dann alle 3–5 min</small></button></div></div>
+  <div class="cpr"><button class="btn big" data-a="t-metro" aria-pressed="${T.metro}">Metronom ${T.metro?'an':'aus'} (110/min)</button><button class="btn big ok" data-a="t-rosc">ROSC<small>Spontankreislauf wieder da</small></button></div>
   <div class="row"><button class="btn small" data-a="t-reset">Zurücksetzen</button></div>
   <div class="log" id="t-log">${T.log.map(l=>`<div>${esc(l)}</div>`).join('')}</div>
+  <div class="alg-m"><b>Minimal-Algorithmus:</b> Bewusstlos + keine normale Atmung → Notruf, CPR 30:2, Defi/Monitor → Rhythmus bewerten → CPR 2 min (Pausen &lt; 5 s) → Rhythmus neu bewerten → Atemweg, Kapnographie, i.v./i.o. → 4H/4T behandeln → bei ROSC Post-Reanimationsbehandlung.</div>
   <p class="small muted">Erinnerung: Rhythmuscheck alle 2 min · Adrenalin bei schockbar nach 3. Schock, bei nicht schockbar sofort, danach alle 3–5 min · Amiodaron 300 mg nach 3. Schock, 150 mg nach 5. Schock · 4H/4T.</p></div>`;
 }
 function updateTimer(){
@@ -1951,10 +2014,10 @@ function updateTimer(){
   if(h){h.hidden=!msg;h.textContent=msg;}
 }
 setInterval(()=>{ if(S.tab==='tools'&&S.tool==='timer') updateTimer(); },250);
-function tAct(a){
+function tAct(a,v){
   if(a==='t-run'){ if(T.run){T.acc+=Date.now()-T.t0;T.run=false;tlog('Stopp');} else {T.t0=Date.now();T.run=true;tlog(T.acc?'Weiter':'Start');} }
   else if(a==='t-shock'){T.shocks++;tlog('Schock #'+T.shocks);}
-  else if(a==='t-adr'){T.adr++;T.lastAdr=tNow();tlog('Adrenalin 1 mg (#'+T.adr+')');}
+  else if(a==='t-adr'){T.adr++;T.lastAdr=tNow();tlog('Adrenalin 1 mg (#'+T.adr+')'+(v==='ns'?' · nicht schockbar':''));}
   else if(a==='t-amio'){T.amio++;tlog('Amiodaron '+(T.amio===1?'300':'150')+' mg');}
   else if(a==='t-rosc'){tlog('ROSC');if(T.run){T.acc+=Date.now()-T.t0;T.run=false;}}
   else if(a==='t-metro'){T.metro=!T.metro; if(T.metro){beep(700,.05);T.mi=setInterval(()=>beep(700,.05),60000/110);} else {clearInterval(T.mi);T.mi=null;}}
@@ -2197,7 +2260,7 @@ document.addEventListener('click',e=>{
   else if(a==='tool'){S.tool=v;render();}
   else if(a==='goekg'){S.tool='ekg';EK.mode='learn';EK.sel=null;go('tools',null);}
   else if(a&&a.indexOf('e-')===0) eAct(a,v);
-  else if(a&&a.indexOf('t-')===0) tAct(a);
+  else if(a&&a.indexOf('t-')===0) tAct(a,v);
 });
 document.addEventListener('input',e=>{
   const t=e.target;
