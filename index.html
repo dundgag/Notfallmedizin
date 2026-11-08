@@ -397,6 +397,22 @@ button,.tab,.chip,.item,.opt{touch-action:manipulation;-webkit-user-select:none;
 .more-r{padding:8px 0;border-top:1px solid color-mix(in srgb,var(--ink) 8%,transparent)}
 .more-r:first-of-type{border-top:0}
 .more-r b{display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+
+/* Favoriten & Notizen */
+.wrapchips{flex-wrap:wrap;overflow:visible}
+.folders{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fold{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;column-gap:10px;align-items:center;text-align:left;padding:14px 16px;border-radius:20px;border:1px solid var(--glass-brd);background:var(--glass);-webkit-backdrop-filter:blur(22px) saturate(1.8);backdrop-filter:blur(22px) saturate(1.8);box-shadow:var(--gshadow),var(--gspec)}
+.fold span{grid-row:span 2;font-size:26px;color:var(--warn)}
+.fold b{font-family:var(--f-display);font-size:1.15rem}
+.fold small{color:var(--muted)}
+.favb{border:0;background:none;font-size:30px;line-height:1;padding:4px 6px;color:var(--muted)}
+.favb.on{color:#F2B100;text-shadow:0 2px 8px rgba(242,177,0,.5)}
+.notebox{margin-top:12px;padding:12px 14px;border-radius:16px;border:1px solid var(--glass-brd);background:var(--glass)}
+.notebox textarea{font-family:inherit;width:100%;box-sizing:border-box;min-height:84px;margin-top:6px;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--surface);font-size:16px;resize:vertical}
+.fcard{border:1px solid var(--glass-brd);border-radius:18px;background:var(--glass);padding:12px 14px;margin-bottom:10px}
+.fcard summary{cursor:pointer;display:flex;flex-direction:column;align-items:flex-start;gap:6px;list-style:none}
+.fcard summary::-webkit-details-marker{display:none}
+.fcard .ans{margin-top:12px;padding:12px 14px;border-radius:14px;border:2px solid var(--ok);background:color-mix(in srgb,var(--ok) 13%,var(--glass-strong));font-weight:600}
 </style>
 </head>
 <body>
@@ -1474,7 +1490,24 @@ const TABS=[
 let S={tab:'start',view:null,stack:[],cat:'Alle',q:'',tool:'timer'};
 let srs=store.get('srs',{});
 let learned=store.get('learned',{});
-let L={mode:'due',cat:'Alle',queue:[],i:0,shown:false,done:0,active:false};
+let favs=store.get('fav',{}), notes=store.get('notes',{});
+function folderCards(k){ return CARDS.filter(c=>k==='fav'?favs[c.id]:(notes[c.id]&&notes[c.id].trim())); }
+function noteBox(c){
+  const n=notes[c.id]||'';
+  if(!n&&!L.noteOpen) return `<button class="btn small" data-a="notetoggle">📝 Notiz hinzufügen</button>`;
+  return `<div class="notebox"><div class="more-h">📝 Meine Notiz</div><textarea data-note="${c.id}" rows="3" placeholder="Eigene Notiz zu dieser Karte …">${esc(n)}</textarea></div>`;
+}
+function folderTiles(){
+  return `<div class="folders"><button class="fold" data-a="folder" data-v="fav"><span>★</span><b>Favoriten</b><small>${folderCards('fav').length} Karten</small></button><button class="fold" data-a="folder" data-v="notes"><span>📝</span><b>Notizen</b><small>${folderCards('notes').length} Karten</small></button></div>`;
+}
+function vFolder(){
+  const k=L.folder, list=folderCards(k), title=k==='fav'?'★ Favoriten':'📝 Notizen';
+  return `<button class="back" data-a="folderback">‹ Zurück</button>
+  <h2 class="h1" style="font-size:1.7rem">${title} <span class="muted small">(${list.length})</span></h2>
+  ${list.length?`<button class="btn primary" data-a="startfolder">Alle ${list.length} Karten lernen</button>`:`<p class="lead">Noch leer. ${k==='fav'?'Tippe beim Lernen auf ☆, um eine Karte als Favorit zu speichern.':'Füge beim Lernen über „Notiz hinzufügen“ eine Notiz hinzu.'}</p>`}
+  <div class="stack">${list.map(c=>`<details class="fcard"><summary><span class="pill">${dot(c.cat)}${esc(c.cat)}</span><b>${esc(c.q)}</b></summary><div class="ans"><div class="ans-h">✓ Antwort</div>${fmt(c.a)}</div>${moreInfo(c)}<div class="notebox"><div class="more-h">📝 Notiz</div><textarea data-note="${c.id}" rows="3" placeholder="Eigene Notiz …">${esc(notes[c.id]||'')}</textarea></div><div class="row"><button class="btn small" data-a="fav" data-v="${c.id}">${favs[c.id]?'★ Favorit entfernen':'☆ Als Favorit speichern'}</button></div></details>`).join('')}</div>`;
+}
+let L={mode:'due',cat:'Alle',queue:[],i:0,shown:false,done:0,active:false,folder:null,noteOpen:false};
 
 const CAT_COL={'Reanimation':'#D4231C','Kardiovaskulär':'#E4572E','Atemwege & Atmung':'#1E88E5','Neurologie':'#7E57C2','Trauma':'#F57C00','Internistische Notfälle':'#00897B','Toxikologie':'#6D4C41','Umwelt & Thermisch':'#039BE5','Geburtshilfe':'#D81B60','Pädiatrie':'#F9A825','Atemweg, Narkose, Analgesie':'#3949AB','Psychiatrie & Recht':'#546E7A','Organisation':'#43A047','Urologie, HNO & Augen':'#00ACC1','Medikamente':'#8E24AA','Fallbeispiele':'#5D4037'};
 const dot=c=>`<i class="dot" style="background:${CAT_COL[c]||'#888'}"></i>`;
@@ -1645,7 +1678,7 @@ const IV=[0,1,2,5,10,21,45];
 function ivLabel(d){return d===0?'<10 min':(d===1?'1 Tag':d+' Tage');}
 function buildQueue(){
   const now=Date.now();
-  let pool=CARDS.filter(c=>L.cat==='Alle'||c.cat===L.cat), q=[];
+  let pool=L.folder?folderCards(L.folder):CARDS.filter(c=>L.cat==='Alle'||c.cat===L.cat), q=[];
   if(L.mode==='due'){
     const due=pool.filter(c=>srs[c.id]&&srs[c.id].d<=now);
     const nw=shuffle(pool.filter(c=>!srs[c.id])).slice(0,Math.max(0,newLimit()-newToday()));
@@ -1654,6 +1687,8 @@ function buildQueue(){
   else if(L.mode==='weak') q=shuffle(pool.filter(c=>srs[c.id]&&srs[c.id].b<=1));
   else if(L.mode==='exam') q=shuffle(pool).slice(0,30);
   else q=shuffle(pool).slice(0,40);
+  if(L.folder) q=shuffle(pool);
+  L.noteOpen=false;
   L.res=[];
   L.queue=q;L.i=0;L.shown=false;L.done=0;L.active=true;
 }
@@ -1689,12 +1724,15 @@ function vLearn(){
     } else {
       const c=L.queue[L.i], s=srs[c.id]||{b:0}, b=s.b||0;
       const lab=[ '<10 min', ivLabel(Math.max(1,IV[Math.max(1,b)])), ivLabel(IV[Math.min(6,b+1)]||1), ivLabel(IV[Math.min(6,b+2)]) ];
-      body=`<div class="row" style="justify-content:space-between"><span class="pill">${dot(c.cat)}${esc(c.cat)}</span><span class="small muted mono">${L.i+1} / ${L.queue.length}</span></div>
+      body=`<div class="row" style="justify-content:space-between"><span class="pill">${dot(c.cat)}${esc(c.cat)}</span><span class="row" style="gap:10px;flex-wrap:nowrap"><button class="favb ${favs[c.id]?'on':''}" data-a="fav" data-v="${c.id}" aria-label="Favorit">${favs[c.id]?'★':'☆'}</button><span class="small muted mono">${L.i+1} / ${L.queue.length}</span></span></div>
       <div class="bar"><i style="width:${Math.round(100*L.i/L.queue.length)}%"></i></div>
       <div class="card flash"><div class="q">${fmt(c.q)}</div>${L.shown?`<div class="a ans"><div class="ans-h">✓ Richtige Antwort</div>${fmt(c.a)}</div>${moreInfo(c)}`:'<div class="muted small">Erst überlegen, dann aufdecken.</div>'}</div>
       ${L.shown&&L.mode==='exam'?`<div class="rate"><button class="r0" data-a="ex" data-v="0">Nicht gewusst</button><button class="r3" data-a="ex" data-v="1">Gewusst</button></div>`:L.shown?`<div class="rate"><button class="r0" data-a="rate" data-v="0">Nochmal<small>${lab[0]}</small></button><button class="r1" data-a="rate" data-v="1">Schwer<small>${lab[1]}</small></button><button class="r2" data-a="rate" data-v="2">Gut<small>${lab[2]}</small></button><button class="r3" data-a="rate" data-v="3">Leicht<small>${lab[3]}</small></button></div>`:`<button class="btn primary" style="width:100%;justify-content:center;padding:14px" data-a="reveal">Antwort zeigen</button>`}
+      ${noteBox(c)}
       <button class="back" data-a="stoplearn">Sitzung beenden</button>`;
     }
+  } else if(L.folder){
+    body=vFolder();
   } else {
     body=`<div class="stats"><div class="stat"><b>${st.due}</b><span>fällig</span></div><div class="stat"><b>${st.nw}</b><span>neu</span></div><div class="stat"><b>${st.mas}</b><span>sicher</span></div><div class="stat"><b>${st.total}</b><span>Karten</span></div></div>
     <div class="modes">${modes.map(m=>`<button class="mode" data-a="mode" data-v="${m[0]}" aria-pressed="${L.mode===m[0]}"><b>${m[1]}</b><span>${m[2]}</span></button>`).join('')}</div>
@@ -1703,7 +1741,8 @@ function vLearn(){
     <div class="row"><button class="btn small" data-a="resetsrs">${L.confirmReset?'Wirklich alles löschen? Nochmal tippen':'Fortschritt zurücksetzen'}</button></div>`;
   }
   return `<div class="stack"><div><div class="eyebrow">Wiederholung mit Intervallen</div><h1 class="h1">Lernkarten</h1></div>
-  ${L.active?'':`<div class="chips">${cats.map(c=>`<button class="chip" data-a="lcat" data-v="${esc(c)}" aria-pressed="${L.cat===c}">${esc(c)}</button>`).join('')}</div>`}
+  ${L.active||L.folder?'':folderTiles()}
+  ${L.active||L.folder?'':`<div class="chips wrapchips">${cats.map(c=>`<button class="chip" data-a="lcat" data-v="${esc(c)}" aria-pressed="${L.cat===c}">${esc(c)}</button>`).join('')}</div>`}
   ${body}</div>`;
 }
 function rate(r){
@@ -1714,7 +1753,7 @@ function rate(r){
   if(r===0){ s.b=0; s.l=(s.l||0)+1; s.d=Date.now()+10*60000; L.queue.push(c); }
   else { s.b= r===1? Math.max(1,s.b||0) : Math.min(6,(s.b||0)+(r===2?1:2)); s.d=Date.now()+Math.max(1,IV[s.b])*DAY; }
   srs[c.id]=s; store.set('srs',srs);
-  L.done++; L.i++; L.shown=false; render();
+  L.done++; L.i++; L.shown=false; L.noteOpen=false; render();
 }
 
 /* ---------- Tools ---------- */
@@ -1986,11 +2025,16 @@ document.addEventListener('click',e=>{
   else if(a==='startlearn'){ if(S.tab!=='lernen'){S.tab='lernen';S.view=null;} buildQueue(); render(); window.scrollTo(0,0); setHash('lernen'); }
   else if(a==='restart'){buildQueue();render();}
   else if(a==='stoplearn'){L.active=false;render();}
+  else if(a==='fav'){ if(favs[v]) delete favs[v]; else favs[v]=1; store.set('fav',favs); render(); }
+  else if(a==='notetoggle'){L.noteOpen=true;render();const ta=document.querySelector('textarea[data-note]'); if(ta) ta.focus();}
+  else if(a==='folder'){L.folder=v;render();window.scrollTo(0,0);}
+  else if(a==='folderback'){L.folder=null;render();window.scrollTo(0,0);}
+  else if(a==='startfolder'){buildQueue();render();window.scrollTo(0,0);}
   else if(a==='mode'){L.mode=v;render();}
   else if(a==='lcat'){L.cat=v;render();}
   else if(a==='reveal'){L.shown=true;render();}
   else if(a==='rate') rate(parseInt(v,10));
-  else if(a==='ex'){ const c=L.queue[L.i]; if(c){L.res.push({cat:c.cat,ok:v==='1'});L.done++;L.i++;L.shown=false;render();} }
+  else if(a==='ex'){ const c=L.queue[L.i]; if(c){L.res.push({cat:c.cat,ok:v==='1'});L.done++;L.i++;L.shown=false;L.noteOpen=false;render();} }
   else if(a==='resetsrs'){ if(!L.confirmReset){L.confirmReset=true;render();} else {L.confirmReset=false;srs={};store.set('srs',srs);store.set('newToday',{});render();} }
   else if(a==='tool'){S.tool=v;render();}
   else if(a==='goekg'){S.tool='ekg';EK.mode='learn';EK.sel=null;go('tools',null);}
@@ -1999,6 +2043,7 @@ document.addEventListener('click',e=>{
 });
 document.addEventListener('input',e=>{
   const t=e.target;
+  if(t.dataset&&t.dataset.note){ const v=t.value; if(v.trim()) notes[t.dataset.note]=v; else delete notes[t.dataset.note]; store.set('notes',notes); return; }
   if(t.id==='q'){ S.q=t.value; if(S.q.trim().length>=2){ S.view={type:'search'}; } else if(S.view&&S.view.type==='search'){ S.view=null; } render(); const q=$('#q'); q.focus(); return; }
   if(t.id==='exam'){store.set('exam',t.value);return;}
   if(t.id==='k-age'||t.id==='k-unit'||t.id==='k-kg'){ const k={age:$('#k-age').value,unit:$('#k-unit').value,kg:$('#k-kg').value}; store.set('kid',k); $('#k-out').innerHTML=kidOut(k); return; }
@@ -2012,12 +2057,13 @@ document.addEventListener('change',e=>{
 });
 
 /* ---------- Wisch-zurück (iOS-Randgeste) ---------- */
-function canBack(){return !!(S.view||S.stack.length||(S.tab==='tools'&&S.tool==='ekg'&&EK.mode==='learn'&&EK.sel)||(S.tab==='lernen'&&L.active));}
+function canBack(){return !!(S.view||S.stack.length||(S.tab==='tools'&&S.tool==='ekg'&&EK.mode==='learn'&&EK.sel)||(S.tab==='lernen'&&(L.active||L.folder)));}
 function doBack(){
   if(S.view&&S.view.type==='search'){$('#q').value='';S.q='';S.view=null;render();return;}
   if(S.tab==='tools'&&S.tool==='ekg'&&EK.mode==='learn'&&EK.sel){EK.sel=null;render();return;}
   if(S.view||S.stack.length){back();return;}
-  if(S.tab==='lernen'&&L.active){L.active=false;render();}
+  if(S.tab==='lernen'&&L.active){L.active=false;render();return;}
+  if(S.tab==='lernen'&&L.folder){L.folder=null;render();}
 }
 (function(){
   const edge=$('#swipe'); let sw=null;
