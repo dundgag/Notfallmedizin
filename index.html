@@ -213,6 +213,17 @@ body{letter-spacing:-.005em}
 .tab[aria-current="true"]{color:var(--accent)}
 .dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px;vertical-align:1px;flex:0 0 auto}
 .grp-h{display:flex;align-items:center}
+.btn.go{background:#2E9E4F;border-color:#2E9E4F;color:#fff}
+.btn.stop{background:#D4231C;border-color:#D4231C;color:#fff}
+.tst{margin-left:6px;padding:1px 8px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.04em}
+.tst.on{background:#2E9E4F;color:#fff}
+.tst.off{background:var(--line);color:var(--muted)}
+.grp-link{background:none;border:0;width:100%;text-align:left;cursor:pointer;gap:6px}
+.grpbox{display:grid;gap:10px}
+.grpbox th,.grpbox td{padding:8px 10px;text-align:left;vertical-align:top;font-size:14px;border-bottom:1px solid var(--line)}
+.grpbox thead th{white-space:nowrap;background:var(--surface)}
+.grpbox tbody th{white-space:nowrap}
+.ul{margin:0;padding-left:20px;display:grid;gap:4px}
 .hero{position:relative;overflow:hidden;border-radius:22px;padding:20px 20px 18px;color:#fff;background:linear-gradient(135deg,#B3160F 0%,#D4231C 55%,#E8502A 100%);box-shadow:0 12px 30px color-mix(in srgb,#D4231C 35%,transparent)}
 .hero::after{content:"";position:absolute;right:-30px;top:-30px;width:150px;height:150px;opacity:.16;background:
  conic-gradient(from 0deg,#fff 0 8%,transparent 0 17%,#fff 0 25%,transparent 0 33%,#fff 0 42%,transparent 0 50%,#fff 0 58%,transparent 0 67%,#fff 0 75%,transparent 0 83%,#fff 0 92%,transparent 0);border-radius:50%}
@@ -413,6 +424,8 @@ button,.tab,.chip,.item,.opt{touch-action:manipulation;-webkit-user-select:none;
 .fcard summary{cursor:pointer;display:flex;flex-direction:column;align-items:flex-start;gap:6px;list-style:none}
 .fcard summary::-webkit-details-marker{display:none}
 .fcard .ans{margin-top:12px;padding:12px 14px;border-radius:14px;border:2px solid var(--ok);background:color-mix(in srgb,var(--ok) 13%,var(--glass-strong));font-weight:600}
+.cpr .btn.go{background:linear-gradient(180deg,#3FA55A,#27743A);border:1px solid rgba(255,255,255,.3);color:#fff}
+.cpr .btn.stop{background:linear-gradient(180deg,#EC4A39,#C81E17);border:1px solid rgba(255,255,255,.35);color:#fff}
 </style>
 </head>
 <body>
@@ -428,8 +441,7 @@ button,.tab,.chip,.item,.opt{touch-action:manipulation;-webkit-user-select:none;
 <nav class="tabs" id="tabs"><div class="wrap" id="tabrow"></div></nav>
 <main class="wrap" id="app"></main>
 <div id="swipe" aria-hidden="true">‹</div>
-<script>
-// Notfall Kompass – Themen Teil 1 (Reanimation, Kardiovaskulär, Atemwege/Atmung)
+<script>// Notfall Kompass – Themen Teil 1 (Reanimation, Kardiovaskulär, Atemwege/Atmung)
 window.TOPICS = window.TOPICS || [];
 window.TOPICS.push(
 {id:'als',cat:'Reanimation',t:'Erwachsenen-ALS (ERC 2025)',s:'Algorithmus, Defibrillation, Medikamente, Abbruch',
@@ -439,7 +451,7 @@ window.TOPICS.push(
  meds:['Adrenalin: 1 mg (1 Amp. = 1 mg/ml) auf 10 ml NaCl 0,9 % = 0,1 mg/ml, i.v./i.o., anschließend 20 ml Flush','Amiodaron: 300 mg i.v./i.o. (in 20 ml Glukose 5 %), dann 150 mg','Lidocain: 100 mg (1–1,5 mg/kg) falls Amiodaron nicht verfügbar'],
  cave:['Kompressionspausen so kurz wie möglich (Prä-Schock-Pause <5 s)','Hyperventilation vermeiden (senkt koronaren und zerebralen Fluss)','Kein routinemäßiges Natriumbikarbonat oder Kalzium – nur bei spezifischer Indikation (Hyperkaliämie, Intoxikation)','Defibrillationsenergie: biphasisch laut Herstellerangabe (meist 150–200 J), monophasisch 360 J'],
  merke:['Überlebensrelevant sind Kompressionsqualität und frühe Defibrillation; Medikamente sind nachrangig','Adrenalin: nicht schockbar sofort, schockbar erst nach dem 3. Schock','Terminierung: Teamentscheidung nach Ausschöpfen reversibler Ursachen; persistierend sehr niedriges etCO2 (<10 mmHg nach 20 min) spricht unterstützend für Abbruch'],
- ll:[['ERC Guidelines 2025 – Adult ALS','https://www.cprguidelines.eu'],['Deutscher Rat für Wiederbelebung (GRC)','https://www.grc-org.de']]},
+ ll:[['ERC Guidelines 2025 – Adult ALS','https://cprguidelines.eu'],['Deutscher Rat für Wiederbelebung (GRC)','https://www.grc-org.de']]},
 
 {id:'spezial',cat:'Reanimation',t:'Spezielle Reanimationssituationen',s:'4H/4T, Hyperkaliämie, Trauma, Schwangerschaft, Ertrinken',
  def:'Nach Standard-ALS werden reversible Ursachen aktiv gesucht. ERC 2025 „Special Circumstances“ liefert Modifikationen für besondere Ursachen und Patientengruppen.',
@@ -447,7 +459,7 @@ window.TOPICS.push(
  tx:['**Hyperkaliämie:** Calciumchlorid 10 % 10 ml (oder Ca-Glukonat 10 % 30 ml) i.v.; Glukose 25 g + Insulin 10 IE; ggf. Natriumbikarbonat bei Azidose; Salbutamol inhalativ; Dialyse','**Lungenembolie (Verdacht):** Thrombolyse während laufender CPR erwägen, CPR danach 60–90 min fortführen; Schema gemäß ERC 2025 (Alteplase / Tenecteplase)','**Spannungspneumothorax:** Entlastung per Minithorakotomie / Thoraxdrainage (Nadel unsicher)','**Tamponade:** Echo, Perikardiozentese bzw. Notfallthorakotomie (Trauma)','**Traumatischer Kreislaufstillstand („HOTT“):** Hypovolämie (Blutung stillen, Blut), Oxygenierung, Tension-Pneumothorax, Tamponade; Kompressionen nachrangig gegenüber Blutungskontrolle','**Hypothermie:** siehe eigenes Thema; <30 °C: max. 3 Schocks, Adrenalin zurückhaltend, Wiedererwärmung mit ECLS im Zentrum','**Schwangerschaft:** manuelle Linksverlagerung des Uterus (ab ca. 20. SSW), Hochqualitätsreanimation, bei fehlendem ROSC innerhalb weniger Minuten Notfallsectio (resuscitative hysterotomy) erwägen','**Ertrinken:** zuerst 5 Beatmungen mit Sauerstoff, dann Standard-CPR; Hypoxie ist die Ursache','**Anaphylaxie:** Adrenalin i.m. (bzw. i.v.), Volumen','**Intoxikation:** Antidot, frühzeitig Giftinformationszentrum'],
  cave:['Hypothermie-Patienten sind nicht tot, bevor sie warm und tot sind (Ausnahme: sichere Todeszeichen, K⁺ >12 mmol/l bei Lawinenverschütteten)','Bei Lungenembolie-Verdacht Lyse nicht zurückhalten – Reanimation verlängern'],
  merke:['Systematisch 4H/4T beim Rhythmuscheck durchgehen','Traumaarrest: Blutung vor Herzdruckmassage'],
- ll:[['ERC Guidelines 2025 – Special Circumstances','https://www.cprguidelines.eu']]},
+ ll:[['ERC Guidelines 2025 – Special Circumstances','https://cprguidelines.eu']]},
 
 {id:'postrea',cat:'Reanimation',t:'Postreanimationsbehandlung',s:'ROSC, Zielwerte, Koronarangiographie, Neuroprognose',
  def:'Nach ROSC beginnt die Post-Cardiac-Arrest-Behandlung. Ziele: Zweitschäden (Hypoxie, Hypotonie, Fieber, Hypo-/Hyperglykämie) vermeiden, Ursache finden.',
@@ -456,7 +468,7 @@ window.TOPICS.push(
  meds:['Noradrenalin: 0,05–0,5 µg/kg/min titriert auf MAP','Sedierung/Analgesie: z. B. Propofol + Fentanyl (hämodynamisch angepasst)'],
  cave:['Hyperoxie vermeiden','Keine Prophylaxe mit Steroiden/Antikonvulsiva routinemäßig'],
  merke:['Hypotension und Hypoxie nach ROSC verschlechtern das neurologische Outcome','Prognose nie in den ersten 72 h festlegen'],
- ll:[['ERC Guidelines 2025 – Post-Resuscitation Care','https://www.cprguidelines.eu']]},
+ ll:[['ERC Guidelines 2025 – Post-Resuscitation Care','https://cprguidelines.eu']]},
 
 {id:'plsrea',cat:'Reanimation',t:'Kinderreanimation (PLS)',s:'ERC 2025 Paediatric Life Support, Dosen nach Gewicht',
  def:'Kinder erleiden meist einen hypoxischen Arrest (Atem-/Kreislaufversagen), selten primär VF. Daher beginnt die Reanimation mit Beatmung.',
@@ -466,7 +478,7 @@ window.TOPICS.push(
  kids:['Gewichtsschätzung 1–10 Jahre: (Alter + 4) × 2 kg; Säuglinge 3–12 Monate: (Monate ÷ 2) + 4 kg; Neugeborenes ca. 3,5 kg','Tubus (mit Cuff) ID = Alter ÷ 4 + 3,5; Einführtiefe oral = Tubusgröße × 3 (cm)'],
  cave:['Kompressionstiefe bei Säuglingen oft zu gering','Hyperventilation und zu hohe Beatmungsdrücke vermeiden'],
  merke:['Kind: erst Atemwege und Beatmung, dann Kompression (anders als Erwachsene)','Adrenalin 10 µg/kg (0,1 ml/kg der 1:10.000-Lösung)'],
- ll:[['ERC Guidelines 2025 – Paediatric Life Support','https://www.cprguidelines.eu']]},
+ ll:[['ERC Guidelines 2025 – Paediatric Life Support','https://cprguidelines.eu']]},
 
 {id:'nls',cat:'Reanimation',t:'Neugeborenenversorgung (NLS)',s:'Erstversorgung, Beatmung, 3:1, Adrenalin',
  def:'Etwa 10 % der Neugeborenen benötigen Unterstützung bei der Adaptation, ≤1 % eine Reanimation. Hauptproblem: Atemantrieb/Lungenentfaltung.',
@@ -476,7 +488,7 @@ window.TOPICS.push(
  kids:['Zielsättigung preduktal: 1 min ~60 %, 5 min ~80–85 %, 10 min ~90 %'],
  cave:['Nicht zu hoher Beatmungsdruck (Pneumothorax)','Absaugen nur bei sichtbarer Verlegung (Mekonium: nicht routinemäßig)'],
  merke:['Beatmung ist die wichtigste Maßnahme – 90 % der Probleme sind pulmonal','Kompression erst, wenn die Beatmung effektiv ist'],
- ll:[['ERC Guidelines 2025 – Newborn Life Support','https://www.cprguidelines.eu']]},
+ ll:[['ERC Guidelines 2025 – Newborn Life Support','https://cprguidelines.eu']]},
 
 {id:'acs',cat:'Kardiovaskulär',t:'Akutes Koronarsyndrom (STEMI / NSTE-ACS)',s:'EKG-Kriterien, Erstversorgung, Reperfusion',
  def:'ACS umfasst instabile Angina, NSTEMI und STEMI. Der STEMI ist durch ST-Hebungen und akuten Koronarverschluss gekennzeichnet – Reperfusionszeit ist entscheidend.',
@@ -503,7 +515,7 @@ window.TOPICS.push(
  meds:['Adenosin 6/12/12 mg (Kinder 0,1/0,2 mg/kg)','Amiodaron 300 mg','Metoprolol 5 mg (Wiederholung bis 15 mg)','Verapamil 5 mg langsam','Magnesium 2 g'],
  cave:['Verapamil/Betablocker nicht bei Breitkomplex-Tachykardie, WPW mit VHF, Herzinsuffizienz','Adenosin: Asthma (relativ), AV-Block II–III, Herztransplantierte (Dosis halbieren), Theophyllin schwächt','WPW + VHF: Kardioversion oder Ajmalin/Procainamid, keine AV-Knoten-Blocker'],
  merke:['Instabil = elektrisch, stabil = medikamentös','Breit = VT bis zum Beweis des Gegenteils'],
- ll:[['ERC Guidelines 2025 – ALS (Peri-Arrest)','https://www.cprguidelines.eu'],['ESC Guidelines SVT / Vorhofflimmern','https://www.escardio.org/Guidelines']]},
+ ll:[['ERC Guidelines 2025 – ALS (Peri-Arrest)','https://cprguidelines.eu'],['ESC Guidelines SVT / Vorhofflimmern','https://www.escardio.org/Guidelines']]},
 
 {id:'brady',cat:'Kardiovaskulär',t:'Bradykarde Rhythmusstörungen',s:'Atropin, Adrenalin, Pacing',
  def:'Bradykardie <50/min mit **Zeichen der Instabilität** (Schock, Synkope, Ischämie, Herzinsuffizienz) erfordert Therapie.',
@@ -512,7 +524,7 @@ window.TOPICS.push(
  meds:['Atropin 0,5 mg i.v.','Adrenalin-Perfusor 2–10 µg/min','Glukagon 1–5 mg bei β-Blocker-Intox.'],
  cave:['Atropin kann bei infranodalem AV-Block paradox wirken','Pacing sedieren (Analgosedierung)'],
  merke:['Atropin 0,5 mg – nicht 0,1 mg (Dosen <0,5 mg können paradoxe Bradykardie auslösen)'],
- ll:[['ERC Guidelines – Periarrest-Arrhythmien','https://www.cprguidelines.eu']]},
+ ll:[['ERC Guidelines – Periarrest-Arrhythmien','https://cprguidelines.eu']]},
 
 {id:'hypert',cat:'Kardiovaskulär',t:'Hypertensive Notfälle & Aortendissektion',s:'Urapidil, Drucksenkung, Dissektion',
  def:'Hypertensive Krise: RR meist >180/120 mmHg. **Notfall** nur bei Endorganschaden (Enzephalopathie, Lungenödem, ACS, Dissektion, Eklampsie, intrazerebrale Blutung).',
@@ -560,10 +572,8 @@ window.TOPICS.push(
  merke:['Erst Lebensbedrohung (Atemweg, Spannungspneu, Anaphylaxie) ausschließen, dann Differenzialdiagnose'],
  ll:[['S3-Leitlinie Sauerstoff in der Akuttherapie (AWMF 020-021)','https://register.awmf.org/de/leitlinien/detail/020-021']]}
 );
-
 </script>
-<script>
-// Notfall Kompass – Themen Teil 2 (Neuro, Trauma, Intern, Tox, Umwelt)
+<script>// Notfall Kompass – Themen Teil 2 (Neuro, Trauma, Intern, Tox, Umwelt)
 window.TOPICS = window.TOPICS || [];
 window.TOPICS.push(
 {id:'stroke',cat:'Neurologie',t:'Schlaganfall',s:'Prähospital: FAST, Zeitfenster, Stroke Unit, Thrombektomie',
@@ -662,7 +672,7 @@ window.TOPICS.push(
  tx:['**Horizontal und schonend** bergen (Bergungstod/Afterdrop), Kälteexposition beenden, isolieren (Hypothermiepack)','HT I: aktiv bewegen, warme Getränke, trockene Kleidung','HT II/III: Transport in Klinik, warme Infusionen (38–42 °C), Heizpads am Rumpf, kein Reiben','HT III/IV: ECLS-fähige Klinik direkt anfahren','Reanimation bei HT IV: CPR bis zur Wiedererwärmung; bei <30 °C maximal 3 Schocks, Adrenalin erst >30 °C; K⁺ >12 mmol/l bei Lawinenverschütteten als Abbruchkriterium','ERC 2025: Herzfrequenz <45/min als neues Hochrisikokriterium für hypothermie-induzierten Kreislaufstillstand (HOPE-Score berücksichtigen)'],
  cave:['Aggressive Mobilisation löst VF aus','„Nobody is dead until warm and dead“ (Ausnahmen beachten)'],
  merke:['Horizontal, schonend, isolieren','HT IV → ECLS-Zentrum'],
- ll:[['ERC Guidelines 2025 – Special Circumstances','https://www.cprguidelines.eu']]},
+ ll:[['ERC Guidelines 2025 – Special Circumstances','https://cprguidelines.eu']]},
 
 {id:'hitze',cat:'Umwelt & Thermisch',t:'Hitzeschäden (Hitzschlag)',s:'Kühlung, Volumen, Abgrenzung',
  def:'Hitzeerschöpfung (Kerntemp. <40 °C, Volumenmangel) vs. **Hitzschlag** (Kerntemp. >40 °C + ZNS-Störung, lebensbedrohlich).',
@@ -670,7 +680,7 @@ window.TOPICS.push(
  tx:['**Aktive Kühlung**: kaltes Wasser (Immersion, besprühen + Ventilator), Eispacks an Hals/Axilla/Leiste','Volumen: kühle balancierte Infusion (500–1000 ml), keine Antipyretika','Benzodiazepine bei Krampf/Schüttelfrost, Intubation bei GCS ≤8','Zielkerntemperatur <39 °C, dann Kühlung beenden (Rebound/Hypothermie vermeiden)'],
  cave:['Antipyretika (Paracetamol, NSAR) sind unwirksam','Rhabdomyolyse, Nierenversagen, DIC beachten'],
  merke:['Hitzschlag = Kühlen, Kühlen, Kühlen – Transport parallel'],
- ll:[['ERC Guidelines 2025 – Special Circumstances','https://www.cprguidelines.eu']]},
+ ll:[['ERC Guidelines 2025 – Special Circumstances','https://cprguidelines.eu']]},
 
 {id:'ertrinken',cat:'Umwelt & Thermisch',t:'Ertrinken, Tauchunfall & Elektrounfall',s:'Hypoxie, 5 Beatmungen, DCI, Strom',
  def:'Ertrinken führt über Hypoxie zum Kreislaufstillstand. Tauchunfälle: Dekompressionserkrankung (DCI) und arterielle Gasembolie. Stromunfälle: Niederspannung (<1000 V) vs. Hochspannung, Blitz.',
@@ -678,12 +688,10 @@ window.TOPICS.push(
  tx:['**Ertrinken:** zuerst 5 Beatmungen mit O₂, dann CPR; Aufwärmen, auch bei Hypothermie; Oberkörperhoch bei Atmung; Klinik bei jeder Symptomatik','**Tauchunfall:** 100 % O₂ (Gesichtsmaske mit Reservoir), Flüssigkeit, horizontale Lagerung, schnellstmögliche Rekompression (Druckkammer), Tauch-Notruf (DAN Europe)','**Strom:** Eigenschutz (Abschalten), 12-Kanal-EKG & Monitoring, bei Kardiale Auffälligkeiten Klinik; bei Reanimation Standard-ALS; Blitz: Reverse Triage (Stillstände zuerst)'],
  cave:['Kein Heimlich-Manöver beim Ertrinkenden','Strom: HWS-Trauma durch Sturz beachten'],
  merke:['Ertrinken: zuerst Beatmung','Tauchunfall: 100 % O₂ + Druckkammer'],
- ll:[['ERC Guidelines 2025 – Special Circumstances','https://www.cprguidelines.eu']]}
+ ll:[['ERC Guidelines 2025 – Special Circumstances','https://cprguidelines.eu']]}
 );
-
 </script>
-<script>
-// Notfall Kompass – Themen Teil 3 (Geburtshilfe, Psychiatrie, Pädiatrie, Atemweg/Narkose/Analgesie, Organisation, Recht)
+<script>// Notfall Kompass – Themen Teil 3 (Geburtshilfe, Psychiatrie, Pädiatrie, Atemweg/Narkose/Analgesie, Organisation, Recht)
 window.TOPICS = window.TOPICS || [];
 window.TOPICS.push(
 {id:'eklampsie',cat:'Geburtshilfe',t:'Präeklampsie, Eklampsie, HELLP',s:'Magnesium, Blutdrucksenkung, Entbindung',
@@ -720,7 +728,7 @@ window.TOPICS.push(
  meds:['Adrenalin inhal. 3–5 mg','Dexamethason 0,15–0,6 mg/kg','Prednisolon 1–2 mg/kg','Salbutamol 2,5 mg','Glukose 10 %: 2 ml/kg'],
  cave:['Kein Ibuprofen bei Dehydratation','Metoclopramid <1 Jahr nicht anwenden (EMA)','Atropin-Mindestdosis: 0,1 mg'],
  merke:['Krupp: Dexamethason + Adrenalin inhalativ','Epiglottitis: nicht untersuchen, Intubation im OP'],
- ll:[['ERC Paediatric Life Support 2025','https://www.cprguidelines.eu']]},
+ ll:[['ERC Paediatric Life Support 2025','https://cprguidelines.eu']]},
 
 {id:'atemweg',cat:'Atemweg, Narkose, Analgesie',t:'Prähospitales Atemwegsmanagement',s:'Stufenplan, SGA, Videolaryngoskop, Koniotomie',
  def:'Das prähospitale Atemwegsmanagement erfolgt nach S1-Leitlinie (DGAI 2019): Stufenplan, Vorbereitung im Team, Kapnographie obligat.',
@@ -765,13 +773,11 @@ window.TOPICS.push(
  merke:['Unterlassen ist strafbar, wenn Hilfe erforderlich und zumutbar','Todesart nicht natürlich/ungeklärt → Polizei'],
  ll:[['§ 323c StGB','https://www.gesetze-im-internet.de/stgb/__323c.html'],['§ 34 StGB','https://www.gesetze-im-internet.de/stgb/__34.html'],['NotSanG','https://www.gesetze-im-internet.de/notsang/'],['Rettungsgesetz NRW (RettG NRW)','https://recht.nrw.de']]}
 );
-
 </script>
-<script>
-/* Ergänzende Themen (Teil 4a) */
+<script>/* Ergänzende Themen (Teil 4a) */
 window.TOPICS=(window.TOPICS||[]).concat([
 {id:'abdomen',cat:'Internistische Notfälle',t:'Akutes Abdomen & gastrointestinale Blutung',s:'Peritonitis, Ileus, Mesenterialischämie, Varizenblutung',def:'Akut einsetzende Bauchschmerzen mit möglicher Peritonitis oder Kreislaufbeteiligung; zeitkritisch bei Perforation, Ischämie, rupturiertem Aortenaneurysma und Blutung.',dx:['Anamnese: Schmerzbeginn (plötzlich = Perforation/Ischämie/Ruptur), Erbrechen, Stuhlgang, Teerstuhl, Hämatemesis, Antikoagulation, Alkohol, Vor-OPs','Befund: Abwehrspannung/Loslassschmerz (Peritonitis), Darmgeräusche, Schock?','**Frauen im gebärfähigen Alter:** immer Extrauteringravidität bedenken','Plötzlicher Vernichtungsschmerz + Schock → rupturiertes Bauchaortenaneurysma; absolute Arrhythmie + Schmerz → Mesenterialischämie','Differenzial: Herzinfarkt (Hinterwand), Lungenembolie, diabetische Ketoazidose, Basale Pneumonie'],tx:['ABCDE, 2 großlumige Zugänge, O₂ bei Hypoxie, Monitoring','Kristalloide **zurückhaltend** bei Blutung (permissive Hypotension bis OP/Endoskopie), bei Sepsis/Hypovolämie gezielt','Frühe Analgesie nach Bedarf (Metamizol, Paracetamol, Opioid titriert) – verschleiert den Befund nach aktueller Evidenz nicht','Nüchtern lassen; bei Ileus/Erbrechen Antiemetikum, Aspirationsrisiko beachten','Obere GI-Blutung: Pantoprazol 80 mg i.v.; Varizenblutung: Terlipressin 2 mg i.v., Antibiotikaprophylaxe (Ceftriaxon 1–2 g); Endoskopie < 24 h, bei Varizen < 12 h','Zielklinik mit Chirurgie, Endoskopie, Intensivstation (ggf. Voranmeldung)'],meds:['Metamizol 1–2 g Kurzinfusion (Hypotonie bei schneller Gabe)','Butylscopolamin 20 mg i.v. bei Koliken (nicht bei Ileus-Verdacht mit Tachykardie)','Pantoprazol 80 mg i.v.','Terlipressin 2 mg i.v. (Varizenblutung)'],cave:['Kein Dehnen/Abtasten bei Perforationsverdacht wiederholen','Antikoagulierte Patienten: Blutungsrisiko, Antagonisierung klären','Hohe Letalität bei Mesenterialischämie – frühe Bildgebung/Chirurgie'],merke:['Plötzlicher Schmerz + Schock = Gefäßkatastrophe, bis zum Beweis des Gegenteils','Frau im gebärfähigen Alter + Bauchschmerz = Schwangerschaftstest/Extrauteringravidität bedenken','Varizenblutung: Terlipressin + Antibiose + Endoskopie < 12 h'],ll:[['S2k-Leitlinie Gastrointestinale Blutung (AWMF 021-028)','https://register.awmf.org/de/leitlinien/detail/021-028']]},
-{id:'elektrolyte',cat:'Internistische Notfälle',t:'Elektrolytentgleisungen (Hyperkaliämie, Hyponatriämie)',s:'Hyperkaliämie-EKG und Therapie, symptomatische Hyponatriämie',def:'Lebensbedrohliche Störungen von Kalium und Natrium, häufig bei Niereninsuffizienz, Dialyse, Diuretika oder Rhabdomyolyse.',dx:['**Hyperkaliämie:** hohe zeltförmige T-Wellen → verbreiterter QRS → PQ-Verlängerung/P-Verlust → Sinuswelle → Kammerflimmern/Asystolie','Symptome: Schwäche, Parästhesien, Bradykardie, Hypotonie; Auslöser: Niereninsuffizienz, Dialyseversäumnis, ACE-Hemmer, K⁺-sparende Diuretika, Rhabdomyolyse','**Hyponatriämie:** Kopfschmerz, Übelkeit, Verwirrtheit, Krampfanfall, Koma (Hirnödem)','Blutgasanalyse mit Elektrolyten prähospital/klinisch bestimmen, Blutzucker prüfen'],tx:['**Hyperkaliämie mit EKG-Veränderungen:** Calciumgluconat 10 % 10–20 ml i.v. über 2–3 min (Kardioprotektion), Wiederholung nach 5–10 min möglich','Shift: 10 IE Normalinsulin + 25 g Glukose (50 ml G50 %) über 15–30 min; Salbutamol 10–20 mg inhalativ; Bicarbonat 50–100 mmol bei Azidose','Elimination: Furosemid bei erhaltener Diurese, Hämodialyse bei Refraktärität/Anurie','Reanimation bei Hyperkaliämie: Calcium, Bicarbonat, Insulin/Glukose zusätzlich zur Standard-CPR (ERC)','**Symptomatische Hyponatriämie (Krampf, Koma):** 150 ml NaCl 3 % über 20 min, ggf. 1–2× wiederholen; Ziel +5 mmol/l, **max. +10 mmol/l in 24 h**','Asymptomatische/chronische Hyponatriämie: langsame Korrektur, Klinikaufnahme'],meds:['Calciumgluconat 10 % 10–20 ml i.v. langsam','Normalinsulin 10 IE + Glukose 25 g','Salbutamol 10–20 mg vernebelt','NaCl 3 % 150 ml über 20 min','Natriumbicarbonat 8,4 % 50–100 ml'],cave:['Calcium nicht in dieselbe Leitung wie Bicarbonat','Hypoglykämie nach Insulin: BZ-Kontrolle über 4–6 h','Zu schnelle Natrium-Korrektur → osmotische Demyelinisierung (zentrale pontine Myelinolyse)'],merke:['Hyperkaliämie mit EKG-Zeichen: zuerst Calcium','Kalium senken ≠ Kalium entfernen: Insulin/Glukose verschiebt nur, Dialyse entfernt','Hyponatriämie: bei Krampf/Koma NaCl 3 % Bolus, sonst langsam korrigieren'],ll:[['ERC Guidelines 2025 – Besondere Umstände','https://www.cprguidelines.eu']]},
+{id:'elektrolyte',cat:'Internistische Notfälle',t:'Elektrolytentgleisungen (Hyperkaliämie, Hyponatriämie)',s:'Hyperkaliämie-EKG und Therapie, symptomatische Hyponatriämie',def:'Lebensbedrohliche Störungen von Kalium und Natrium, häufig bei Niereninsuffizienz, Dialyse, Diuretika oder Rhabdomyolyse.',dx:['**Hyperkaliämie:** hohe zeltförmige T-Wellen → verbreiterter QRS → PQ-Verlängerung/P-Verlust → Sinuswelle → Kammerflimmern/Asystolie','Symptome: Schwäche, Parästhesien, Bradykardie, Hypotonie; Auslöser: Niereninsuffizienz, Dialyseversäumnis, ACE-Hemmer, K⁺-sparende Diuretika, Rhabdomyolyse','**Hyponatriämie:** Kopfschmerz, Übelkeit, Verwirrtheit, Krampfanfall, Koma (Hirnödem)','Blutgasanalyse mit Elektrolyten prähospital/klinisch bestimmen, Blutzucker prüfen'],tx:['**Hyperkaliämie mit EKG-Veränderungen:** Calciumgluconat 10 % 10–20 ml i.v. über 2–3 min (Kardioprotektion), Wiederholung nach 5–10 min möglich','Shift: 10 IE Normalinsulin + 25 g Glukose (50 ml G50 %) über 15–30 min; Salbutamol 10–20 mg inhalativ; Bicarbonat 50–100 mmol bei Azidose','Elimination: Furosemid bei erhaltener Diurese, Hämodialyse bei Refraktärität/Anurie','Reanimation bei Hyperkaliämie: Calcium, Bicarbonat, Insulin/Glukose zusätzlich zur Standard-CPR (ERC)','**Symptomatische Hyponatriämie (Krampf, Koma):** 150 ml NaCl 3 % über 20 min, ggf. 1–2× wiederholen; Ziel +5 mmol/l, **max. +10 mmol/l in 24 h**','Asymptomatische/chronische Hyponatriämie: langsame Korrektur, Klinikaufnahme'],meds:['Calciumgluconat 10 % 10–20 ml i.v. langsam','Normalinsulin 10 IE + Glukose 25 g','Salbutamol 10–20 mg vernebelt','NaCl 3 % 150 ml über 20 min','Natriumbicarbonat 8,4 % 50–100 ml'],cave:['Calcium nicht in dieselbe Leitung wie Bicarbonat','Hypoglykämie nach Insulin: BZ-Kontrolle über 4–6 h','Zu schnelle Natrium-Korrektur → osmotische Demyelinisierung (zentrale pontine Myelinolyse)'],merke:['Hyperkaliämie mit EKG-Zeichen: zuerst Calcium','Kalium senken ≠ Kalium entfernen: Insulin/Glukose verschiebt nur, Dialyse entfernt','Hyponatriämie: bei Krampf/Koma NaCl 3 % Bolus, sonst langsam korrigieren'],ll:[['ERC Guidelines 2025 – Besondere Umstände','https://cprguidelines.eu']]},
 {id:'blutung',cat:'Trauma',t:'Blutungsschock & Antikoagulanzien-Notfälle',s:'Hämorrhagischer Schock, Tranexamsäure, Antagonisierung',def:'Akuter Blutverlust mit Gewebehypoperfusion; Letalität steigt mit Blutverlust und Gerinnungsstörung. Antikoagulierte Patienten bluten stärker und länger.',dx:['Schockzeichen: Tachykardie, Hypotonie (spät!), Blässe, kalte Haut, verlängerte Rekap-Zeit, Bewusstseinsstörung','Klassen I–IV (ATLS): < 15 %, 15–30 %, 30–40 %, > 40 % Volumenverlust','Blutungsquelle suchen: extern, Thorax, Abdomen, Becken, Oberschenkel, retroperitoneal','Antikoagulanzien erfragen (Marcumar, DOAK, Heparin, Thrombozytenhemmer)'],tx:['**Kontrolle der Blutungsquelle zuerst:** Druckverband, Tourniquet, Beckenschlinge, Hämostyptika','2 große Zugänge/i.o., **permissive Hypotension** (systolisch ca. 80–90 mmHg, bei SHT höher) bis zur Blutstillung','**Tranexamsäure 1 g i.v. über 10 min** (möglichst < 3 h nach Verletzung), dann 1 g über 8 h','Wärmeerhalt; Kalzium bei Massivtransfusion; Fibrinogen früh (2–4 g), frühe Blutprodukte (Erythrozyten, Plasma)','Zielklinik: Schockraum/Traumazentrum, Voranmeldung, Massivtransfusionsprotokoll','**Antagonisierung:** Phenprocoumon → PPSB 25–50 IE/kg + Vitamin K 10 mg i.v.; Dabigatran → Idarucizumab 5 g; Faktor-Xa-Hemmer → Andexanet alfa oder PPSB 25–50 IE/kg; Heparin → Protamin (1 IE pro 1 IE Heparin)'],meds:['Tranexamsäure 1 g über 10 min, dann 1 g über 8 h','Fibrinogenkonzentrat 2–4 g','PPSB 25–50 IE/kg','Vitamin K 10 mg i.v.','Idarucizumab 5 g (Dabigatran)','Calcium 1–2 g bei Massivtransfusion'],cave:['Hypothermie, Azidose, Hypokalzämie = tödliche Trias, aktiv gegensteuern','Viel Kristalloid verdünnt Gerinnung → zurückhaltend','Tranexamsäure nicht überdosieren (Krampfrisiko bei hohen Dosen), Indikation: Blutung, nicht prophylaktisch'],merke:['Blutung stillen vor Volumen geben','TXA früh (< 3 h), nicht „nachträglich bei Gelegenheit“','Marcumar: PPSB + Vit K; Dabigatran: Idarucizumab'],ll:[['S3-Leitlinie Polytrauma/Schwerverletzten-Behandlung (AWMF 187-023)','https://register.awmf.org/de/leitlinien/detail/187-023']]},
 {id:'niere',cat:'Internistische Notfälle',t:'Akutes Nierenversagen & Dialysepatient',s:'Prärenal, renal, postrenal; Hyperkaliämie, Überwässerung',def:'Akuter Abfall der glomerulären Filtration mit Anstieg der Retentionswerte; im Notfall relevant durch Hyperkaliämie, Überwässerung/Lungenödem und Azidose.',dx:['Prärenal (Volumenmangel, Sepsis, Herzinsuffizienz), renal (Tubulusnekrose, Rhabdomyolyse, Kontrastmittel, NSAR), postrenal (Harnverhalt, Steine)','Dialysepatient: Shuntarm schonen (kein Blutdruck/Zugang), Dialyseversäumnis → Hyperkaliämie/Lungenödem','Klinik: Oligo-/Anurie, Ödeme, Dyspnoe, Übelkeit, Verwirrtheit, Bradykardie','EKG und Kalium (BGA) sofort bei Verdacht'],tx:['Hyperkaliämie nach Standard (Calcium, Insulin/Glukose, Salbutamol, Bicarbonat)','Lungenödem bei Anurie: Nitro, CPAP; Furosemid nur bei erhaltener Diurese; Dialyse/Ultrafiltration ist kausal','Postrenal: Blasenkatheter/suprapubische Ableitung','Volumenmangel: Kristalloide gezielt; Nephrotoxine absetzen (NSAR, ACE-Hemmer)','Zielklinik mit Dialyse/Nephrologie'],meds:['Calciumgluconat 10 % 10–20 ml bei EKG-Veränderungen','Furosemid 40–80 mg i.v. (nur bei Restdiurese)','Nitro-Spray 0,4–0,8 mg bei Lungenödem und RR > 100 mmHg'],cave:['Kein Zugang/Blutdruck am Shuntarm','Keine NSAR, Vorsicht bei Gadolinium/Kontrastmittel','Dialysepatient ohne Dialyse > 3 Tage = Hyperkaliämie-Risiko'],merke:['Anurie + Lungenödem: Dialyse, nicht noch mehr Furosemid','Immer EKG und Kalium bei Nierenversagen','Postrenal = Katheter'],ll:[['KDIGO Clinical Practice Guideline Acute Kidney Injury','https://kdigo.org/guidelines/acute-kidney-injury/']]},
 {id:'tamponade',cat:'Kardiovaskulär',t:'Herzbeuteltamponade, Schrittmacher- und ICD-Probleme',s:'Beck-Trias, Perikardpunktion, Magnet-Funktion',def:'Obstruktiver Schock durch Perikarderguss; außerdem Fehlfunktionen implantierter Geräte (Schrittmacher, ICD).',dx:['**Beck-Trias:** Hypotonie, Halsvenenstauung, leise Herztöne; Tachykardie, Pulsus paradoxus','Ursachen: Trauma (stumpf/penetrierend), Aortendissektion, Infarktruptur, Tumor, Urämie, Perikarditis','Sono: Perikarderguss, Kompression des rechten Ventrikels','**ICD:** Schockabgabe, „elektrischer Sturm“ (≥ 3 Schocks/24 h); **Schrittmacher:** Synkope, Bradykardie bei Fehlfunktion, Schrittmacherspikes im EKG'],tx:['Tamponade: Volumen überbrücken, Katecholamine; Perikardpunktion (sonografisch, subxiphoidal) oder Notfallthorakotomie bei Trauma; Zielklinik herzchirurgisch','Reanimation Tamponade: Perikardiozentese/Thorakotomie als reversible Ursache (4H/4T)','**ICD-Magnet** auf das Gerät unterdrückt Schockabgabe (Therapie-Pause, keine Änderung des Pacing); Magnet **entfernen** = Therapie wieder aktiv','Schrittmacher-Magnet: asynchrone Stimulation (VOO/AOO) – Fixfrequenz, kann bei Eigenrhythmus konkurrieren','Elektrischer Sturm: Sedierung, Amiodaron, Betablocker, Klinik mit EP-Labor','Defibrillation bei Gerätepatient: Pads ≥ 8 cm vom Aggregat, anterior-posterior'],meds:['Amiodaron 150–300 mg i.v. bei elektrischem Sturm','Noradrenalin zur Kreislaufstabilisierung bei Tamponade','Midazolam zur Sedierung bei wiederholten Schocks'],cave:['Diuretika und Vasodilatatoren verschlimmern die Tamponade (Vorlast!)','Magnet am ICD nicht dauerhaft liegen lassen','Elektrokauter/MRT: Gerät vorher prüfen/umprogrammieren'],merke:['Hypotonie + Halsvenenstau + leise Herztöne = Tamponade','ICD-Magnet stoppt Schocks, aber nicht das Pacing','Vorlast bei Tamponade erhalten, nicht senken'],ll:[['ESC Perikarderkrankungen','https://www.escardio.org']]},
@@ -780,27 +786,23 @@ window.TOPICS=(window.TOPICS||[]).concat([
 {id:'paracetamol_pilze',cat:'Toxikologie',t:'Paracetamol-, Pilz- und Medikamentenintoxikation',s:'Acetylcystein, Knollenblätterpilz, Betablocker, Trizyklika',def:'Häufige Vergiftungen mit spezifischer Therapie; Giftinformationszentren (GIZ) beraten rund um die Uhr (z. B. GIZ-Nord Göttingen 0551 19240, Bonn 0228 19240, Berlin 030 19240).',dx:['**Paracetamol:** anfangs symptomlos oder Übelkeit; Leberschaden nach 24–72 h; Rumack-Matthew-Nomogramm ab 4 h nach Ingestion; ab ca. 7,5 g (Erwachsene) / 150 mg/kg toxisch','**Knollenblätterpilz:** Latenz 6–24 h, dann Brechdurchfall, danach Leberversagen','**Betablocker/Ca-Antagonisten:** Bradykardie, Hypotonie, Hypoglykämie (Betablocker)','**Trizyklika:** QRS-Verbreiterung, Krampf, anticholinerges Syndrom','Digitalis: Bradykardie, Rhythmusstörungen, Sehstörungen (Gelbsehen)'],tx:['Aktivkohle 1 g/kg innerhalb 1–2 h bei Ingestion toxischer Dosen und erhaltenen Schutzreflexen','**Paracetamol:** Acetylcystein i.v. 150 mg/kg über 1 h, dann 50 mg/kg über 4 h, dann 100 mg/kg über 16 h','Knollenblätterpilz: Aktivkohle, Silibinin, Intensivstation, Lebertransplant-Zentrum; Pilzreste sichern','Betablocker: Glukagon 3–10 mg i.v., Katecholamine, Insulin-Hochdosis; Calciumantagonisten: Calcium, Insulin','Trizyklika: Natriumbicarbonat 1–2 mmol/kg bei QRS-Verbreiterung; Benzodiazepine bei Krampf','Digitalis: Digitalis-Antidot (Fab-Fragmente), Magnesium','Monitoring, Zugang, Klinikaufnahme zur Überwachung'],meds:['Aktivkohle 1 g/kg','Acetylcystein 150 mg/kg über 1 h','Glukagon 3–10 mg i.v.','Natriumbicarbonat 8,4 % 1–2 mmol/kg','Silibinin 20 mg/kg/Tag (Knollenblätterpilz)'],cave:['Keine induzierte Emesis, kein Salzwasser','Aktivkohle bei Bewusstseinsstörung/Ileus/ätzenden Substanzen kontraindiziert','Paracetamolspiegel nicht vor 4 h sinnvoll interpretierbar'],merke:['Paracetamol: Acetylcystein, je früher desto besser (≤ 8 h nach Einnahme)','Knollenblätterpilz: symptomfreies Intervall täuscht','Giftnotruf anrufen, Verpackung/Reste sichern'],ll:[['Giftinformationszentrum Nord','https://www.giz-nord.de']]},
 {id:'wirbelsaeule',cat:'Trauma',t:'Wirbelsäulen-, Becken- und Extremitätentrauma',s:'Immobilisation, neurogener Schock, Beckenschlinge, Amputation',def:'Verletzungen des Stütz- und Bewegungsapparates mit Risiko für Rückenmarksschaden, Blutverlust und Gliedmaßenverlust.',dx:['Wirbelsäule: Schmerz, Fehlstellung, neurologische Ausfälle (Sensibilität, Motorik, Priapismus), **neurogener Schock** (Hypotonie + Bradykardie, warme Haut)','Becken: Instabilität nur **einmal** prüfen; Blutungsquelle (bis > 2 l)','Extremität: **DMS** (Durchblutung, Motorik, Sensibilität) vor und nach Maßnahmen; offene Frakturen; Kompartment-Zeichen (Schmerz, Spannung, Parästhesie)','Amputation: komplett/subtotal'],tx:['Immobilisation: Vakuummatratze, Schaufeltrage, HWS-Immobilisation nach Kriterien (NEXUS/Canadian C-Spine); **Log-Roll**','Becken: **Beckenschlinge** in Höhe der Trochanteren; Blutung kontrollieren, TXA','Grobe Fehlstellung mit fehlender Durchblutung: achsengerechte Reposition, Schienung, DMS-Kontrolle','Offene Fraktur: steriler Verband, Antibiotika (z. B. Cefuroxim 1,5 g), Analgesie','Amputation: Stumpf steril mit Druckverband, ggf. Tourniquet; **Amputat** in steriles Tuch, trockener Beutel, dieser in Eiswasser (nicht direkt auf Eis); Replantationszentrum','Analgesie: Esketamin/Fentanyl titriert; Neurogener Schock: Volumen, Noradrenalin','Zielklinik: Traumazentrum (überregional/regional/lokal nach TraumaNetzwerk DGU)'],meds:['Esketamin 0,125–0,25 mg/kg i.v. (Analgesie)','Fentanyl 0,05–0,1 mg i.v. titriert','Noradrenalin bei neurogenem Schock','Cefuroxim 1,5 g i.v. bei offener Fraktur'],cave:['Methylprednisolon beim Rückenmarkstrauma nicht mehr empfohlen','Becken nicht wiederholt komprimieren („Beckenwackeln“)','Amputat nie direkt auf Eis oder in Flüssigkeit legen','Kompartmentsyndrom: Fasziotomie, kein Hochlagern'],merke:['Neurogener Schock = Hypotonie + Bradykardie + warme Haut','Beckenschlinge auf Trochanterhöhe, nicht auf Beckenkamm','DMS vor und nach jeder Manipulation'],ll:[['S3-Leitlinie Polytrauma (AWMF 187-023)','https://register.awmf.org/de/leitlinien/detail/187-023'],['TraumaNetzwerk DGU','https://www.dgu-online.de']]}
 ]);
-
 </script>
-<script>
-/* Ergänzende Themen (Teil 4b) */
+<script>/* Ergänzende Themen (Teil 4b) */
 window.TOPICS=(window.TOPICS||[]).concat([
 {id:'urologie',cat:'Urologie, HNO & Augen',t:'Urologische Notfälle (Skrotum, Nierenkolik, Harnverhalt)',s:'Hodentorsion, Urosepsis, suprapubischer Katheter',def:'Akute Schmerz- und Obstruktionsnotfälle des Urogenitaltrakts; Hodentorsion ist ein zeitkritischer Notfall.',dx:['**Akutes Skrotum:** Hodentorsion (plötzlicher Schmerz, Hochstand, Kremasterreflex fehlt, Prehn-Zeichen negativ), Epididymitis (langsamer Beginn, Fieber, Prehn positiv)','Nierenkolik: wellenförmiger Flankenschmerz, Hämaturie, Erbrechen','**Fieber + Stein/Obstruktion = Urosepsis-Risiko**, urologischer Notfall','Harnverhalt: Schmerz, Unruhe, tastbare Blase'],tx:['Hodentorsion: sofortige Klinikzuweisung, Rettungsfenster ca. **6 h**; manuelle Detorsion nur als Überbrückung (Rotation nach außen, „Buch öffnen“)','Nierenkolik: NSAR (z. B. Diclofenac) oder Metamizol, ggf. Opioid; Butylscopolamin hat geringen Stellenwert','Obstruktion mit Infektion/Fieber: Antibiose (Ceftriaxon 2 g) und Entlastung (Stent/Nephrostomie) in der Klinik','Harnverhalt: transurethraler oder suprapubischer Katheter, bei Schwierigkeiten Klinik','Analgesie, Antiemese, Flüssigkeit'],meds:['Diclofenac 50–75 mg (NSAR) oder Metamizol 1–2 g i.v.','Fentanyl 0,05–0,1 mg i.v. bei starkem Schmerz','Ceftriaxon 2 g i.v. bei Fieber/Sepsis'],cave:['Hodenschmerz bei Kindern/Jugendlichen = Torsion bis zum Beweis des Gegenteils','Keine NSAR bei Niereninsuffizienz, Schwangerschaft','Kein Katheter bei V.a. Harnröhrenverletzung (Blut am Meatus nach Trauma)'],merke:['Skrotum akut + junger Patient: sofort Klinik, 6-Stunden-Fenster','Fieber + Kolik = Notfall (Urosepsis)'],ll:[['S2k-Leitlinie Urolithiasis (AWMF 043-025)','https://register.awmf.org/de/leitlinien/detail/043-025']]},
 {id:'hno_auge',cat:'Urologie, HNO & Augen',t:'HNO-, Augen- und Zahnnotfälle',s:'Epistaxis, Fremdkörper, Verätzung, Zahntrauma',def:'Häufige Notfälle mit Blutung, Atemwegsgefährdung oder Seh-/Funktionsverlust.',dx:['Epistaxis: anterior (Locus Kiesselbach) meist harmlos; posterior mit Blutung in den Rachen','Nachblutung nach Tonsillektomie: kann akut lebensbedrohlich sein (Aspiration, Schock)','Auge: Verätzung/Verbrennung, Perforationsverdacht, Zentralarterienverschluss (schmerzloser Visusverlust), akutes Winkelblockglaukom (rotes, hartes Auge, Übelkeit)','Zahnunfall: Avulsion, Kieferfraktur'],tx:['Epistaxis: Kopf nach vorn, Nasenflügel 10–15 min komprimieren, Kühlung Nacken, ggf. TXA topisch/Nasentampon; posterior → Klinik','Tonsillen-Nachblutung: Atemweg sichern, absaugen, Volumen, Zugang, HNO-Klinik; Tranexamsäure bei Blutung','Ätzmittel-Auge: **sofort spülen** (Wasser/Ringer, 15–30 min), pH kontrollieren, Augenklinik; Kein Druckverband bei Perforation, steriler Schutzverband','Zentralarterienverschluss/Akutes Glaukom: sofort Augenklinik (Zeitfenster Stunden)','Avulsierter Zahn: nicht abwaschen, an der Krone halten, in Zahnrettungsbox/H-Milch, ≤ 30 min replantieren (zahnärztlich)','Fremdkörper Ohr/Nase: Klinik, keine Manipulation im Einsatz'],meds:['Tranexamsäure 1 g i.v. bei starker Blutung','Ringer-Lösung/NaCl 0,9 % zur Augenspülung','Analgesie: Paracetamol, Metamizol'],cave:['Bei Blutung aus dem Mund/Rachen: Atemweg zuerst, Aspirationsgefahr','Kein Druck auf perforiertes Auge','Epistaxis + Antikoagulation: Pausieren/Antagonisierung klären'],merke:['Augenverätzung: spülen, spülen, spülen','Zahn nicht abwaschen, nicht trocken lagern','Nachblutung nach Tonsillektomie = Atemwegsnotfall'],ll:[['Leitlinien im AWMF-Register suchen (HNO)','https://register.awmf.org']]},
 {id:'meningitis',cat:'Neurologie',t:'Meningitis, Enzephalitis & ZNS-Infektionen',s:'Trias, Dexamethason, Ceftriaxon, Isolation',def:'Bakterielle Meningitis ist ein hochzeitkritischer Notfall (Letalität unbehandelt nahezu 100 %); Enzephalitis (v. a. HSV) braucht sofortiges Aciclovir.',dx:['Klassische Trias: Fieber, Nackensteifigkeit, Bewusstseinsstörung (nicht immer vollständig)','Kopfschmerz, Photophobie, Krampf, fokale Ausfälle; **Petechien** = Meningokokken-Sepsis (Waterhouse-Friderichsen)','Erwachsene: Pneumokokken, Meningokokken; ältere/immunsupprimierte: Listerien; Neugeborene: B-Streptokokken, E. coli','Liquorpunktion in der Klinik; **Antibiose nicht verzögern**, CT vor LP nur bei Fokal-/Bewusstseinsstörung'],tx:['**Ceftriaxon 2 g i.v.** prähospital/sofort bei Verdacht (Kinder 100 mg/kg)','**Dexamethason 10 mg i.v.** (vor oder mit der ersten Antibiotikagabe) bei bakterieller Meningitis','> 60 Jahre/immunsupprimiert: zusätzlich Ampicillin 2 g (Listerien)','V. a. Enzephalitis: Aciclovir 10 mg/kg i.v.','Sepsis-Therapie (Volumen, Noradrenalin), Krampftherapie','**Isolation** (Tröpfchen) 24 h nach Antibiotikastart bei Meningokokken; Postexpositionsprophylaxe Kontaktpersonen; Meldepflicht (IfSG)'],meds:['Ceftriaxon 2 g i.v. (Kinder 100 mg/kg)','Dexamethason 10 mg i.v.','Ampicillin 2 g i.v. (> 60 J)','Aciclovir 10 mg/kg i.v.'],cave:['Keine Verzögerung für CT/LP','Kind: Fontanelle gespannt, Berührungsempfindlichkeit, Trinkschwäche, Petechien','Eigenschutz: Mundschutz bei Meningokokken-Verdacht'],merke:['Antibiotikum vor Liquor, wenn LP verzögert','Petechien + Fieber = Meningokokken, sofort Ceftriaxon','Dexamethason zeitgleich zur ersten Antibiotikagabe'],ll:[['S2k-Leitlinie Ambulant erworbene bakterielle Meningoenzephalitis (AWMF 030-089)','https://register.awmf.org/de/leitlinien/detail/030-089']]},
 {id:'neuromusk',cat:'Neurologie',t:'Guillain-Barré-Syndrom & myasthene Krise',s:'Atemversagen, Succinylcholin, Medikamente vermeiden',def:'Neuromuskuläre Notfälle mit drohendem Atemversagen.',dx:['**Guillain-Barré:** aufsteigende schlaffe Lähmung, Areflexie, nach Infekt; autonome Instabilität (Rhythmusstörungen, RR-Schwankungen)','**Myasthene Krise:** belastungsabhängige Schwäche, Ptosis, Dysphagie, Atemmuskelschwäche; Auslöser: Infekt, Medikamente, OP','Atemfunktion: Vitalkapazität < 20 ml/kg oder Abfall ≥ 30 % = Intubationsschwelle; Schluckstörung; Aspiration','Differenzial cholinerge Krise (Überdosierung Cholinesterasehemmer): Miosis, Hypersalivation, Bradykardie'],tx:['Atemwegssicherung frühzeitig (Intubation bei respiratorischer Insuffizienz, nicht abwarten bis Hyperkapnie)','**Succinylcholin kontraindiziert** (Hyperkaliämie bei Denervierung); bei myasthener Krise Rocuronium **sehr niedrig dosieren** (hohe Empfindlichkeit)','GBS: Immunglobuline i.v. oder Plasmapherese in der Klinik; Intensivstation','Myasthene Krise: Auslöser beseitigen, Immunglobuline oder Plasmapherese, Neurologie/Intensiv','Beobachtung der Atmung, Monitoring EKG (autonome Dysregulation)'],meds:['Rocuronium reduziert dosiert bei MG','Immunglobuline 0,4 g/kg/Tag über 5 Tage (Klinik)'],cave:['Medikamente, die eine MG verschlechtern: Aminoglykoside, Makrolide, Fluorchinolone, Magnesium, Betablocker, Muskelrelaxanzien','Succinylcholin bei GBS: Hyperkaliämie, Herzstillstand','Pulsoxymetrie spät – Atemmuskelschwäche früher klinisch erfassen'],merke:['GBS: aufsteigend + Areflexie + Atemkontrolle','Kein Succinylcholin bei neuromuskulären Erkrankungen','MG-Krise: Intubationsschwelle früh, Relaxanzien vorsichtig'],ll:[['S2e-Leitlinie Therapie immunvermittelter Neuropathien, u. a. GBS (AWMF 030-130)','https://register.awmf.org/de/leitlinien/detail/030-130']]},
-{id:'kinder_atemweg',cat:'Pädiatrie',t:'Pseudokrupp, Epiglottitis & Fremdkörperaspiration',s:'Stridor, Steroid, Adrenalin inhalativ, Rückenschläge',def:'Häufigste obere Atemwegsnotfälle im Kindesalter.',dx:['**Pseudokrupp (Laryngotracheitis):** bellender Husten, inspiratorischer Stridor, Heiserkeit, 6 Monate–5 Jahre, nachts; Schweregrad nach Westley (Stridor in Ruhe, Einziehungen)','**Epiglottitis** (selten, Hib-Impfung): hohes Fieber, Speichelfluss, kloßige Sprache, Kind sitzt vornübergebeugt, kein Husten','**Fremdkörperaspiration:** plötzlicher Husten/Würgen beim Essen oder Spielen; Stridor oder Aphonie','Pulsoxymetrie, Atemarbeit, Vigilanz'],tx:['Pseudokrupp: ruhig lassen (Eltern), **Prednison/Prednisolon 100 mg rektal** (oder Dexamethason 0,15 mg/kg p.o./i.v.); bei Stridor in Ruhe **Adrenalin inhalativ** 4–5 ml unverdünnt (Epinephrin 1 mg/ml); O₂','Epiglottitis: **keine Racheninspektion, kein Hinlegen, keine Belastung**; Sauerstoff-Vorlage, Intubation durch erfahrenen Anästhesisten/HNO in Intubationsbereitschaft; Ceftriaxon','Fremdkörper (Kind > 1 Jahr): Husten fördern; bei insuffizientem Husten 5 Rückenschläge, dann Heimlich/Oberbauchkompression; Säugling: 5 Rückenschläge + 5 Thoraxkompressionen','Bewusstlos: CPR, Atemwegsinspektion, Fremdkörper unter Sicht entfernen (Magill-Zange)','Zielklinik mit Kinderintensiv/Bronchoskopie'],meds:['Prednisolon 100 mg rektal oder Dexamethason 0,15 mg/kg','Adrenalin 1 mg/ml inhalativ 4–5 ml','Ceftriaxon 50–100 mg/kg (Epiglottitis)'],cave:['Keine Racheninspektion bei Epiglottitis-Verdacht','Kein Blindes Auswischen des Fremdkörpers','Keine Sedierung bei drohender Atemwegsobstruktion ohne Intubationsbereitschaft'],merke:['Pseudokrupp: Kortikoid + Adrenalin inhalativ bei Ruhestridor','Epiglottitis: Kind nicht anfassen, Atemweg in Bereitschaft','Säugling: 5 Rückenschläge + 5 Thoraxkompressionen'],ll:[['ERC Guidelines 2025 – Paediatric Life Support','https://www.cprguidelines.eu']]},
+{id:'kinder_atemweg',cat:'Pädiatrie',t:'Pseudokrupp, Epiglottitis & Fremdkörperaspiration',s:'Stridor, Steroid, Adrenalin inhalativ, Rückenschläge',def:'Häufigste obere Atemwegsnotfälle im Kindesalter.',dx:['**Pseudokrupp (Laryngotracheitis):** bellender Husten, inspiratorischer Stridor, Heiserkeit, 6 Monate–5 Jahre, nachts; Schweregrad nach Westley (Stridor in Ruhe, Einziehungen)','**Epiglottitis** (selten, Hib-Impfung): hohes Fieber, Speichelfluss, kloßige Sprache, Kind sitzt vornübergebeugt, kein Husten','**Fremdkörperaspiration:** plötzlicher Husten/Würgen beim Essen oder Spielen; Stridor oder Aphonie','Pulsoxymetrie, Atemarbeit, Vigilanz'],tx:['Pseudokrupp: ruhig lassen (Eltern), **Prednison/Prednisolon 100 mg rektal** (oder Dexamethason 0,15 mg/kg p.o./i.v.); bei Stridor in Ruhe **Adrenalin inhalativ** 4–5 ml unverdünnt (Epinephrin 1 mg/ml); O₂','Epiglottitis: **keine Racheninspektion, kein Hinlegen, keine Belastung**; Sauerstoff-Vorlage, Intubation durch erfahrenen Anästhesisten/HNO in Intubationsbereitschaft; Ceftriaxon','Fremdkörper (Kind > 1 Jahr): Husten fördern; bei insuffizientem Husten 5 Rückenschläge, dann Heimlich/Oberbauchkompression; Säugling: 5 Rückenschläge + 5 Thoraxkompressionen','Bewusstlos: CPR, Atemwegsinspektion, Fremdkörper unter Sicht entfernen (Magill-Zange)','Zielklinik mit Kinderintensiv/Bronchoskopie'],meds:['Prednisolon 100 mg rektal oder Dexamethason 0,15 mg/kg','Adrenalin 1 mg/ml inhalativ 4–5 ml','Ceftriaxon 50–100 mg/kg (Epiglottitis)'],cave:['Keine Racheninspektion bei Epiglottitis-Verdacht','Kein Blindes Auswischen des Fremdkörpers','Keine Sedierung bei drohender Atemwegsobstruktion ohne Intubationsbereitschaft'],merke:['Pseudokrupp: Kortikoid + Adrenalin inhalativ bei Ruhestridor','Epiglottitis: Kind nicht anfassen, Atemweg in Bereitschaft','Säugling: 5 Rückenschläge + 5 Thoraxkompressionen'],ll:[['ERC Guidelines 2025 – Paediatric Life Support','https://cprguidelines.eu']]},
 {id:'fieberkrampf',cat:'Pädiatrie',t:'Fieberkrampf & Säuglingsnotfälle',s:'Midazolam bukkal, Diazepam rektal, SIDS/BRUE',def:'Fieberkrampf: epileptischer Anfall im Rahmen eines Infekts bei Kindern zwischen 6 Monaten und 5 Jahren ohne ZNS-Infektion.',dx:['**Einfacher Fieberkrampf:** generalisiert, < 15 min, einmalig in 24 h','Komplizierter Fieberkrampf: fokal, > 15 min oder Wiederholung → Klinik','Differenzial: Meningitis, Hypoglykämie, Elektrolytstörung, Intoxikation','BRUE (kurzzeitige Atemstörung, Zyanose, Hypotonie) und Fieber < 3 Monate: immer Klinikabklärung'],tx:['Meist selbstlimitierend < 5 min: Schutz vor Verletzung, Seitenlage, Temperatur messen','**Krampf > 5 min:** Midazolam bukkal 0,3–0,5 mg/kg (max. 10 mg) oder nasal 0,2 mg/kg; Diazepam rektal 5 mg (< 15 kg), 10 mg (> 15 kg); i.v.: Midazolam 0,1 mg/kg oder Lorazepam 0,1 mg/kg','Blutzucker kontrollieren, Glukose 10 % 2–4 ml/kg bei Hypoglykämie','Fiebersenkung nicht zur Krampfprophylaxe nötig','Klinik: Alter < 12 Monate, komplizierter Verlauf, V. a. Meningitis, Nackensteife'],meds:['Midazolam bukkal 0,3–0,5 mg/kg','Diazepam rektal 5/10 mg','Lorazepam 0,1 mg/kg i.v.','Glukose 10 % 2–4 ml/kg'],cave:['Atemdepression nach Benzodiazepinen – Monitoring','Fieber < 3 Monate: kein „einfaches“ Fieber, immer Sepsis/Meningitis ausschließen','Elternberatung: Wiederholungsrisiko ca. 30 %'],merke:['Krampf > 5 min = Benzodiazepin','Immer BZ messen','Säugling < 3 Monate mit Fieber = Klinik'],ll:[['S1-Leitlinie Fieberkrämpfe im Kindesalter (AWMF 022-005, in Überarbeitung)','https://register.awmf.org/de/leitlinien/detail/022-005']]},
 {id:'gewalt',cat:'Psychiatrie & Recht',t:'Kindesmisshandlung & häusliche Gewalt',s:'Warnzeichen, Dokumentation, KKG, Hilfetelefone',def:'Verdacht auf Gewalt erfordert sensible Beobachtung, sorgfältige Dokumentation und Weiterleitung an geeignete Stellen.',dx:['Kind: Inkonsistente Anamnese, verzögerte Vorstellung, Verletzungen an untypischen Stellen (Rücken, Ohr, Oberarm, Genital), Hämatome verschiedenen Alters, Schütteltrauma','Häusliche Gewalt: wiederholte Verletzungen, Angst, Kontrolle durch Partner, Begründungen passen nicht','Vernachlässigung: Hygiene, Ernährung, Aufsicht','Rechtsmedizinische Dokumentation: Verletzungen, Fotos (mit Einwilligung), Zeitpunkt, Zitate'],tx:['Sicherheit des Patienten zuerst; Kind nicht allein bei Gefahr lassen; wertfrei fragen','**Dokumentation objektiv und detailliert** (Lokalisation, Größe, Farbe, Aussage in Zitaten)','Weitergabe: **KKG § 4** (Befugnis zur Information des Jugendamts); Medizinische Kinderschutzhotline 0800 19 210 00','Hilfetelefon „Gewalt gegen Frauen“ 116 016, Frauenhäuser; Gewaltschutzgesetz; vertrauliche Spurensicherung','Transport in geeignete Klinik (Kinderschutzgruppe); Polizei bei akuter Gefährdung'],meds:[],cave:['Eigene Interpretationen vermeiden, Tatbestände nicht ermitteln','Schweigepflicht nur mit Rechtfertigung durchbrechen (KKG, Notstand)','Schütteltrauma: Atemstörungen, Krampf, Erbrechen bei Säuglingen – bildgebend abklären'],merke:['Beobachten, dokumentieren, weiterleiten – nicht ermitteln','KKG § 4: stufenweises Vorgehen, im Notfall sofort Jugendamt/Polizei','Kinderschutzhotline 0800 19 210 00'],ll:[['Medizinische Kinderschutzhotline','https://www.kinderschutzhotline.de'],['Hilfetelefon Gewalt gegen Frauen','https://www.hilfetelefon.de']]},
-{id:'schwanger_trauma',cat:'Geburtshilfe',t:'Trauma und Reanimation in der Schwangerschaft',s:'Linksseitenlage, Uterusverlagerung, Notsectio',def:'Mütterliche Stabilisierung sichert das Überleben des Fetus; ab ca. 20. SSW komprimiert der Uterus die V. cava.',dx:['Vena-cava-Kompressionssyndrom ab ca. 20 SSW: Hypotonie in Rückenlage','Trauma: Plazentaablösung (Schmerz, vaginale Blutung, harter Uterus), Uterusruptur, fetomaternale Transfusion','Hypotonie, Tachykardie erst spät (Blutvolumen +40 %)','Reanimation: reversible Ursachen (Blutung, Eklampsie, Lungenembolie, Fruchtwasserembolie, Anästhesiekomplikationen)'],tx:['**Manuelle Uterusverlagerung nach links** oder 15–30° Linksseitenlage (Keil)','Stabilisierung der Mutter: O₂, Volumen, TXA bei Blutung','**Reanimation:** Standard-CPR, Defibrillation unverändert, Uterusverlagerung; **Notsectio** ab 4 min ohne ROSC (Entbindung ca. 5 min nach Stillstand, Ziel < 5 min)','Rh-negativ: Anti-D-Prophylaxe nach Trauma','Zielklinik mit Geburtshilfe/Neonatologie, frühe Voranmeldung','Neonatale Reanimation vorbereiten (NLS)'],meds:['Tranexamsäure 1 g i.v. bei Blutung','Anti-D-Immunglobulin 300 µg (Rh-neg.)','Magnesium 4–6 g i.v. bei Eklampsie'],cave:['Medikamente und Strahlung: Mutter-Nutzen vor Fetusrisiko','Keine Verzögerung der Reanimation wegen Schwangerschaft','Bauchtrauma: Plazentaablösung auch bei geringem Trauma möglich'],merke:['Mutter zuerst stabilisieren, Uterus nach links','Notsectio nach 4 min ohne ROSC','Anti-D bei Rh-negativen Frauen nach Trauma'],ll:[['ERC Guidelines 2025 – Besondere Umstände','https://www.cprguidelines.eu']]},
+{id:'schwanger_trauma',cat:'Geburtshilfe',t:'Trauma und Reanimation in der Schwangerschaft',s:'Linksseitenlage, Uterusverlagerung, Notsectio',def:'Mütterliche Stabilisierung sichert das Überleben des Fetus; ab ca. 20. SSW komprimiert der Uterus die V. cava.',dx:['Vena-cava-Kompressionssyndrom ab ca. 20 SSW: Hypotonie in Rückenlage','Trauma: Plazentaablösung (Schmerz, vaginale Blutung, harter Uterus), Uterusruptur, fetomaternale Transfusion','Hypotonie, Tachykardie erst spät (Blutvolumen +40 %)','Reanimation: reversible Ursachen (Blutung, Eklampsie, Lungenembolie, Fruchtwasserembolie, Anästhesiekomplikationen)'],tx:['**Manuelle Uterusverlagerung nach links** oder 15–30° Linksseitenlage (Keil)','Stabilisierung der Mutter: O₂, Volumen, TXA bei Blutung','**Reanimation:** Standard-CPR, Defibrillation unverändert, Uterusverlagerung; **Notsectio** ab 4 min ohne ROSC (Entbindung ca. 5 min nach Stillstand, Ziel < 5 min)','Rh-negativ: Anti-D-Prophylaxe nach Trauma','Zielklinik mit Geburtshilfe/Neonatologie, frühe Voranmeldung','Neonatale Reanimation vorbereiten (NLS)'],meds:['Tranexamsäure 1 g i.v. bei Blutung','Anti-D-Immunglobulin 300 µg (Rh-neg.)','Magnesium 4–6 g i.v. bei Eklampsie'],cave:['Medikamente und Strahlung: Mutter-Nutzen vor Fetusrisiko','Keine Verzögerung der Reanimation wegen Schwangerschaft','Bauchtrauma: Plazentaablösung auch bei geringem Trauma möglich'],merke:['Mutter zuerst stabilisieren, Uterus nach links','Notsectio nach 4 min ohne ROSC','Anti-D bei Rh-negativen Frauen nach Trauma'],ll:[['ERC Guidelines 2025 – Besondere Umstände','https://cprguidelines.eu']]},
 {id:'palliativ',cat:'Psychiatrie & Recht',t:'Palliative Notfälle & Therapiezieländerung',s:'Atemnot, Schmerz, terminale Unruhe, Notfallbogen',def:'Krisen bei Patienten mit fortgeschrittener, nicht heilbarer Erkrankung; Ziel ist Symptomkontrolle und Orientierung am Patientenwillen.',dx:['Häufige Krisen: Dyspnoe, Schmerz, Delir, Übelkeit, Blutung, terminales Rasseln','Therapieziel klären: Patientenverfügung, Vorsorgevollmacht, Notfallbogen/ReSPECT, behandelnder Arzt, SAPV-Team','Prognose, Wille, Umfeld (Angehörige) erfassen'],tx:['Dyspnoe: Oberkörper hoch, O₂ nur bei Hypoxie, **Morphin 2,5–5 mg i.v.** (oder s.c.), ggf. Midazolam 2,5 mg','Schmerz: Opioid titriert, Begleitmedikation','Terminales Rasseln: Butylscopolamin 20 mg s.c./i.v., Lagerung','Delir/Unruhe: Haloperidol 0,5–2 mg, Midazolam','Blutung: dunkle Tücher, Midazolam bei Palliativsituation','Kontakt zu SAPV/Hausarzt, Therapiebegrenzung dokumentieren; Angehörigen begleiten'],meds:['Morphin 2,5–5 mg i.v./s.c.','Midazolam 2,5–5 mg i.v./s.c.','Haloperidol 0,5–2 mg','Butylscopolamin 20 mg'],cave:['Reanimation bei dokumentierter Therapiebegrenzung/DNAR nicht beginnen; Unklarheit: Reanimation beginnen und sofort klären','Keine Verzögerung der Symptomkontrolle wegen Rechtsunsicherheit','Angehörige einbeziehen, aber Patientenwillen entscheidet'],merke:['Symptomkontrolle vor Diagnostik','Therapieziel erfragen und dokumentieren','Morphin gegen Atemnot ist indiziert'],ll:[['S3-Leitlinie Palliativmedizin (AWMF 128-001OL; onkologisch, Symptomkontrolle übertragbar)','https://register.awmf.org/de/leitlinien/detail/128-001OL']]},
 {id:'org_system',cat:'Organisation',t:'Rettungsdienstsystem, Leitstelle & Zielklinik',s:'Notarzt-Indikation, Telenotarzt, Netzwerke, IVENA',def:'Rettungsdienst ist Ländersache; Leitstellen disponieren nach standardisierter Notrufabfrage; Zielklinik nach Netzwerken (Trauma, Stroke, Chest Pain Unit).',dx:['Notrufnummer **112**; Krankentransport 116 117 (ärztlicher Bereitschaftsdienst)','Notarzt-Indikationskatalog (BÄK): lebensbedrohliche Situation, Bewusstlosigkeit, schwere Atemnot, Schock etc.','Notfallsanitäter: Heilkundeausübung nach § 2a NotSanG, **SAA/Algorithmen** (Pyramidenprozess) des Ärztlichen Leiters Rettungsdienst (ÄLRD)','Telenotarzt: telemedizinische Unterstützung, Delegation, Medikamentengabe nach Algorithmus','Zielklinik-Auswahl: **TraumaNetzwerk DGU** (überregional/regional/lokal), Stroke Unit, Chest Pain Unit, Verbrennungszentrum, Perinatalzentrum, Schockraum','Hubschrauber: RTH (Tageslicht), ITH für Interhospitaltransfer'],tx:['Voranmeldung nach Schema; **IVENA** zeigt Kapazitäten','**Schockraum-Alarm** nach Kriterien (RR < 90, GCS < 9, Intubation etc.)','Übergabe nach **ISBAR**','Qualitätssicherung: Dokumentation, Einsatznachbesprechung, Fehlerkultur (CIRS)','Rendezvous-System: NEF und RTW treffen sich getrennt'],meds:[],cave:['Nächste geeignete, nicht nächste Klinik','Voranmeldung verbessert Behandlungszeit','Delegation nur im Rahmen der Qualifikation und SAA'],merke:['Richtige Klinik, nicht nächste Klinik','ISBAR für Übergabe','Nach Standard handeln, bei Abweichung begründen'],ll:[['Bundesärztekammer Notarzt-Indikationskatalog','https://www.bundesaerztekammer.de'],['TraumaNetzwerk DGU','https://www.dgu-online.de']]},
 {id:'crm_transfer',cat:'Organisation',t:'CRM, Interhospitaltransfer & Hygiene',s:'Crew Resource Management, Verlegung, Infektionsschutz',def:'Nicht-technische Fertigkeiten und Transportorganisation verbessern Sicherheit; Hygiene schützt Patienten und Team.',dx:['**CRM:** Kommunikation (Closed Loop), Situationsbewusstsein, Führung/Teamarbeit, Entscheidungsfindung, Ressourcenmanagement','Interhospitaltransfer: Indikation (höhere Versorgungsstufe), Stabilität, Transportmittel (ITW/ITH), Arzt-zu-Arzt-Übergabe','Hygiene: Händedesinfektion (5 Momente), persönliche Schutzausrüstung, Fahrzeugdesinfektion','Meldepflichtige Erkrankungen (IfSG): z. B. Meningokokken, Tuberkulose, Masern'],tx:['Closed-Loop-Kommunikation, klare Rollenverteilung, „Speak up“','Vor Transfer: Stabilisieren, Zugang/Atemweg sichern, Dokumente/Bildgebung mitgeben, Zielklinik bestätigen','Intensivtransport: ärztliche Begleitung, Monitoring, Beatmungsgerät, Spritzenpumpen, Notfallmedikamente','Isolation: MRSA/ESBL Kontaktisolation, Tröpfchen bei Meningokokken/Influenza, Aerosol bei Tbc/Masern (FFP2)','Nadelstichverletzung: ausbluten lassen, desinfizieren, Meldung D-Arzt, PEP prüfen','Nachbesprechung (Debriefing), CIRS-Meldung'],meds:[],cave:['Unkontrollierte Stressbelastung: Einsatznachsorge (PSNV)','Verlegung ohne Stabilisierung vermeiden','Keine Verwechslung bei Übergabe: ISBAR/SBAR'],merke:['CRM: Kommunikation, Führung, Situationsbewusstsein','Interhospitaltransfer: Stabilisieren vor Transport','Nadelstich: sofort melden'],ll:[['DIVI Empfehlungen Interhospitaltransfer','https://www.divi.de']]}
 ]);
-
 </script>
-<script>
-// Notfall Kompass – Medikamente (Erwachsenen- und Kinderdosierungen; vor Anwendung Fachinformation prüfen)
+<script>// Notfall Kompass – Medikamente (Erwachsenen- und Kinderdosierungen; vor Anwendung Fachinformation prüfen)
 window.DRUGS = [
 {id:'adrenalin',n:'Adrenalin (Epinephrin)',g:'Katecholamin',
  ind:'Reanimation, Anaphylaxie, Bradykardie/Low-Output, Krupp/Larynxödem (inhalativ), Status asthmaticus',
@@ -1053,10 +1055,169 @@ window.DRUGS = [
  kids:'—',
  cave:'Thromboembolierisiko bei Antagonisierung; Dosierungen klinik-/SOP-abhängig.'}
 ];
-
 </script>
-<script>
-window.DRUGS=(window.DRUGS||[]).concat([
+<script>window.GROUPS={
+opi:{n:'Opioide',ids:['fentanyl','morphin','piritramid'],
+intro:'Starke Analgesie bei Trauma, ACS und Kolik-/Tumorschmerz. Unterschiede liegen in Anschlag, Dauer, Kreislaufwirkung und Übelkeit. Immer titrieren (kleine Boli), Naloxon bereithalten.',
+head:['Substanz','Anschlag i.v.','Dauer','Potenz (Morphin = 1)','Kreislauf / Atmung','Besonderheit'],
+rows:[
+['Fentanyl','1–2 min','20–30 min','ca. 100','kreislaufstabil, Atemdepression, Thoraxrigidität bei schnellem Bolus','Kurz wirksam, gut steuerbar; Standard bei Narkose/Trauma'],
+['Morphin','5–10 min (Max. 15–20 min)','3–4 h','1','Histaminfreisetzung → Hypotension, Vorlastsenkung','Klassisch beim ACS; Übelkeit, Juckreiz'],
+['Piritramid','5–10 min','4–6 h','ca. 0,7','wenig Histamin, geringe Übelkeit','Häufig im deutschen RD/Klinik; lange Wirkdauer']],
+choose:['Kreislaufinstabil/Trauma, schnelle Steuerbarkeit → Fentanyl (alternativ Esketamin)','ACS mit stabilem Blutdruck → Morphin (Vorlastsenkung, Angstlösung)','Längere Transportzeit, geringe Übelkeit gewünscht → Piritramid','Atemdepression → Atemwege sichern, Beatmen, Naloxon fraktioniert'],
+src:[['ERC Guidelines','https://www.erc.edu/guidelines'],['AWMF Leitlinienregister','https://register.awmf.org']]},
+
+nopi:{n:'Nicht-Opioid-Analgetika & Spasmolytika',ids:['metamizol','paracetamol','butylscopolamin'],
+intro:'Basisanalgesie und Koliken. Gut kombinierbar mit Opioiden (opioidsparend). Hauptrisiken: Hypotension (Metamizol bei schneller Gabe), Lebertoxizität (Paracetamol), anticholinerge Effekte (Butylscopolamin).',
+head:['Substanz','Anschlag','Wirkprofil','Hauptrisiko','Besonderheit'],
+rows:[
+['Metamizol','ca. 15–30 min i.v. (als Kurzinfusion)','analgetisch, spasmolytisch, antipyretisch','Blutdruckabfall/Schock bei schneller Injektion; selten Agranulozytose, Allergie','Mittel der Wahl bei Kolik; nie als Bolus'],
+['Paracetamol','ca. 15–30 min i.v.','analgetisch, antipyretisch (kaum antiphlogistisch)','Leberschaden bei Überdosierung (Tagesmaximum beachten)','Gut verträglich, auch Kinder; Antidot Acetylcystein'],
+['Butylscopolamin','5–10 min i.v.','spasmolytisch (kein Analgetikum im engeren Sinn)','Tachykardie, Mundtrockenheit, Harnverhalt; Engwinkelglaukom','Nur bei krampfartigen Schmerzen']],
+choose:['Nierenkolik/Gallenkolik → Metamizol langsam als Infusion ± Butylscopolamin','Fieber/leichte Schmerzen, Kinder → Paracetamol','Kreislaufinstabil → Metamizol meiden','Starke Schmerzen → Kombination mit Opioid, nicht ersetzen'],
+src:[['Fachinformationen (Gelbe Liste)','https://www.gelbe-liste.de'],['AWMF Leitlinienregister','https://register.awmf.org']]},
+
+hyp:{n:'Hypnotika & Narkotika',ids:['esketamin','etomidat','propofol'],
+intro:'Für Narkoseeinleitung (RSI) und Analgosedierung. Entscheidend ist die Kreislaufsituation.',
+head:['Substanz','Anschlag','Dauer','Kreislauf','Atmung','Besonderheit'],
+rows:[
+['Esketamin','ca. 30–60 s','10–20 min','Blutdruck/HF ↑ (sympathomimetisch)','Atemantrieb weitgehend erhalten','Analgesie; Bronchodilatation; Speichelfluss, Halluzinationen'],
+['Etomidat','ca. 30–60 s','3–8 min','sehr stabil','geringe Atemdepression','Myoklonien; Nebennierensuppression, keine Dauergabe'],
+['Propofol','ca. 30–45 s','5–10 min','Blutdruckabfall, Bradykardie','ausgeprägte Atemdepression','Antiemetisch, krampfhemmend; keine Analgesie']],
+choose:['Schock/Trauma/Asthma → Esketamin (±Etomidat)','Kreislaufinstabil ohne Analgesiebedarf → Etomidat','Kreislaufstabil, Status epilepticus-Narkose → Propofol','Immer Dosis reduzieren bei Hypovolämie'],
+src:[['ERC Guidelines','https://www.erc.edu/guidelines'],['AWMF Leitlinienregister','https://register.awmf.org']]},
+
+ben:{n:'Benzodiazepine & Antikonvulsiva',ids:['midazolam','lorazepam','diazepam','levetiracetam'],
+intro:'Krampfanfall, Sedierung, Agitation. Benzodiazepine sind Erstlinie im Anfall; Antikonvulsiva der 2. Linie bei Fortbestehen.',
+head:['Substanz','Anschlag i.v.','Wirkdauer','Besonderheit'],
+rows:[
+['Midazolam','1–3 min','1–2 h','Auch i.m./bukkal/nasal; Standard im RD'],
+['Lorazepam','2–5 min','6–12 h','Lange antikonvulsive Wirkung; gekühlt lagern'],
+['Diazepam','1–3 min','Stunden (aktive Metaboliten)','Rektal bei Kindern; kumuliert'],
+['Levetiracetam','ca. 15 min Infusion','–','2. Linie beim Status epilepticus; kaum Atemdepression']],
+choose:['Krampfanfall ohne Zugang → Midazolam i.m./bukkal/nasal','Krampfanfall mit Zugang → Lorazepam oder Midazolam i.v.','Anfall persistiert nach Benzodiazepin → Levetiracetam (oder Valproat)','Atemdepression beachten, Flumazenil nur gezielt'],
+src:[['AWMF Leitlinienregister','https://register.awmf.org'],['ERC Guidelines','https://www.erc.edu/guidelines']]},
+
+rel:{n:'Muskelrelaxanzien',ids:['rocuronium','sugammadex'],
+intro:'Relaxierung zur Intubation (RSI) und deren Antagonisierung.',
+head:['Substanz','Anschlag','Dauer','Besonderheit'],
+rows:[
+['Succinylcholin','ca. 45–60 s','5–10 min','Depolarisierend; Hyperkaliämie, MH-Trigger'],
+['Rocuronium','ca. 60 s (hohe Dosis)','30–60 min','Nicht-depolarisierend; Antagonist Sugammadex'],
+['Sugammadex','ca. 2–3 min','–','Antagonist von Rocuronium; nicht für Succinylcholin']],
+choose:['RSI ohne Kontraindikation → Succinylcholin oder hochdosiert Rocuronium','Kontraindikation Succinylcholin (Hyperkaliämie, Verbrennung, Muskelerkrankung) → Rocuronium','Sugammadex nur, wenn Antagonisierung nötig'],
+src:[['Fachinformationen (Gelbe Liste)','https://www.gelbe-liste.de']]},
+
+kat:{n:'Katecholamine & Vasopressoren',ids:['adrenalin','noradrenalin','dobutamin'],
+intro:'Reanimation, Schock, Bradykardie. Unterschied: Rezeptorprofil (α/β).',
+head:['Substanz','Rezeptoren','Hauptwirkung','Einsatz'],
+rows:[
+['Adrenalin','α + β','Vasokonstriktion, Inotropie, Chronotropie','Reanimation, Anaphylaxie, Bronchospasmus, Schock'],
+['Noradrenalin','α > β1','Vasokonstriktion','Vasoplegischer/septischer Schock'],
+['Dobutamin','β1','Inotropie','Kardiogener Schock ohne schwere Hypotension']],
+choose:['Reanimation/Anaphylaxie → Adrenalin','Septischer Schock → Noradrenalin','Kardiogener Schock mit ausreichendem Druck → Dobutamin (ggf. + Noradrenalin)','Zentralvenös/Perfusor, Extravasation vermeiden'],
+src:[['ERC Guidelines','https://www.erc.edu/guidelines']]},
+
+arr:{n:'Antiarrhythmika & Frequenzkontrolle',ids:['amiodaron','lidocain','adenosin','verapamil','metoprolol','atropin'],
+intro:'Rhythmusstörungen nach EKG-Diagnose wählen: schmal/breit, regelmäßig/unregelmäßig, instabil → Kardioversion.',
+head:['Substanz','Einsatz','Besonderheit'],
+rows:[
+['Amiodaron','VF/pVT nach 3. Schock; stabile VT; Vorhofflimmern','Hypotension, Bradykardie, Schilddrüse (langfristig)'],
+['Lidocain','Alternative bei VF/pVT','Neurotoxizität'],
+['Adenosin','Regelmäßige Schmalkomplextachykardie (AVNRT)','Schneller Bolus + NaCl; kurz HWZ; Flush/Asystolie kurz'],
+['Verapamil','Frequenzkontrolle bei Vorhofflimmern/Schmalkomplex','Nie bei breiten Komplexen/Herzinsuffizienz'],
+['Metoprolol','Frequenzkontrolle, ACS-Tachykardie','Asthma, AV-Block, Herzinsuffizienz beachten'],
+['Atropin','Symptomatische Bradykardie','Wirkt nicht bei Herztransplantat']],
+choose:['Instabil mit Tachykardie → Kardioversion (synchron)','Schmal regelmäßig → Vagusmanöver, dann Adenosin','Breit regelmäßig stabil → Amiodaron','Bradykardie symptomatisch → Atropin, dann Adrenalin/Schrittmacher'],
+src:[['ERC Guidelines','https://www.erc.edu/guidelines'],['AWMF Leitlinienregister','https://register.awmf.org']]},
+
+kreis:{n:'Vasodilatatoren, Antihypertensiva & Diuretika',ids:['nitro','urapidil','furosemid'],
+intro:'Akutes Koronarsyndrom, Lungenödem, hypertensive Notfälle.',
+head:['Substanz','Wirkung','Einsatz','Besonderheit'],
+rows:[
+['Nitroglycerin','Venodilatation, Vorlast ↓','ACS, kardiales Lungenödem','Nicht bei RR syst. < 90–100, RV-Infarkt, PDE-5-Hemmer'],
+['Urapidil','Nachlast ↓','Hypertensive Krise/Notfall','Langsam titrieren'],
+['Furosemid','Diurese, Vorlast ↓','Lungenödem','Wirkung erst nach Minuten; Hypovolämie vermeiden']],
+choose:['Kardiales Lungenödem → Nitro ± Furosemid, CPAP','Hypertensiver Notfall mit Organschaden → Urapidil','Hypotonie → Nitro meiden'],
+src:[['AWMF Leitlinienregister','https://register.awmf.org'],['ERC Guidelines','https://www.erc.edu/guidelines']]},
+
+gerinn:{n:'Gerinnung, Thrombozyten & Lyse',ids:['ass','heparin','lyse','txa','ppsb','fibrinogen'],
+intro:'Hemmung (ACS, Lungenembolie, Schlaganfall) und Förderung (Blutung, Trauma) der Gerinnung.',
+head:['Substanz','Wirkung','Einsatz','Cave'],
+rows:[
+['ASS','Thrombozytenaggregationshemmung','ACS','Blutungsrisiko, Asthma-Intoleranz'],
+['Heparin','Antikoagulation','ACS, LE','HIT; Antidot Protamin'],
+['Thrombolytika','Fibrinolyse','STEMI (wenn keine PCI), LE, Schlaganfall','Strenge Kontraindikationen'],
+['Tranexamsäure','Antifibrinolyse','Trauma-Blutung, PPH','Früh (<3 h), Krampfschwelle'],
+['PPSB','Faktoren II, VII, IX, X','Marcumar/DOAK-Blutung','Thrombosegefahr'],
+['Fibrinogen','Faktor I','Massive Blutung','Substitution bei Mangel']],
+choose:['ACS → ASS + Heparin','Traumatische Blutung → Tranexamsäure früh','Blutung unter VKA → PPSB + Vitamin K','Blutung unter Dabigatran → Idarucizumab'],
+src:[['AWMF Leitlinienregister','https://register.awmf.org'],['ERC Guidelines','https://www.erc.edu/guidelines']]},
+
+atem:{n:'Atemwege, Allergie & Glukokortikoide',ids:['salbutamol','ipratropium','prednisolon','dexa','hydrocortison','dimetinden'],
+intro:'Asthma/COPD, Anaphylaxie, Pseudokrupp. Bronchodilatation und Entzündungshemmung kombinieren.',
+head:['Substanz','Wirkung','Einsatz','Besonderheit'],
+rows:[
+['Salbutamol','β2-Mimetikum, Bronchodilatation','Asthma/COPD','Tachykardie, Hypokaliämie'],
+['Ipratropium','Anticholinergikum','Asthma/COPD (additiv)','Kaum systemische Effekte'],
+['Prednisolon','Glukokortikoid','Asthma, COPD, Anaphylaxie','Wirkeintritt 1–2 h'],
+['Dexamethason','Glukokortikoid (lang)','Pseudokrupp, Hirnödem','Auch bei Kindern'],
+['Hydrocortison','Glukokortikoid','Nebenniereninsuffizienz, Schock','Substitution'],
+['Dimetinden','H1-Blocker','Allergie/Anaphylaxie (adjuvant)','Sedierung']],
+choose:['Akuter Asthmaanfall → Salbutamol + Ipratropium + Steroid','Anaphylaxie → Adrenalin i.m. zuerst, dann Steroid/H1-Blocker','Pseudokrupp → Dexamethason (oder Prednisolon rektal)'],
+src:[['AWMF Leitlinienregister','https://register.awmf.org'],['ERC Guidelines','https://www.erc.edu/guidelines']]},
+
+meta:{n:'Glukose & Stoffwechsel',ids:['glukose','glukagon','insulin'],
+intro:'Hypoglykämie und hyperglykämische Entgleisung.',
+head:['Substanz','Einsatz','Besonderheit'],
+rows:[
+['Glukose','Hypoglykämie (i.v.)','Hochkonzentriert in große Vene; Thiamin bei Alkoholikern'],
+['Glukagon','Hypoglykämie ohne Zugang (i.m.)','Wirkt nicht bei leeren Glykogenspeichern'],
+['Normalinsulin','Hyperglykämische Entgleisung (Klinik)','Präklinisch selten, Kalium beachten']],
+choose:['Hypoglykämie mit Zugang → Glukose i.v.','Ohne Zugang → Glukagon i.m. oder orale Glukose','Hyperglykämie → vor allem Volumen, Klinik'],
+src:[['AWMF Leitlinienregister','https://register.awmf.org']]},
+
+elek:{n:'Elektrolyte, Puffer & Infusionen',ids:['magnesium','calcium','bicarbonat','nacl3'],
+intro:'Gezielter Einsatz bei Hyperkaliämie, Torsade, Intoxikation, Hirndruck.',
+head:['Substanz','Einsatz','Cave'],
+rows:[
+['Magnesium','Torsade de pointes, Asthma, Eklampsie','Langsam; Bradykardie, Atemdepression'],
+['Calcium','Hyperkaliämie, Ca-Antagonisten-Intoxikation','Nicht mit Bikarbonat mischen'],
+['Natriumbikarbonat','Hyperkaliämie, TCA-Intoxikation','Nur gezielt, Na-Last'],
+['NaCl 3 %','Hirndruck, Hyponatriämie','Zentralvenös bevorzugt']],
+choose:['Hyperkaliämie → Calcium zuerst','Torsade → Magnesium','Trizyklika-Intoxikation mit breitem QRS → Bikarbonat'],
+src:[['ERC Guidelines','https://www.erc.edu/guidelines']]},
+
+anti:{n:'Antidote',ids:['naloxon','flumazenil','hydroxocobalamin','kohle','acetylcystein','physostigmin','antikoag','idarucizumab','thiamin'],
+intro:'Spezifische Antagonisierung bei Vergiftungen. Immer Giftinformationszentrum einbeziehen.',
+head:['Substanz','Gegen','Besonderheit'],
+rows:[
+['Naloxon','Opioide','Kurze Wirkdauer → Rebound; fraktioniert'],
+['Flumazenil','Benzodiazepine','Krampfgefahr bei Abhängigkeit/Mischintox'],
+['Hydroxocobalamin','Zyanid (Rauchgas)','Rotfärbung Urin/Haut, Messstörungen'],
+['Aktivkohle','Orale Intoxikation (<1–2 h)','Nur bei erhaltenem Bewusstsein/Atemweg'],
+['Acetylcystein','Paracetamol','Je früher, desto besser'],
+['Physostigmin','Anticholinerge Intoxikation','Bradykardie, Krämpfe'],
+['Antikoag.-Antidote','Heparin (Protamin), VKA (Vit. K/PPSB)','Spezifisch wählen'],
+['Idarucizumab','Dabigatran','Nur dieses DOAK'],
+['Thiamin','Wernicke','Vor Glukose bei Alkoholikern']],
+choose:['Atemdepression + Miosis → Naloxon','Rauchgas mit Bewusstseinsstörung/Kreislaufinstabilität → Hydroxocobalamin','Unklare Intoxikation → Basismaßnahmen, Giftnotruf']
+,src:[['Giftinformationszentren (GIZ)','https://www.bfr.bund.de/de/giftinformationszentren-in-deutschland-54226.html']]},
+
+sonst:{n:'Neuroleptika, Antiemetika, Antiinfektiva & Sonstige',ids:['haloperidol','antiemetika','oxytocin','sauerstoff','ceftriaxon','aciclovir'],
+intro:'Spezielle Indikationen: Agitation, Übelkeit, Meningitis, Geburtshilfe, Sauerstoff.',
+head:['Substanz','Einsatz','Cave'],
+rows:[
+['Haloperidol','Akute Agitation/Psychose','QT-Zeit, EPMS'],
+['Antiemetika','Übelkeit/Erbrechen','QT-Zeit; Metoclopramid nicht bei Ileus'],
+['Oxytocin','Postpartale Blutung','Langsam; Hypotension bei Bolus'],
+['Sauerstoff','Hypoxie, Intoxikation','Zielsättigung beachten (COPD)'],
+['Ceftriaxon','Meningitis/Sepsis','Früh geben, nicht verzögern für Diagnostik'],
+['Aciclovir','Herpes-Enzephalitis','Nierenfunktion']],
+choose:['Meningitis/Sepsis → Antibiose so früh wie möglich','COPD → O₂ titrieren auf 88–92 %'],
+src:[['AWMF Leitlinienregister','https://register.awmf.org']]}
+};
+</script><script>window.DRUGS=(window.DRUGS||[]).concat([
 {id:'insulin',n:'Normalinsulin',g:'Insulin',ind:'Hyperkaliämie (Shift), hyperglykämische Entgleisung',dose:'Hyperkaliämie: 10 IE i.v. + 25 g Glukose über 15–30 min\nHyperglykämische Entgleisung: Klinik, Perfusor nach Schema',kids:'Nicht prähospital Standard; Klinik',cave:'Hypoglykämie (BZ-Kontrolle 4–6 h), Hypokaliämie.'},
 {id:'ppsb',n:'PPSB (Prothrombinkomplex)',g:'Gerinnungsfaktoren',ind:'Antagonisierung Vitamin-K-Antagonisten, Faktor-Xa-Hemmer (alternativ), Massivblutung',dose:'25–50 IE/kg i.v. (INR-/Gewichts-adaptiert), zusätzlich Vitamin K 10 mg i.v. bei Phenprocoumon',kids:'Nach Klinikprotokoll',cave:'Thromboembolierisiko, HIT II (heparinhaltige Präparate).'},
 {id:'fibrinogen',n:'Fibrinogenkonzentrat',g:'Gerinnungsfaktor',ind:'Blutungsschock mit Hypofibrinogenämie, Trauma',dose:'2–4 g i.v. früh, nach Fibrinogenspiegel/ROTEM',kids:'Nach Klinikprotokoll',cave:'Thromboembolien; Indikation bei aktiver Blutung.'},
@@ -1069,10 +1230,8 @@ window.DRUGS=(window.DRUGS||[]).concat([
 {id:'piritramid',n:'Piritramid',g:'Opioid (Agonist)',ind:'Starke Schmerzen',dose:'3,75–7,5 mg i.v. titriert (7,5 mg/ml), Wdh. nach 5–10 min',kids:'0,05–0,1 mg/kg',cave:'Atemdepression, lange Wirkdauer (6 h), Sedierung.'},
 {id:'sugammadex',n:'Sugammadex',g:'Relaxans-Antagonist',ind:'Aufhebung Rocuronium/Vecuronium (Reversal)',dose:'2–4 mg/kg i.v.; bei „Can’t intubate, can’t ventilate“: 16 mg/kg',kids:'Ab 2 Jahren zugelassen: 2–4 mg/kg',cave:'Wirkt nicht bei Succinylcholin; Bradykardie, Anaphylaxie selten; hormonelle Kontrazeptiva verlieren Wirkung.'}
 ]);
-
 </script>
-<script>
-// Notfall Kompass – Lernkarten [Kategorie, Frage, Antwort]. Zusätzlich werden aus den Medikamenten automatisch Karten erzeugt.
+<script>// Notfall Kompass – Lernkarten [Kategorie, Frage, Antwort]. Zusätzlich werden aus den Medikamenten automatisch Karten erzeugt.
 window.CARDS = [
 // Reanimation
 ['Reanimation','Kompressionstiefe und -frequenz beim Erwachsenen (ERC 2025)?','5–6 cm, 100–120/min, volle Entlastung, 30:2 bis zum gesicherten Atemweg.'],
@@ -1200,10 +1359,8 @@ window.CARDS = [
 ['Fallbeispiele','Fall: Reanimation, VF nach 3 Schocks. Medikamente?','Adrenalin 1 mg + Amiodaron 300 mg nach 3. Schock; Adrenalin alle 3–5 min; Amiodaron 150 mg nach 5. Schock; Pad-Position ändern bei Refraktärität; 4H/4T.'],
 ['Fallbeispiele','Fall: Lawinenverschüttete, 90 min, leblos. Vorgehen?','Hypothermie bedenken: CPR, Kerntemperatur, K⁺; Atemhöhle? → ECLS-Zentrum, schonende Bergung horizontal.']
 ];
-
 </script>
-<script>
-window.CARDS=(window.CARDS||[]).concat([
+<script>window.CARDS=(window.CARDS||[]).concat([
 ["Fallbeispiele","Fall: 62-J., Dialysepatient, 3 Tage ohne Dialyse, Schwäche, Bradykardie 38/min, breite QRS. Verdacht und Therapie?","Hyperkaliämie. Sofort Calciumgluconat 10 % 10–20 ml i.v. (Kardioprotektion), dann Insulin 10 IE + Glukose 25 g, Salbutamol 10–20 mg inhalativ, ggf. Bicarbonat; Klinik mit Dialyse. Kein Zugang/RR am Shuntarm."],
 ["Fallbeispiele","Fall: 25-J., plötzlich Hodenschmerz links seit 2 h, Übelkeit. Verdacht und Handeln?","Hodentorsion: Hochstand, fehlender Kremasterreflex. Sofort urologische Klinik (Zeitfenster ca. 6 h), Analgesie; manuelle Detorsion nur als Überbrückung."],
 ["Fallbeispiele","Fall: Wohnungsbrand, 40-J., GCS 8, SpO₂ 99 %, Laktat 9. Problem und Maßnahme?","CO- und Zyanidintoxikation: SpO₂ trügt. 100 % O₂, Intubation bei Bewusstlosigkeit, Hydroxocobalamin 5 g i.v. über 15 min, Klinik/HBO erwägen."],
@@ -1229,10 +1386,8 @@ window.CARDS=(window.CARDS||[]).concat([
 ["Fallbeispiele","Fall: Trauma, Hypotonie, Halsvenenstauung, leise Herztöne. Verdacht?","Herzbeuteltamponade (Beck-Trias): Vorlast erhalten, Perikardpunktion/Thorakotomie in Klinik, keine Diuretika/Vasodilatatoren."],
 ["Fallbeispiele","Fall: 50-J., Nierenkolik mit Fieber 39 °C. Warum Notfall?","Obstruktion + Infektion = Urosepsis-Risiko: Ceftriaxon, Analgesie, dringende urologische Entlastung (Stent/Nephrostomie)."]
 ]);
-
 </script>
-<script>
-window.CARDS=(window.CARDS||[]).concat([
+<script>window.CARDS=(window.CARDS||[]).concat([
 ["Fallbeispiele","Fall: 58-J., Brustschmerz 40 min, ST-Hebung II, III, aVF, RR 85/50, Bradykardie. Vorgehen?","Inferiorer STEMI mit möglichem RV-Infarkt: rechtsventrikuläre Ableitungen (V4R), Nitro vermeiden, Volumen, Atropin bei Bradykardie, ASS 250–500 mg, Heparin, direkt in PCI-Zentrum (Voranmeldung)."],
 ["Fallbeispiele","Fall: 32-J., plötzliche Dyspnoe, Pleuraschmerz, Tachykardie, nach Langstreckenflug. Verdacht und Maßnahmen?","Lungenembolie: O₂, Monitoring, Heparin 5000 IE i.v. bei hoher Wahrscheinlichkeit, bei instabiler Hämodynamik Lyse erwägen; Klinik mit Bildgebung/Intensiv."],
 ["Fallbeispiele","Fall: 12-J., Asthmaanfall, silent chest, SpO₂ 88 %. Therapie?","O₂, Salbutamol + Ipratropium inhalativ, Prednisolon 1–2 mg/kg i.v., Magnesium 25–50 mg/kg, ggf. Adrenalin; bei Erschöpfung Intubation vorbereiten (Ketamin)."],
@@ -1260,10 +1415,8 @@ window.CARDS=(window.CARDS||[]).concat([
 ["Fallbeispiele","Fall: Taucher nach schnellem Aufstieg, Schwindel, Parästhesien, Atemnot. Verdacht?","Dekompressionskrankheit/Gasembolie: 100 % O₂, flach lagern, Flüssigkeit, Kontakt Druckkammer/Giftnotruf, keine Rekompression im Wasser; Transport zur Druckkammer."],
 ["Fallbeispiele","Fall: Leiche mit Totenflecken, Totenstarre, Fäulnis. Was ist zu tun?","Todesfeststellung (sichere Todeszeichen), vollständige Leichenschau (unbekleidet), Todesart natürlich/nicht natürlich/ungeklärt, bei nicht natürlich Polizei; Dokumentation."]
 ]);
-
 </script>
-<script>
-/* Typische Prüfungsfragen je Thema: window.EXAMQ[topicId] = [[Frage, Antwort], ...] */
+<script>/* Typische Prüfungsfragen je Thema: window.EXAMQ[topicId] = [[Frage, Antwort], ...] */
 window.EXAMQ={
 als:[
 ["Wie läuft der ALS-Algorithmus bei VF/pulsloser VT ab?","Rhythmusanalyse → Schock (1×) → sofort 2 min CPR → nach 3. Schock Adrenalin 1 mg + Amiodaron 300 mg; Adrenalin danach alle 3–5 min, Amiodaron 150 mg nach 5. Schock; 4H/4T behandeln."],
@@ -1436,10 +1589,8 @@ crm_transfer:[
 ["Elemente von CRM?","Kommunikation (Closed Loop), Führung/Teamarbeit, Situationsbewusstsein, Entscheidungsfindung, Ressourcenmanagement."],
 ["Nadelstichverletzung: Erste Schritte?","Ausbluten lassen, desinfizieren, D-Arzt/Meldung, PEP prüfen."]]
 };
-
 </script>
-<script>
-(function(){
+<script>(function(){
 'use strict';
 /* ---------- Helpers ---------- */
 const $=(s,r)=>(r||document).querySelector(s);
@@ -1462,7 +1613,7 @@ const mmss=ms=>{ms=Math.max(0,Math.floor(ms/1000));return String(Math.floor(ms/6
 /* ---------- Daten ---------- */
 const TOPICS=window.TOPICS||[], DRUGS=(window.DRUGS||[]).slice().sort((a,b)=>a.n.localeCompare(b.n,'de'));
 const CAT_ORDER=['Reanimation','Kardiovaskulär','Atemwege & Atmung','Neurologie','Trauma','Internistische Notfälle','Toxikologie','Umwelt & Thermisch','Geburtshilfe','Pädiatrie','Atemweg, Narkose, Analgesie','Urologie, HNO & Augen','Psychiatrie & Recht','Organisation'];
-const CARD_CATS=CAT_ORDER.concat(['Medikamente','Fallbeispiele']);
+const CARD_CATS=CAT_ORDER.concat(['Medikamente','Fallbeispiele','EKG']);
 const CARDS=[];
 (window.CARDS||[]).forEach(c=>CARDS.push({id:'m'+hash(c[1]),cat:c[0],q:c[1],a:c[2]}));
 DRUGS.forEach(d=>{
@@ -1509,7 +1660,7 @@ function vFolder(){
 }
 let L={mode:'due',cat:'Alle',queue:[],i:0,shown:false,done:0,active:false,folder:null,noteOpen:false};
 
-const CAT_COL={'Reanimation':'#D4231C','Kardiovaskulär':'#E4572E','Atemwege & Atmung':'#1E88E5','Neurologie':'#7E57C2','Trauma':'#F57C00','Internistische Notfälle':'#00897B','Toxikologie':'#6D4C41','Umwelt & Thermisch':'#039BE5','Geburtshilfe':'#D81B60','Pädiatrie':'#F9A825','Atemweg, Narkose, Analgesie':'#3949AB','Psychiatrie & Recht':'#546E7A','Organisation':'#43A047','Urologie, HNO & Augen':'#00ACC1','Medikamente':'#8E24AA','Fallbeispiele':'#5D4037'};
+const CAT_COL={'EKG':'#26A69A','Reanimation':'#D4231C','Kardiovaskulär':'#E4572E','Atemwege & Atmung':'#1E88E5','Neurologie':'#7E57C2','Trauma':'#F57C00','Internistische Notfälle':'#00897B','Toxikologie':'#6D4C41','Umwelt & Thermisch':'#039BE5','Geburtshilfe':'#D81B60','Pädiatrie':'#F9A825','Atemweg, Narkose, Analgesie':'#3949AB','Psychiatrie & Recht':'#546E7A','Organisation':'#43A047','Urologie, HNO & Augen':'#00ACC1','Medikamente':'#8E24AA','Fallbeispiele':'#5D4037'};
 const dot=c=>`<i class="dot" style="background:${CAT_COL[c]||'#888'}"></i>`;
 function ico(p){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">'+p+'</svg>';}
 function setHash(t){try{history.replaceState(null,'','#'+t);}catch(e){}}
@@ -1612,7 +1763,7 @@ function vTopic(id){
 
 /* ---------- Medikamente ---------- */
 /* Spritzen-Aufkleber nach ISO 26825 (Anästhesie-Farbcode); nicht klassifizierte Substanzen: weiß */
-const CLS={
+const CLS={nopi:{n:'Analgetikum',c:'#BDBDBD',fg:'#111'},
  ind:{n:'Induktionsmittel',c:'#FFD600',fg:'#111'},
  rel:{n:'Muskelrelaxans',c:'#E02B2B',fg:'#fff'},
  relA:{n:'Relaxans-Antagonist',c:'#E02B2B',fg:'#fff',s:1},
@@ -1627,31 +1778,35 @@ const CLS={
  emet:{n:'Antiemetikum',c:'#F4A58A',fg:'#111'},
  oth:{n:'Nicht klassifiziert',c:'#FFFFFF',fg:'#111'}
 };
-const DMAP={adrenalin:['vaso'],amiodaron:['oth'],lidocain:['la'],atropin:['anti'],adenosin:['oth'],verapamil:['oth'],metoprolol:['hypo'],nitro:['hypo'],urapidil:['hypo'],furosemid:['oth'],ass:['oth'],heparin:['oth'],lyse:['oth'],esketamin:['ind'],etomidat:['ind'],propofol:['ind'],midazolam:['ben'],lorazepam:['ben'],diazepam:['ben'],fentanyl:['opi'],morphin:['opi'],metamizol:['oth'],paracetamol:['oth'],naloxon:['opiA'],flumazenil:['benA'],glukose:['oth'],glukagon:['oth'],prednisolon:['oth'],dexa:['oth'],salbutamol:['oth'],ipratropium:['oth'],magnesium:['oth'],txa:['oth'],calcium:['oth'],bicarbonat:['oth'],noradrenalin:['vaso'],dobutamin:['vaso'],rocuronium:['rel','relA'],haloperidol:['ben'],levetiracetam:['oth'],antiemetika:['emet'],butylscopolamin:['anti'],hydroxocobalamin:['oth'],kohle:['oth'],acetylcystein:['oth'],physostigmin:['oth'],oxytocin:['oth'],dimetinden:['oth'],sauerstoff:['oth'],antikoag:['oth'],insulin:['oth'],ppsb:['oth'],fibrinogen:['oth'],idarucizumab:['oth'],hydrocortison:['oth'],nacl3:['oth'],ceftriaxon:['oth'],aciclovir:['oth'],thiamin:['oth'],piritramid:['opi'],sugammadex:['relA']};
+const DMAP={adrenalin:['vaso'],amiodaron:['oth'],lidocain:['la'],atropin:['anti'],adenosin:['oth'],verapamil:['oth'],metoprolol:['hypo'],nitro:['hypo'],urapidil:['hypo'],furosemid:['oth'],ass:['oth'],heparin:['oth'],lyse:['oth'],esketamin:['ind'],etomidat:['ind'],propofol:['ind'],midazolam:['ben'],lorazepam:['ben'],diazepam:['ben'],fentanyl:['opi'],morphin:['opi'],metamizol:['nopi'],paracetamol:['nopi'],naloxon:['opiA'],flumazenil:['benA'],glukose:['oth'],glukagon:['oth'],prednisolon:['oth'],dexa:['oth'],salbutamol:['oth'],ipratropium:['oth'],magnesium:['oth'],txa:['oth'],calcium:['oth'],bicarbonat:['oth'],noradrenalin:['vaso'],dobutamin:['vaso'],rocuronium:['rel','relA'],haloperidol:['ben'],levetiracetam:['oth'],antiemetika:['emet'],butylscopolamin:['anti'],hydroxocobalamin:['oth'],kohle:['oth'],acetylcystein:['oth'],physostigmin:['oth'],oxytocin:['oth'],dimetinden:['oth'],sauerstoff:['oth'],antikoag:['oth'],insulin:['oth'],ppsb:['oth'],fibrinogen:['oth'],idarucizumab:['oth'],hydrocortison:['oth'],nacl3:['oth'],ceftriaxon:['oth'],aciclovir:['oth'],thiamin:['oth'],piritramid:['opi'],sugammadex:['relA']};
 const dcls=d=>DMAP[d.id]||['oth'];
 function syr(k,text,big){const c=CLS[k];return `<span class="syr ${c.s?'stripe':''} ${big?'big':''}" style="--lab:${c.c};color:${c.fg}">${esc(text)}</span>`;}
+const gOf=d=>Object.keys(window.GROUPS||{}).find(k=>GROUPS[k].ids.includes(d.id))||null;
+function groupBox(k){
+  const g=GROUPS[k]; if(!g) return '';
+  const tbl=`<div class="tbl"><table><thead><tr>${g.head.map(h=>`<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>${g.rows.map(r=>`<tr>${r.map((c,i)=>i?`<td>${esc(c)}</td>`:`<th scope="row">${esc(c)}</th>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+  return `<div class="grpbox"><p class="lead" style="margin:0">${esc(g.intro)}</p><h3 class="more-h">Vergleich</h3>${tbl}<h3 class="more-h">Wann welches?</h3><ul class="ul">${g.choose.map(c=>`<li>${esc(c)}</li>`).join('')}</ul><p class="small muted">Quellen: ${g.src.map(x=>`<a href="${x[1]}" target="_blank" rel="noopener">${esc(x[0])}</a>`).join(' · ')}</p></div>`;
+}
 function vDrugs(){
-  const f=S.dcls||'Alle';
-  const list=DRUGS.filter(d=>f==='Alle'||dcls(d).includes(f));
+  const f=S.dgrp||'Alle';
+  const list=DRUGS.filter(d=>f==='Alle'||gOf(d)===f);
   const sortm=S.dsort||store.get('dsort','az');
-  const itemH=d=>`<button class="item" data-a="drug" data-v="${d.id}"><b>${esc(d.n)}</b><span class="chev lab">${dcls(d).map(k=>syr(k,CLS[k].n.split(' / ')[0].replace('Muskelrelaxans','Relaxans').replace('Nicht klassifiziert','Sonstige'))).join('')}</span><span class="sub">${esc(d.ind)}</span></button>`;
+  const itemH=d=>`<button class="item" data-a="drug" data-v="${d.id}"><b>${esc(d.n)}</b><span class="chev lab">${dcls(d).filter(k=>k!=='oth').map(k=>syr(k,CLS[k].n.split(' / ')[0].replace('Muskelrelaxans','Relaxans').replace('Nicht klassifiziert','Sonstige'))).join('')}</span><span class="sub">${esc(d.ind)}</span></button>`;
+  const gk=Object.keys(GROUPS);
   let listHtml;
   if(sortm==='grp'&&f==='Alle'){
-    const order=Object.keys(CLS), by={};
-    list.forEach(d=>{const k=dcls(d)[0]||'oth'; (by[k]=by[k]||[]).push(d);});
-    listHtml=order.filter(k=>by[k]).map(k=>`<div class="grp-h"><i class="sw ${CLS[k].s?'sws':''}" style="--lab:${CLS[k].c}"></i> ${esc(CLS[k].n)}</div><div class="list">${by[k].map(itemH).join('')}</div>`).join('');
+    listHtml=gk.map(k=>{const l=list.filter(d=>gOf(d)===k); return l.length?`<button class="grp-h grp-link" data-a="dgrp" data-v="${k}">${esc(GROUPS[k].n)} <span class="muted">· Vergleich ›</span></button><div class="list">${l.map(itemH).join('')}</div>`:'';}).join('');
   } else listHtml=`<div class="list">${list.map(itemH).join('')}</div>`;
-  const used=Object.keys(CLS).filter(k=>DRUGS.some(d=>dcls(d).includes(k)));
-  return `<div class="stack"><div><div class="eyebrow">Nachschlagewerk</div><h1 class="h1">Notfallmedikamente</h1><p class="lead">Mit Spritzen-Aufkleber nach ISO 26825. Dosierungen und Kontraindikationen immer mit Fachinformation abgleichen.</p></div>
-  <div class="chips"><button class="chip" data-a="dcls" data-v="Alle" aria-pressed="${f==='Alle'}">Alle</button>${used.map(k=>`<button class="chip" data-a="dcls" data-v="${k}" aria-pressed="${f===k}"><i class="sw ${CLS[k].s?'sws':''}" style="--lab:${CLS[k].c}"></i>${esc(CLS[k].n)}</button>`).join('')}</div>
-  <div class="seg" role="tablist" style="max-width:320px"><button role="tab" data-a="dsort" data-v="az" aria-selected="${sortm==='az'}">A–Z</button><button role="tab" data-a="dsort" data-v="grp" aria-selected="${sortm==='grp'}">Nach Gruppe</button></div>
+  return `<div class="stack"><div><div class="eyebrow">Nachschlagewerk</div><h1 class="h1">Notfallmedikamente</h1><p class="lead">Nach Wirkgruppen mit Vergleichstabelle; Spritzen-Aufkleber nach ISO 26825. Dosierungen immer mit Fachinformation abgleichen.</p></div>
+  <div class="chips wrapchips"><button class="chip" data-a="dgrp" data-v="Alle" aria-pressed="${f==='Alle'}">Alle</button>${gk.map(k=>`<button class="chip" data-a="dgrp" data-v="${k}" aria-pressed="${f===k}">${esc(GROUPS[k].n)}</button>`).join('')}</div>
+  ${f==='Alle'?`<div class="seg" role="tablist" style="max-width:320px"><button role="tab" data-a="dsort" data-v="az" aria-selected="${sortm==='az'}">A–Z</button><button role="tab" data-a="dsort" data-v="grp" aria-selected="${sortm==='grp'}">Nach Gruppe</button></div>`:`<h2 class="h2">${esc(GROUPS[f].n)}</h2>${groupBox(f)}<h3 class="more-h">Substanzen</h3>`}
   ${listHtml}
-  <p class="small muted">Weiß = Substanz ohne Klassenfarbe im ISO-Schema (z. B. Amiodaron, Heparin, Glukose, Magnesium). Schräge Streifen = Antagonist bzw. Hypotensivum. Zur Sicherheit: Aufkleber der eigenen Klinik/des Rettungsdienstes entsprechen meist diesem Schema, aber nicht zwingend.</p>${disc()}</div>`;
+  <p class="small muted">Weiß = Substanz ohne Klassenfarbe im ISO-Schema (z. B. Amiodaron, Heparin, Glukose, Magnesium). Schräge Streifen = Antagonist bzw. Hypotensivum. Aufkleber der eigenen Klinik/des Rettungsdienstes entsprechen meist diesem Schema, aber nicht zwingend.</p>${disc()}</div>`;
 }
 function vDrug(id){
   const d=DRUGS.find(x=>x.id===id); if(!d) return backBtn();
   const short=d.n.split(/ \(| \/ /)[0].toUpperCase();
-  const labs=dcls(d).map(k=>`<div class="labbox">${syr(k,dcls(d).length>1&&k==='relA'?'SUGAMMADEX':short,true)}<span class="small muted">${esc(CLS[k].n)}</span></div>`).join('');
+  const labs=dcls(d).filter(k=>k!=='oth').map(k=>`<div class="labbox">${syr(k,dcls(d).length>1&&k==='relA'?'SUGAMMADEX':short,true)}<span class="small muted">${esc(CLS[k].n)}</span></div>`).join('');
   return `<div class="stack">${backBtn()}<div><div class="eyebrow">${esc(d.g)}</div><h1 class="h1">${esc(d.n)}</h1></div>
   <div class="row" style="gap:14px;align-items:flex-start">${labs}</div>
   <div class="fx"><div><b>Indikation</b>${fmt(d.ind)}</div><div><b>Dosierung Erwachsene</b>${fmt(d.dose)}</div><div><b>Kinder</b>${fmt(d.kids)}</div></div>
@@ -1693,10 +1848,11 @@ function buildQueue(){
   L.queue=q;L.i=0;L.shown=false;L.done=0;L.active=true;
 }
 function moreInfo(c){
+  if(c.ekg){const r=EKG.find(x=>x.id===c.ekg); return r?`<div class="more">${ekgInfo(r)}</div>`:'';}
   if(c.did){
     const d=DRUGS.find(x=>x.id===c.did); if(!d) return '';
     const F=[['ind','Indikation',d.ind],['dose','Dosierung Erwachsene',d.dose],['kids','Kinder',d.kids],['cave','Kontraindikationen / Cave',d.cave]].filter(r=>r[0]!==c.key&&r[2]);
-    const cl=dcls(d).map(k=>syr(k,CLS[k].n.split(' / ')[0].replace('Muskelrelaxans','Relaxans').replace('Nicht klassifiziert','Sonstige'))).join('');
+    const cl=dcls(d).filter(k=>k!=='oth').map(k=>syr(k,CLS[k].n.split(' / ')[0].replace('Muskelrelaxans','Relaxans').replace('Nicht klassifiziert','Sonstige'))).join('');
     return `<div class="more"><div class="more-h">Alle Infos zu ${esc(d.n)} ${cl}</div><div class="more-g">${esc(d.g||'')}</div>${F.map(r=>`<div class="more-r"><b>${r[1]}</b><div>${fmt(r[2])}</div></div>`).join('')}</div>`;
   }
   if(c.tid){
@@ -1726,7 +1882,7 @@ function vLearn(){
       const lab=[ '<10 min', ivLabel(Math.max(1,IV[Math.max(1,b)])), ivLabel(IV[Math.min(6,b+1)]||1), ivLabel(IV[Math.min(6,b+2)]) ];
       body=`<div class="row" style="justify-content:space-between"><span class="pill">${dot(c.cat)}${esc(c.cat)}</span><span class="row" style="gap:10px;flex-wrap:nowrap"><button class="favb ${favs[c.id]?'on':''}" data-a="fav" data-v="${c.id}" aria-label="Favorit">${favs[c.id]?'★':'☆'}</button><span class="small muted mono">${L.i+1} / ${L.queue.length}</span></span></div>
       <div class="bar"><i style="width:${Math.round(100*L.i/L.queue.length)}%"></i></div>
-      <div class="card flash"><div class="q">${fmt(c.q)}</div>${L.shown?`<div class="a ans"><div class="ans-h">✓ Richtige Antwort</div>${fmt(c.a)}</div>${moreInfo(c)}`:'<div class="muted small">Erst überlegen, dann aufdecken.</div>'}</div>
+      <div class="card flash">${c.ekg?ekgSvg(EKG.find(x=>x.id===c.ekg),c.off):''}<div class="q">${fmt(c.q)}</div>${L.shown?`<div class="a ans"><div class="ans-h">✓ Richtige Antwort</div>${fmt(c.a)}</div>${moreInfo(c)}`:'<div class="muted small">Erst überlegen, dann aufdecken.</div>'}</div>
       ${L.shown&&L.mode==='exam'?`<div class="rate"><button class="r0" data-a="ex" data-v="0">Nicht gewusst</button><button class="r3" data-a="ex" data-v="1">Gewusst</button></div>`:L.shown?`<div class="rate"><button class="r0" data-a="rate" data-v="0">Nochmal<small>${lab[0]}</small></button><button class="r1" data-a="rate" data-v="1">Schwer<small>${lab[1]}</small></button><button class="r2" data-a="rate" data-v="2">Gut<small>${lab[2]}</small></button><button class="r3" data-a="rate" data-v="3">Leicht<small>${lab[3]}</small></button></div>`:`<button class="btn primary" style="width:100%;justify-content:center;padding:14px" data-a="reveal">Antwort zeigen</button>`}
       ${noteBox(c)}
       <button class="back" data-a="stoplearn">Sitzung beenden</button>`;
@@ -1768,20 +1924,21 @@ function vTools(){
 /* CPR-Timer */
 const T={run:false,t0:0,acc:0,cyc:0,shocks:0,adr:0,amio:0,lastAdr:null,log:[],metro:false,mi:null,ac:null,beeped:false};
 function tNow(){return T.acc+(T.run?Date.now()-T.t0:0);}
-function tlog(s){T.log.unshift(mmss(tNow())+'  '+s);}
+const clk=()=>new Date().toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+function tlog(s){T.log.unshift(clk()+' · '+mmss(tNow())+'  '+s);}
 function beep(f,d){try{if(!T.ac)T.ac=new (window.AudioContext||window.webkitAudioContext)();const o=T.ac.createOscillator(),g=T.ac.createGain();o.frequency.value=f||880;o.connect(g);g.connect(T.ac.destination);g.gain.value=.15;o.start();o.stop(T.ac.currentTime+(d||.12));}catch(e){}}
 function toolTimer(){
-  return `<div class="card stack"><div class="row" style="justify-content:space-between"><div><div class="eyebrow">Gesamtzeit</div><div class="timer" id="t-el">00:00</div></div><div><div class="eyebrow">Zyklus (2 min)</div><div class="timer" id="t-cyc">02:00</div></div></div>
+  return `<div class="card stack"><div class="row" style="justify-content:space-between"><div><div class="eyebrow">Gesamtzeit <span id="t-st" class="tst ${T.run?'on':'off'}">${T.run?'● LÄUFT':(T.acc?'■ GESTOPPT':'Bereit')}</span></div><div class="timer" id="t-el">00:00</div><div class="small muted mono">Uhrzeit <b id="t-clk">${clk()}</b></div></div><div><div class="eyebrow">Zyklus (2 min)</div><div class="timer" id="t-cyc">02:00</div></div></div>
   <div id="t-hint" class="alert" hidden></div>
   <div class="row small"><span>Schocks: <b id="t-sh">0</b></span><span>Adrenalin: <b id="t-ad">0</b> <span class="muted" id="t-adt"></span></span><span>Amiodaron: <b id="t-am">0</b></span></div>
-  <div class="cpr"><button class="btn primary big" data-a="t-run" id="t-runb">${T.run?'Pause':(T.acc?'Weiter':'Start')}</button><button class="btn big" data-a="t-shock">⚡ Schock</button><button class="btn big" data-a="t-adr">Adrenalin 1 mg</button><button class="btn big" data-a="t-amio">Amiodaron</button><button class="btn big" data-a="t-metro" aria-pressed="${T.metro}">Metronom ${T.metro?'an':'aus'} (110/min)</button><button class="btn big ok" data-a="t-rosc">ROSC</button></div>
+  <div class="cpr"><button class="btn big ${T.run?'stop':'go'}" data-a="t-run" id="t-runb">${T.run?'⏸ STOPP':(T.acc?'▶ WEITER':'▶ START')}</button><button class="btn big" data-a="t-shock">⚡ Schock</button><button class="btn big" data-a="t-adr">Adrenalin 1 mg</button><button class="btn big" data-a="t-amio">Amiodaron</button><button class="btn big" data-a="t-metro" aria-pressed="${T.metro}">Metronom ${T.metro?'an':'aus'} (110/min)</button><button class="btn big ok" data-a="t-rosc">ROSC</button></div>
   <div class="row"><button class="btn small" data-a="t-reset">Zurücksetzen</button></div>
   <div class="log" id="t-log">${T.log.map(l=>`<div>${esc(l)}</div>`).join('')}</div>
   <p class="small muted">Erinnerung: Rhythmuscheck alle 2 min · Adrenalin bei schockbar nach 3. Schock, bei nicht schockbar sofort, danach alle 3–5 min · Amiodaron 300 mg nach 3. Schock, 150 mg nach 5. Schock · 4H/4T.</p></div>`;
 }
 function updateTimer(){
   const el=$('#t-el'); if(!el) return;
-  const ms=tNow(); el.textContent=mmss(ms);
+  const ms=tNow(); el.textContent=mmss(ms); const ck=$('#t-clk'); if(ck) ck.textContent=clk(); const st=$('#t-st'); if(st){st.className='tst '+(T.run?'on':'off'); st.textContent=T.run?'● LÄUFT':(T.acc?'■ GESTOPPT':'Bereit');} const rb=$('#t-runb'); if(rb){rb.className='btn big '+(T.run?'stop':'go'); rb.textContent=T.run?'⏸ STOPP':(T.acc?'▶ WEITER':'▶ START');}
   const cl=120000-((ms-T.cyc)%120000+120000)%120000;
   if(T.run&&ms-T.cyc>=120000){T.cyc+=120000;tlog('Rhythmuscheck (2 min)');beep(1000,.4);const lg=$('#t-log');if(lg)lg.innerHTML=T.log.map(l=>`<div>${esc(l)}</div>`).join('');}
   $('#t-cyc').textContent=mmss(120000-(ms-T.cyc));
@@ -1795,7 +1952,7 @@ function updateTimer(){
 }
 setInterval(()=>{ if(S.tab==='tools'&&S.tool==='timer') updateTimer(); },250);
 function tAct(a){
-  if(a==='t-run'){ if(T.run){T.acc+=Date.now()-T.t0;T.run=false;tlog('Pause');} else {T.t0=Date.now();T.run=true;tlog(T.acc?'Weiter':'Start');} }
+  if(a==='t-run'){ if(T.run){T.acc+=Date.now()-T.t0;T.run=false;tlog('Stopp');} else {T.t0=Date.now();T.run=true;tlog(T.acc?'Weiter':'Start');} }
   else if(a==='t-shock'){T.shocks++;tlog('Schock #'+T.shocks);}
   else if(a==='t-adr'){T.adr++;T.lastAdr=tNow();tlog('Adrenalin 1 mg (#'+T.adr+')');}
   else if(a==='t-amio'){T.amio++;tlog('Amiodaron '+(T.amio===1?'300':'150')+' mg');}
@@ -1968,6 +2125,7 @@ const EKG=[
 ];
 const EKG_GRPS=['Alle','Normal','Bradykardien','Tachykardien','AV-Blockierungen','Kreislaufstillstand','Weitere'];
 const EK={mode:'learn',grp:'Alle',sel:null,q:null,ans:null,score:0,total:0,streak:0};
+EKG.forEach(r=>CARDS.push({id:'e'+hash('ekg'+r.id),cat:'EKG',q:'EKG-Streifen: Welcher Rhythmus ist das?',a:r.n+' ('+r.rate+')',ekg:r.id,off:parseInt(hash('o'+r.id),36)%300/100}));
 function ekgSvg(r,off){
   const f=r.mk(),W=600,H=170,BASE=105,SC=48,span=5;let d='';
   for(let i=0;i<=1000;i++){const x=i*W/1000,t=off+i*span/1000,y=Math.max(4,Math.min(H-4,BASE-f(t)*SC));d+=(i?'L':'M')+x.toFixed(1)+','+y.toFixed(1);}
@@ -2016,7 +2174,7 @@ document.addEventListener('click',e=>{
   if(a==='tab'){ if($('#q').value){$('#q').value='';S.q='';} go(v,null); }
   else if(a==='back') back();
   else if(a==='cat'){S.cat=v;render();}
-  else if(a==='dcls'){S.dcls=v;render();}
+  else if(a==='dcls'||a==='dgrp'){S.dgrp=v;render();window.scrollTo(0,0);}
   else if(a==='dsort'){S.dsort=v;store.set('dsort',v);render();}
   else if(a==='topic') go('themen',{type:'topic',id:v},true);
   else if(a==='drug') go('med',{type:'drug',id:v},true);
@@ -2089,7 +2247,6 @@ const h0=location.hash.slice(1); if(TABS.some(t=>t[0]===h0)) S.tab=h0;
 render();
 setTimeout(()=>document.documentElement.style.setProperty('--toph',$('#top').offsetHeight+'px'),300);
 })();
-
 </script>
 </body>
 </html>
