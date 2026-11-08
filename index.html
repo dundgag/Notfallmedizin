@@ -449,6 +449,41 @@ button,.tab,.chip,.item,.opt{touch-action:manipulation;-webkit-user-select:none;
 .rg.ns{background:color-mix(in srgb,#1E88E5 10%,transparent);border-left:4px solid #1E88E5}
 .rg .cpr{grid-template-columns:1fr}
 .rg .cpr .big{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;text-align:left;gap:0}
+.chaps{display:grid;gap:8px}
+.chap{border:1px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden}
+.chap-h{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;align-items:center;gap:4px 10px;width:100%;padding:13px 14px;text-align:left;background:none;border:0;cursor:pointer}
+.chap-n{font-family:var(--f-display);font-size:1.15rem;font-weight:600;letter-spacing:.02em}
+.chap-c{color:var(--muted)}
+.chap-h .bar{grid-column:1/-1}
+.chap-b{border-top:1px solid var(--line);border-radius:0}
+.chapd{border:1px solid var(--line);border-radius:14px;background:var(--surface);padding:12px 14px}
+.chapd>summary{cursor:pointer;font-weight:600}
+/* einheitliche Kachelgrößen */
+.wrapchips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;overflow:visible}
+.wrapchips .chip{width:100%;min-height:46px;display:flex;align-items:center;justify-content:center;text-align:center;white-space:normal;line-height:1.15;font-size:13.5px;padding:6px 10px}
+.modes{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:1fr}
+.mode{min-height:92px;justify-content:flex-start}
+.mode b{overflow-wrap:normal;word-break:normal;hyphens:manual}
+.quick{grid-auto-rows:1fr}
+.qt{min-height:84px;display:flex;flex-direction:column;justify-content:center}
+.stats{grid-auto-rows:1fr}
+.folders{grid-auto-rows:1fr}
+.seg{display:grid;grid-template-columns:repeat(auto-fit,minmax(78px,1fr))}
+.seg button{white-space:normal;line-height:1.15;min-height:40px}
+@media (max-width:699px){
+.modes>:last-child:nth-child(odd),.quick>:last-child:nth-child(odd),.wrapchips>:last-child:nth-child(odd){grid-column:1/-1}
+}
+@media (min-width:700px){.wrapchips{grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}.modes{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}}
+.plan input,.plan select{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:8px 10px;font-size:15px;width:100%;margin-top:4px}
+.plan-g{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stepper{display:grid;grid-template-columns:auto auto minmax(60px,1fr) auto auto;gap:6px;align-items:center;margin-top:6px}
+.stepper input{text-align:center;font-weight:700;font-size:1.1rem;margin-top:0}
+.plan-r{margin-top:10px;font-size:15px}
+.plan-need{display:flex;align-items:baseline;gap:8px;margin-top:10px;flex-wrap:wrap}
+.plan-need b{font-family:var(--f-display);font-size:2rem;color:var(--accent)}
+.plan-ok{margin-top:8px;padding:8px 10px;border-radius:10px;background:color-mix(in srgb,var(--ok) 14%,transparent);font-size:14px}
+.plan-bad{margin-top:8px;padding:8px 10px;border-radius:10px;background:color-mix(in srgb,#D4231C 14%,transparent);font-size:14px}
+.hero .cd{flex-wrap:wrap;gap:4px 8px}.hero .cd b{white-space:nowrap;line-height:1}
 </style>
 </head>
 <body>
@@ -1625,6 +1660,253 @@ crm_transfer:[
 ["Elemente von CRM?","Kommunikation (Closed Loop), Führung/Teamarbeit, Situationsbewusstsein, Entscheidungsfindung, Ressourcenmanagement."],
 ["Nadelstichverletzung: Erste Schritte?","Ausbluten lassen, desinfizieren, D-Arzt/Meldung, PEP prüfen."]]
 };
+</script><script>/* Sammelthemen in einzelne Kapitel aufteilen (Indizes beziehen sich auf die Original-Listen) */
+(function(){
+const P=(id,t,s,def,o)=>Object.assign({id,t,s,def},o||{});
+const SP={
+akutHI:[
+ P('akutHI','Akute Herzinsuffizienz & kardiales Lungenödem','Nitrat, Diuretika, CPAP/NIV','Akute Dekompensation mit Dyspnoe, Orthopnoe und Lungenstauung (kardiales Lungenödem), meist bei erhaltenem oder erhöhtem Blutdruck. Ursache suchen: ACS, Arrhythmie, hypertensive Entgleisung, Klappenvitium, Infekt, Volumenüberladung.',{dx:[0,1],tx:[0,1,2,3,4,6],meds:[0,1],cave:[0,1],merke:[0],ex:[0]}),
+ P('kardschock','Kardiogener Schock','Noradrenalin, Dobutamin, Herzkatheter, ECLS','Pumpversagen mit Hypoperfusion trotz ausreichender Füllung: SBP <90 mmHg (oder Vasopressorbedarf), Laktat ↑, Oligurie, kalte Peripherie. Häufigste Ursache ist der Herzinfarkt.',{dx:[1],xdx:['Zeichen der Minderperfusion: kalte, blasse oder marmorierte Haut, Oligurie, Bewusstseinsstörung, Laktat ↑','Abgrenzen: Tamponade, Lungenembolie, Spannungspneumothorax (obstruktiver Schock)'],tx:[1,5,6],xtx:['Zielklinik mit Herzkatheter, Intensivstation und ggf. mechanischer Kreislaufunterstützung (z. B. ECLS)'],meds:[2,3],cave:[2],xcave:['Keine Nitrate und keine Diuretika bei Hypotension/Schock'],merke:[1],ex:[1]})],
+hypert:[
+ P('hypert','Hypertensiver Notfall','Urapidil, Drucksenkung, Endorganschaden','Hypertensive Krise: RR meist >180/120 mmHg. **Notfall** nur bei Endorganschaden (Enzephalopathie, Lungenödem, ACS, Dissektion, Eklampsie, intrazerebrale Blutung).',{dx:[0,1],tx:[0,1,3],meds:[0,1],cave:[0,1],merke:[0],ex:[1]}),
+ P('aortendiss','Aortendissektion','Schmerz, Blutdruck & Frequenz senken, CT','Einriss der Aortenintima mit Blutung in die Gefäßwand. Typ A (Aorta ascendens) ist ein herzchirurgischer Notfall, Typ B (Aorta descendens) wird meist konservativ oder endovaskulär behandelt.',{dx:[0],xdx:['Blutdruck an beiden Armen messen und Pulsstatus prüfen (Seitendifferenz, Pulsdefizit)','Differenzial: ACS, Lungenembolie, Spannungspneumothorax'],tx:[2],xtx:['Zielklinik mit Herz-/Gefäßchirurgie und CT-Angiografie, schonender Transport'],meds:[2,3],cave:[2],merke:[1],ex:[0]})],
+asthmacopd:[
+ P('asthmacopd','Asthmaanfall','Bronchodilatation, Steroide, Magnesium','Akute Verschlechterung eines Asthmas. Lebensbedrohlich: stille Lunge, Zyanose, Erschöpfung, Bewusstseinsstörung, SpO₂ <92 %.',{dx:[0,1],tx:[0,1,2,3,4,6],meds:'all',cave:[0,2],merke:[0,1],ex:[0,1]}),
+ P('copd','COPD-Exazerbation','Sauerstoffziel 88–92 %, NIV, Steroide','Akute Verschlechterung einer COPD mit Atemnot, Husten und/oder Sputumänderung; Gefahr der Hyperkapnie.',{dx:[0,1,2],tx:[0,1,2,3,5],meds:[0,1,2],cave:[1,2],xcave:['Unkontrollierte hohe O₂-Gabe kann die Hyperkapnie verstärken – Zielsättigung 88–92 %'],merke:[0],xex:[['Zielsättigung bei COPD-Exazerbation und warum?','88–92 %: Hohe O₂-Gaben können bei chronischer Hyperkapnie den pCO₂ weiter erhöhen. NIV bei pH <7,35 und pCO₂ >45 mmHg.']]})],
+krampf:[
+ P('krampfanfall','Krampfanfall (einzelner Anfall)','Schutz, Atemweg, Blutzucker, Ursachen','Meist selbstlimitierender Anfall (<5 min). Erstmaßnahmen: Schutz vor Verletzung, Atemweg, BZ. Anfall >5 min oder ≥2 Anfälle ohne Erholung bedeuten Status epilepticus.',{dx:[0,1,2],tx:[0,2,5,6],meds:[1],cave:[1],xmerke:['Anfall <5 min: schützen, beobachten, BZ messen; Benzodiazepin erst bei Anfallsdauer >5 min','Neuer Anfall: Ursache suchen (Hypoglykämie, Entzug, Trauma, Eklampsie, Blutung)'],xex:[['Wann beginnt man beim Krampfanfall mit Medikamenten?','Ab einer Anfallsdauer >5 min (Status epilepticus); vorher Schutz vor Verletzung, Atemweg, BZ messen.']]}),
+ P('krampf','Status epilepticus','Benzodiazepine, Levetiracetam/Valproat, Narkose',null,{dx:'all',tx:'all',meds:'all',cave:'all',merke:'all',ex:[0,1]})],
+bewusstlos:[
+ P('bewusstlos','Bewusstseinsstörung (Somnolenz, Sopor, Koma)','AEIOU-TIPS, GCS, Blutzucker','Quantitative Bewusstseinsstörung (Somnolenz, Sopor, Koma). Immer ABCDE und Blutzucker; GCS, Pupillen, Temperatur erfassen.',{dx:[0,2],tx:'all',cave:'all',merke:[0],ex:[0,1]}),
+ P('synkope','Synkope','Rote Flaggen, EKG, Monitoring','Kurzer, selbstlimitierender Bewusstseinsverlust durch vorübergehende zerebrale Minderperfusion mit spontaner, vollständiger Erholung.',{dx:[1,2],xdx:['Anamnese: Prodromi (Schwarzwerden, Schwitzen), Auslöser (Aufstehen, Husten, Schmerz), Dauer, Verletzungen, Medikamente'],tx:[0],xtx:['Rückenlage, Beine hoch; 12-Kanal-EKG, Monitoring, Blutzucker','Orthostatisch/reflektorisch: Volumen und Beobachtung; kardiale rote Flaggen: Klinik mit Monitoring'],xcave:['Synkope bei Belastung oder mit Brustschmerz nie als harmlos einordnen'],merke:[1],ex:[1]})],
+thorax:[
+ P('thorax','Thoraxtrauma','Rippenserienfraktur, Hämatothorax, instabiler Thorax',null,{dx:[1],tx:[0,2,3,4],cave:[0],xmerke:['Rippenserienfraktur: frühzeitige, ausreichende Analgesie verbessert die Atmung','Offener Pneumothorax: Verband nur an drei Seiten abkleben (Ventil)'],xex:[['Erstmaßnahme beim offenen Pneumothorax?','Okklusivverband mit Ventilwirkung (an drei Seiten abkleben), O₂, auf Spannungspneumothorax achten.']]}),
+ P('spannpneu','Spannungspneumothorax','Klinische Diagnose, Entlastung im 4./5. ICR','Luft im Pleuraspalt mit Ventilmechanismus komprimiert Lunge, Mediastinum und V. cava und führt zum obstruktiven Schock. Ursachen: Trauma, Beatmung, Barotrauma, spontan.',{dx:[0,1],tx:[0,1],cave:[1,0],merke:[0,1],ex:[0,1]})],
+verbrennung:[
+ P('verbrennung','Verbrennungen','Kühlung, Flüssigkeit, Zentrumskriterien',null,{dx:[0],tx:[0,1,2,6],meds:[0,1,3],cave:[0,1],merke:[0],ex:[0,1]}),
+ P('inhalationstrauma','Inhalationstrauma','Atemweg früh sichern, CO, Zyanid','Thermische und toxische Schädigung der Atemwege durch Rauch und Hitze; Gefahr der Atemwegsschwellung, dazu CO- und Zyanidvergiftung.',{dx:[1],tx:[3,4,5],meds:[2],merke:[1],xex:[['Wann beim Inhalationstrauma früh intubieren?','Bei Stridor, Heiserkeit, ausgedehntem Gesichtsbrand oder Ruß im Mund, bevor das Ödem den Atemweg verlegt.']]})],
+diabetes:[
+ P('diabetes','Hypoglykämie','Glukose, Glukagon','Hypoglykämie: BZ <50–70 mg/dl mit Symptomen; bei Bewusstseinsstörung immer BZ messen.',{dx:[0],tx:[0,1,3],meds:[0,1],cave:[0],merke:[0,1],ex:[0]}),
+ P('hyperglyk','Hyperglykämische Entgleisung (DKA/HHS)','Volumen, Insulin erst in der Klinik','Diabetische Ketoazidose (DKA) und hyperosmolares hyperglykämisches Syndrom (HHS): lebensbedrohliche Entgleisung mit ausgeprägter Exsikkose.',{dx:[1,2],tx:[2],meds:[2],cave:[1],xmerke:['Hyperglykämische Krise: zuerst Volumen, Insulin erst in der Klinik nach Kaliumkontrolle'],ex:[1]})],
+hypotherm:[
+ P('hypotherm','Unterkühlung (Hypothermie)','Swiss Staging, Bergung, Wiedererwärmung, ECLS',null,{dx:[0],tx:'all',cave:'all',merke:'all',ex:'all'}),
+ P('lawine','Lawinenunfall','Atemhöhle, Verschüttungsdauer, Kameradenrettung','Lawinenverschüttung führt über Asphyxie (fehlende Atemhöhle) und Hypothermie zum Tod; das Überleben hängt von Verschüttungsdauer und Atemhöhle ab.',{dx:[1],xdx:['Verschüttungsdauer: kurz → Ersticken wahrscheinlich; lang mit freier Atemhöhle → Hypothermie möglich','Atemhöhle/Atemweg frei? Vitalzeichen? Kerntemperatur nach der Bergung'],xtx:['Kameradenrettung: sofort orten und ausgraben, Atemweg zuerst freilegen','Medizinische Versorgung: Atemweg, Beatmung, bei Kreislaufstillstand CPR; Hypothermie behandeln (siehe Unterkühlung)','Zielklinik mit ECLS erwägen'],tx:[0,3,4],xcave:['Eigenschutz: Gefahr von Nachlawinen, Bergrettung einbinden'],merke:[1],xex:[['Was entscheidet bei Lawinenverschüttung über das Überleben?','Verschüttungsdauer und Atemhöhle (Asphyxie), danach Hypothermie; Atemweg zuerst freilegen, bei Kreislaufstillstand CPR und ECLS-Zentrum erwägen.']]})],
+ertrinken:[
+ P('ertrinken','Ertrinken','Hypoxie, 5 Beatmungen zuerst','Ertrinken führt über Hypoxie zum Kreislaufstillstand; Oxygenierung hat Vorrang.',{dx:[0],tx:[0],cave:[0],merke:[0],ex:[0]}),
+ P('tauch','Tauchunfall (DCI, Gasembolie)','100 % O₂, Druckkammer','Dekompressionserkrankung (DCI) und arterielle Gasembolie durch Gasblasen nach zu schnellem Aufstieg oder Druckabfall.',{dx:[1],tx:[1],merke:[1]}),
+ P('strom','Elektrounfall & Blitzschlag','Eigenschutz, EKG, Rhabdomyolyse','Stromunfälle: Niederspannung (<1000 V) vs. Hochspannung, Blitz; Rhythmusstörungen, Verbrennungen und Rhabdomyolyse möglich.',{dx:[2],tx:[2],cave:[1],ex:[1]})],
+eklampsie:[
+ P('eklampsie','Präeklampsie & Eklampsie','Magnesium, Blutdrucksenkung, Entbindung',null,{dx:[0],tx:[0,1,2,3,4],meds:'all',cave:'all',merke:'all',ex:[0]}),
+ P('hellp','HELLP-Syndrom','Hämolyse, Leberwerte, Thrombozyten','Schwere Verlaufsform der Präeklampsie mit Hämolyse, erhöhten Leberenzymen und niedrigen Thrombozyten; typisch sind Oberbauchschmerzen.',{dx:[0],tx:[0,1,2,4],meds:[0,1],cave:[0,1],xcave:['Thrombozytopenie: Blutungsrisiko, keine i.m. Injektionen; Leberkapselruptur möglich (Oberbauchschmerz, Schock)'],merke:[1],ex:[1]})],
+geburt:[
+ P('geburt','Geburt außerhalb der Klinik','Notfallgeburt, Nabelschnurvorfall, Schulterdystokie','Notfallgeburt: ruhig bleiben, Mutter schützen, Neugeborenes warm halten.',{dx:[0],tx:[0,1,2,3,5],meds:[2,3],merke:[1],ex:[1]}),
+ P('pph','Postpartale Blutung (PPH)','Uterusmassage, Oxytocin, Tranexamsäure','Postpartale Hämorrhagie: >500 ml (vaginal) bzw. >1000 ml (Sectio) oder Kreislaufwirkung.',{dx:[1],tx:[4,5],meds:[0,1],cave:'all',merke:[0],ex:[0]})],
+psych:[
+ P('psych','Akute Erregung','Deeskalation, Medikamente','Psychiatrische Notfälle verlangen zuerst somatische Ausschlussdiagnostik (Hypoglykämie, Hypoxie, SHT, Intoxikation, Delir).',{dx:[0,1],tx:[0,1],meds:'all',cave:[0,2],merke:[0],ex:[1]}),
+ P('suizid','Suizidalität','Ansprechen, Eigenschutz, nicht allein lassen','Akute Eigengefährdung mit Suizidgedanken oder -handlung. Somatische Folgen (Intoxikation, Verletzung) und psychiatrische Gefährdung getrennt beurteilen.',{dx:[0,1],tx:[0,4],xtx:['Direkt nach Suizidgedanken, Plan und Mitteln fragen – das erhöht das Risiko nicht','Bei akuter Gefährdung nicht allein lassen, ärztliche Vorstellung in der Klinik sicherstellen'],xmerke:['Suizidäußerungen immer ernst nehmen und direkt ansprechen']}),
+ P('zwang','Zwangsmaßnahmen & Unterbringung (PsychKG)','Rechtsgrundlage, Fixierung, Dokumentation','Zwangsmaßnahmen sind nur bei erheblicher Eigen- oder Fremdgefährdung infolge psychischer Erkrankung zulässig und brauchen Rechtsgrundlage, Verhältnismäßigkeit und Dokumentation.',{tx:[2,3],cave:[1],merke:[1],ex:[0]})],
+abdomen:[
+ P('abdomen','Akutes Abdomen','Peritonitis, Ileus, Mesenterialischämie, Aortenruptur',null,{dx:'all',tx:[0,1,2,3,5],meds:[0,1],cave:'all',merke:[0,1],ex:[0]}),
+ P('gibblutung','Gastrointestinale Blutung','Pantoprazol, Terlipressin, Endoskopie','Blutung aus dem oberen oder unteren Gastrointestinaltrakt (Hämatemesis, Teerstuhl, Hämatochezie); häufig Ulkus oder Varizen bei Leberzirrhose.',{dx:[0],xdx:['Leitsymptome: Hämatemesis, Melaena (Teerstuhl), Hämatochezie, Schock','Risiko: Leberzirrhose/Alkohol (Varizen), Antikoagulation, NSAR'],tx:[0,1,4,5],meds:[2,3],cave:[1],merke:[2],ex:[1]})],
+elektrolyte:[
+ P('elektrolyte','Hyperkaliämie','Calcium zuerst, Shift, Elimination','Kalium >5,5 mmol/l (schwer >6,5); lebensbedrohlich durch Arrhythmien bis Kammerflimmern/Asystolie. Häufig bei Niereninsuffizienz, Dialyse, ACE-Hemmern, Rhabdomyolyse.',{dx:[0,1,3],tx:[0,1,2,3],meds:[0,1,2,4],cave:[0,1],merke:[0,1],ex:[0]}),
+ P('hyponatri','Hyponatriämie','NaCl 3 % bei Krampf/Koma, langsam korrigieren','Natrium <135 mmol/l; symptomatisch (Krampf, Koma, Hirnödem) vor allem bei akutem Abfall. Ursachen: Diuretika, SIADH, Herzinsuffizienz, Polydipsie.',{dx:[2,3],tx:[4,5],meds:[3],cave:[2],merke:[2],ex:[1]})],
+blutung:[
+ P('blutung','Blutungsschock','Blutung stoppen, Tranexamsäure, permissive Hypotension',null,{dx:[0,1,2],tx:[0,1,2,3,4],meds:[0,1,5],cave:'all',merke:[0,1],ex:[0]}),
+ P('antikoag','Blutung unter Antikoagulation','PPSB, Vitamin K, Idarucizumab','Antikoagulierte Patienten bluten stärker und länger; entscheidend ist die gezielte Antagonisierung des jeweiligen Präparats.',{dx:[3],tx:[5],xtx:['Blutungsquelle kontrollieren (Druckverband) und zügig in die Klinik – Antagonisierung parallel vorbereiten'],meds:[2,3,4],merke:[2],ex:[1]})],
+niere:[
+ P('niere','Akutes Nierenversagen','Prärenal, renal, postrenal; Hyperkaliämie, Überwässerung',null,{dx:[0,2,3],tx:'all',meds:'all',cave:[1],merke:[1,2],xex:[['Ursachen des akuten Nierenversagens (Einteilung)?','Prärenal (Volumenmangel, Sepsis, Herzinsuffizienz), renal (Tubulusnekrose, Rhabdomyolyse, Kontrastmittel), postrenal (Obstruktion, Katheter).']]}),
+ P('dialyse','Dialysepatient im Notfall','Shuntarm schonen, Hyperkaliämie, Überwässerung','Dialysepflichtige Patienten sind bei versäumter Dialyse durch Hyperkaliämie und Überwässerung (Lungenödem) gefährdet.',{dx:[1,3],tx:[0,1,4],cave:[0,2],merke:[0,1],ex:[0,1]})],
+tamponade:[
+ P('tamponade','Herzbeuteltamponade','Beck-Trias, Perikardpunktion, Vorlast erhalten','Obstruktiver Schock durch Perikarderguss mit Kompression des Herzens.',{dx:[0,1,2],tx:[0,1],meds:[1],cave:[0],merke:[0,2],ex:[0]}),
+ P('icd','Schrittmacher- & ICD-Probleme','Magnet-Funktion, elektrischer Sturm','Fehlfunktion oder Auslösung implantierter Geräte: Schockabgabe, elektrischer Sturm, Stimulationsausfall.',{dx:[3],tx:[2,3,4,5],meds:[0,2],cave:[1,2],merke:[1],ex:[1]})],
+co_rauch:[
+ P('co_rauch','CO-Vergiftung','CO-Hb, 100 % O₂, Pulsoxymeter unzuverlässig','Inhalation von Kohlenmonoxid, häufig bei Wohnungsbränden, defekten Heizungen und Grillgeräten.',{dx:[0,1,2],tx:[0,1,2,4,5],meds:[0,2],cave:[0,1],merke:[0,2],ex:[0]}),
+ P('zyanid','Zyanidvergiftung (Rauchgas)','Hydroxocobalamin 5 g','Zyanidwasserstoff im Brandrauch hemmt die Atmungskette; Verdacht bei Rauchgas mit Koma, Kreislaufstillstand oder Laktat >8 mmol/l.',{dx:[3,4],tx:[0,2,3,5],meds:[1],cave:[2],merke:[1],ex:[1]})],
+alkohol_drogen:[
+ P('alkohol_drogen','Alkoholintoxikation & Entzugsdelir','Wernicke, Benzodiazepine, Thiamin','Intoxikation und Entzugssyndrome durch Alkohol; Hypoglykämie und Wernicke-Enzephalopathie beachten.',{dx:[2,3,1],tx:[3,4,0,6],meds:[2,3],cave:[2],merke:[1,2],ex:[1]}),
+ P('opioid','Opioidintoxikation','Naloxon titrieren, Atemdepression','Atemdepression, Miosis und Koma durch Opioide.',{dx:[0,1],tx:[0,1,6],meds:[0],cave:[0],merke:[0,2],ex:[0]}),
+ P('stimulanzien','Stimulanzien, GHB & sonstige Drogen','Benzodiazepine, Kühlung, Atemwegsschutz','Intoxikationen durch Kokain, Amphetamine, Cannabinoide, GHB und Benzodiazepine.',{dx:[0,1],tx:[0,2,5,6],meds:[1],cave:[1],merke:[2]})],
+paracetamol_pilze:[
+ P('paracetamol_pilze','Paracetamolintoxikation','Acetylcystein, Rumack-Matthew','Häufige Medikamentenvergiftung mit spezifischem Antidot. Giftinformationszentren (GIZ) beraten rund um die Uhr.',{dx:[0],tx:[0,1,6],meds:[0,1],cave:'all',merke:[0,2],ex:[0]}),
+ P('pilz','Pilzvergiftung (Knollenblätterpilz)','Latenz täuscht, Silibinin, Leberversagen','Knollenblätterpilz-Vergiftung verläuft nach symptomfreiem Intervall mit Leberversagen; Pilzreste sichern.',{dx:[1],tx:[0,2,6],meds:[0,4],cave:[0,1],merke:[1,2],ex:[1]}),
+ P('medintox','Medikamentenintoxikation (Betablocker, Trizyklika, Digitalis)','Glukagon, Bicarbonat, Digitalis-Antidot','Vergiftungen mit kardiotoxischen Medikamenten erfordern Monitoring und gezielte Antidote.',{dx:[2,3,4],tx:[3,4,5,6],meds:[2,3],cave:[0,1],merke:[2]})],
+wirbelsaeule:[
+ P('wirbelsaeule','Wirbelsäulentrauma','Immobilisation, neurogener Schock','Wirbelsäulenverletzungen mit Risiko für Rückenmarksschaden.',{dx:[0],tx:[0,5,6],meds:[0,1,2],cave:[0],merke:[0],xex:[['Besonderheit des neurogenen Schocks?','Hypotonie + Bradykardie + warme Haut (Sympathikusausfall); Volumen, ggf. Noradrenalin, Wirbelsäule immobilisieren.']]}),
+ P('becken','Beckentrauma','Beckenschlinge, Blutung','Beckenverletzungen können mit hohem Blutverlust (bis >2 l) einhergehen.',{dx:[1],tx:[1,6],cave:[1],merke:[1],ex:[0]}),
+ P('extremitaet','Extremitätentrauma & Amputation','DMS-Kontrolle, Schienung, Amputat','Extremitätenverletzungen mit Risiko für Blutverlust, Kompartmentsyndrom und Gliedmaßenverlust.',{dx:[2,3],tx:[2,3,4,5],meds:[0,1,3],cave:[2,3],merke:[2],ex:[1]})],
+urologie:[
+ P('urologie','Hodentorsion (akutes Skrotum)','Zeitfenster ca. 6 h, sofort Klinik','Hodentorsion ist ein zeitkritischer urologischer Notfall mit Organverlust nach wenigen Stunden.',{dx:[0],tx:[0,4],cave:[0],merke:[0],ex:[0]}),
+ P('nierenkolik','Nierenkolik & Urosepsis','Analgesie, Fieber = Notfall','Wellenförmiger Flankenschmerz durch Harnleiterstein; mit Fieber oder Obstruktion Gefahr der Urosepsis.',{dx:[1,2],tx:[1,2,4],meds:'all',cave:[1],merke:[1],ex:[1]}),
+ P('harnverhalt','Harnverhalt','Katheter, Urethraverletzung ausschließen','Akute Unfähigkeit zur Blasenentleerung mit Schmerz und Unruhe.',{dx:[3],tx:[3,4],cave:[2],xmerke:['Harnverhalt: Entlastung per Katheter, bei Harnröhrenverletzung (Blut am Meatus) keine transurethrale Katheterisierung']})],
+hno_auge:[
+ P('hno_auge','HNO-Notfälle (Epistaxis, Tonsillenblutung)','Blutstillung, Atemweg sichern','Häufige HNO-Notfälle mit Blutung und Atemwegsgefährdung.',{dx:[0,1],tx:[0,1,5],meds:[0,2],cave:[0,2],merke:[2],ex:[1]}),
+ P('auge','Augennotfälle','Verätzung spülen, Zentralarterienverschluss','Augennotfälle mit Risiko für Sehverlust: Verätzung, Perforation, Zentralarterienverschluss, akutes Glaukom.',{dx:[2],tx:[2,3],meds:[1],cave:[1],merke:[0],ex:[0]}),
+ P('zahn','Zahnunfall & Kieferverletzung','Zahnrettungsbox, Avulsion','Zahnunfälle (Avulsion) und Kieferfrakturen.',{dx:[3],tx:[4],xtx:['Kieferfraktur: Atemweg und Blutung beachten, Analgesie, Klinik (MKG)'],meds:[2],merke:[1]})],
+meningitis:[
+ P('meningitis','Bakterielle Meningitis','Ceftriaxon + Dexamethason, Isolation',null,{dx:[0,1,2,3],tx:[0,1,2,4,5],meds:[0,1,2],cave:'all',merke:'all',ex:'all'}),
+ P('enzephalitis','Enzephalitis (HSV)','Aciclovir früh, nicht auf Liquor warten','Entzündung des Hirnparenchyms, meist viral (HSV): Fieber, Verwirrtheit, Wesensänderung, Krampf, fokale Ausfälle.',{dx:[1],xdx:['Kopfschmerz, Fieber, Verwirrtheit/Wesensänderung, Krampfanfälle, fokale neurologische Ausfälle'],tx:[3,4],meds:[3],xmerke:['Verdacht auf Enzephalitis: Aciclovir früh geben, nicht auf Liquor warten']})],
+neuromusk:[
+ P('neuromusk','Guillain-Barré-Syndrom','Aufsteigende Lähmung, Atemkontrolle','Immunvermittelte Polyneuritis mit aufsteigender schlaffer Lähmung nach Infekt und drohendem Atemversagen.',{dx:[0,2],tx:[0,1,2,4],meds:[1],cave:[1,2],merke:[0,1],ex:[0]}),
+ P('myasthenie','Myasthene Krise','Atemmuskelschwäche, Medikamente meiden','Akute Verschlechterung einer Myasthenia gravis mit Atemmuskel- und Schluckschwäche.',{dx:[1,2,3],tx:[0,1,3,4],meds:[0],cave:[0,2],merke:[1,2],ex:[1]})],
+kinder_atemweg:[
+ P('kinder_atemweg','Pseudokrupp','Kortikoid, Adrenalin inhalativ','Pseudokrupp (Laryngotracheitis): bellender Husten, inspiratorischer Stridor, Heiserkeit, meist bei Kleinkindern.',{dx:[0,3],tx:[0],meds:[0,1],merke:[0],ex:[0]}),
+ P('epiglottitis','Epiglottitis','Nicht anfassen, Atemweg in Bereitschaft','Selten (Hib-Impfung), aber lebensbedrohliche Schwellung des Kehldeckels.',{dx:[1,3],tx:[1],meds:[2],cave:[0,2],merke:[1],ex:[1]}),
+ P('fremdkoerper','Fremdkörperaspiration (Kind)','Husten fördern, Rückenschläge','Plötzlicher Husten oder Würgen beim Essen oder Spielen, Stridor oder Aphonie.',{dx:[2,3],tx:[2,3,4],cave:[1],merke:[2]})],
+fieberkrampf:[
+ P('fieberkrampf','Fieberkrampf','Midazolam bukkal, Diazepam rektal',null,{dx:[0,1,2],tx:'all',meds:'all',cave:[0,2],merke:[0,1],ex:[0,1]}),
+ P('saeugling','Säuglingsnotfälle (BRUE, Fieber <3 Monate)','Immer Klinikabklärung','Säuglinge dekompensieren schnell; Fieber <3 Monate und BRUE erfordern immer Klinikabklärung.',{dx:[3],tx:[4],cave:[1],merke:[2]})],
+gewalt:[
+ P('gewalt','Kindesmisshandlung & Vernachlässigung','Warnzeichen, Dokumentation, KKG','Verdacht auf Kindeswohlgefährdung erfordert sensible Beobachtung, sorgfältige Dokumentation und Weiterleitung an geeignete Stellen.',{dx:[0,2,3],tx:[0,1,2,4],cave:'all',merke:'all',ex:[0,1]}),
+ P('haeusl_gewalt','Häusliche Gewalt','Sicherheit, Dokumentation, Hilfetelefon','Verletzungen durch Partnergewalt: Sicherheit der Patientin/des Patienten, gerichtsfeste Dokumentation und Vermittlung von Hilfe.',{dx:[1,3],tx:[0,1,3,4],cave:[0,1],merke:[0]})],
+schwanger_trauma:[
+ P('schwanger_trauma','Trauma in der Schwangerschaft','Linksseitenlage, Plazentaablösung, Anti-D','Mütterliche Stabilisierung sichert das Überleben des Fetus; ab ca. 20. SSW komprimiert der Uterus die V. cava.',{dx:[0,1,2],tx:[0,1,3,4],meds:[0,1],cave:[0,2],merke:[0,2],ex:[1]}),
+ P('schwanger_rea','Reanimation in der Schwangerschaft','Uterusverlagerung, Notsectio','Reanimation Schwangerer: Standard-CPR mit manueller Uterusverlagerung; Notsectio als reversible Maßnahme.',{dx:[0,3],tx:[0,2,4,5],meds:[2],cave:[1],merke:[0,1],ex:[0]})],
+palliativ:[
+ P('palliativ','Palliative Notfälle (Symptomkontrolle)','Atemnot, Schmerz, terminale Unruhe','Krisen bei Patienten mit fortgeschrittener, nicht heilbarer Erkrankung; Ziel ist Symptomkontrolle.',{dx:[0],tx:[0,1,2,3,4],meds:'all',cave:[1],merke:[0,2],ex:[0,1]}),
+ P('therapieziel','Therapieziel, Patientenverfügung & DNAR','Patientenwille, Notfallbogen','Orientierung am Patientenwillen: Patientenverfügung, Vorsorgevollmacht, Notfallbogen und Therapiebegrenzung klären.',{dx:[1,2],tx:[5],cave:[0,2],merke:[1]})],
+crm_transfer:[
+ P('crm_transfer','Crew Resource Management (CRM)','Kommunikation, Führung, Situationsbewusstsein','Nicht-technische Fertigkeiten verbessern die Sicherheit im Team.',{dx:[0],tx:[0,5],cave:[0,2],merke:[0],ex:[0]}),
+ P('transfer','Interhospitaltransfer','Stabilisieren vor Transport, Transportmittel','Verlegung in eine Klinik höherer Versorgungsstufe.',{dx:[1],tx:[1,2],cave:[1],merke:[1]}),
+ P('hygiene','Hygiene & Infektionsschutz','Isolation, Nadelstich, Meldepflicht','Hygiene schützt Patienten und Team.',{dx:[2,3],tx:[3,4],merke:[2],ex:[1]})]
+};
+const XT={
+inhalationstrauma:{xcave:['Pulsoxymeter zeigt bei CO-Vergiftung falsch normale Werte – CO-Oxymetrie nutzen']},
+tauch:{xcave:['Höhenexposition (Flug, Passstraße) vermeiden – verstärkt die Gasblasenbildung','Auch bei Beschwerdefreiheit Druckkammerzentrum kontaktieren'],xex:[['Erstmaßnahme beim Tauchunfall mit DCI?','100 % O₂ über Maske mit Reservoir, horizontale Lagerung, Flüssigkeit; Kontakt zu einem Druckkammerzentrum.']]},
+strom:{xmerke:['Stromunfall: zuerst Eigenschutz (Abschalten), dann EKG und Monitoring']},
+geburt:{xcave:['Nicht an der Nabelschnur ziehen, Plazentalösung nicht erzwingen','Neugeborenes vor Auskühlung schützen (trockene Tücher, Mütze, Haut-zu-Haut)']},
+suizid:{xcave:['Gefahrenquellen (Medikamente, Waffen) sichern; Schweigepflicht und Notstand abwägen'],xex:[['Wie spricht man Suizidalität an?','Direkt nach Suizidgedanken, Plan und Mitteln fragen – das erhöht das Risiko nicht. Nicht allein lassen, Gefahrenquellen entfernen, Klinikvorstellung.']]},
+zwang:{xdx:['Prüfen: erhebliche Eigen- oder Fremdgefährdung, Einwilligungsfähigkeit, mildere Mittel ausgeschöpft?']},
+antikoag:{xcave:['Antagonisierung nur nach Indikation: Thrombose-/Embolierisiko abwägen','Präparat und Zeitpunkt der letzten Einnahme erfragen']},
+zahn:{xcave:['Ausgeschlagenen Zahn nicht abwaschen und nicht trocken lagern; Replantation möglichst innerhalb von 30 min'],xex:[['Lagerung eines ausgeschlagenen Zahns?','Nicht abwaschen, an der Krone halten, in Zahnrettungsbox oder H-Milch; Replantation möglichst innerhalb von 30 min.']]},
+enzephalitis:{xcave:['Therapie nicht verzögern, um Liquor oder Bildgebung abzuwarten'],xex:[['Therapie bei Verdacht auf Herpes-Enzephalitis?','Aciclovir 10 mg/kg i.v. sofort, nicht auf den Liquor warten.']]},
+kinder_atemweg:{xcave:['Kind nicht unnötig belasten oder von den Eltern trennen – Unruhe verstärkt den Stridor']},
+hygiene:{xcave:['Händedesinfektion vor und nach Patientenkontakt (5 Momente)']},
+stimulanzien:{xex:[['Behandlung von Erregung oder Krampf nach Kokain/Amphetaminen?','Benzodiazepine (Midazolam, Lorazepam); bei Hyperthermie aktive Kühlung; Atemwegsschutz bei GHB.']]},
+medintox:{xex:[['Antidote bei Betablocker- und Trizyklika-Intoxikation?','Betablocker: Glukagon 3–10 mg i.v., Katecholamine, Hochdosis-Insulin. Trizyklika bei QRS-Verbreiterung: Natriumbicarbonat.']]},
+harnverhalt:{xex:[['Wann keine transurethrale Katheterisierung?','Bei Verdacht auf Harnröhrenverletzung (Blut am Meatus nach Trauma); dann suprapubisch bzw. Klinik.']]},
+fremdkoerper:{xex:[['Vorgehen bei Fremdkörperaspiration mit insuffizientem Husten beim Kind?','5 Rückenschläge, dann Heimlich-Handgriff (Säugling: 5 Rückenschläge + 5 Thoraxkompressionen); bei Bewusstlosigkeit CPR.']]},
+saeugling:{xex:[['Fieber bei Säuglingen unter 3 Monaten?','Nie „einfaches“ Fieber: immer Klinikabklärung, Sepsis und Meningitis ausschließen.']]},
+haeusl_gewalt:{xex:[['Wichtigste Punkte bei Verdacht auf häusliche Gewalt?','Sicherheit zuerst, objektive Dokumentation (Zitate, Fotos mit Einwilligung), Hilfetelefon 116 016, Schweigepflicht nur mit Rechtfertigung durchbrechen.']]},
+therapieziel:{xex:[['Wann wird nicht reanimiert?','Bei dokumentierter Therapiebegrenzung/DNAR (Patientenverfügung, Notfallbogen); bei Unklarheit zunächst Reanimation beginnen.']]},
+transfer:{xex:[['Was gilt vor einem Interhospitaltransfer?','Stabilisieren (Atemweg, Zugang), Unterlagen und Bildgebung mitgeben, Zielklinik und Transportmittel (ITW/ITH) klären, Übergabe nach ISBAR.']]}
+};
+const LL={asthmacopd:[0,2],copd:[1,2],hypert:[0],aortendiss:[1],bewusstlos:[],hyponatri:[],urologie:[],harnverhalt:[],geburt:[],suizid:[],psych:[0],zwang:[0,1],crm_transfer:[],hygiene:[],saeugling:[],gewalt:[0],haeusl_gewalt:[1],myasthenie:[],zahn:[],auge:[],dialyse:[],icd:[],therapieziel:[],abdomen:[],antikoag:[]};
+const out=[], ex=window.EXAMQ||(window.EXAMQ={});
+(window.TOPICS||[]).forEach(t=>{
+  const parts=SP[t.id];
+  if(!parts){ out.push(t); return; }
+  const oldEx=ex[t.id]||[]; delete ex[t.id];
+  parts.forEach(p=>{
+    const pick=k=>{
+      const a=p[k], src=t[k]||[];
+      const idx=a==='all'?src.map((_,i)=>i):(a||[]);
+      return idx.map(i=>src[i]).filter(x=>x!=null).concat(p['x'+k]||[]).concat((XT[p.id]||{})['x'+k]||[]);
+    };
+    out.push({id:p.id,cat:t.cat,t:p.t,s:p.s,def:p.def||t.def,dx:pick('dx'),tx:pick('tx'),meds:pick('meds'),cave:pick('cave'),merke:pick('merke'),ll:LL[p.id]?LL[p.id].map(i=>(t.ll||[])[i]).filter(Boolean):(LL[p.id]?[]:(t.ll||[]))});
+    const eidx=p.ex==='all'?oldEx.map((_,i)=>i):(p.ex||[]);
+    const q=eidx.map(i=>oldEx[i]).filter(Boolean).concat(p.xex||[]).concat((XT[p.id]||{}).xex||[]);
+    if(q.length) ex[p.id]=q;
+  });
+});
+window.TOPICS=out;
+})();
+</script><script>/* Vertiefte Themen: Ätiologie, Symptome, Diagnostik, Therapie (überschreibt/ergänzt Felder per Themen-ID) */
+(function(){
+const D={
+hyperglyk:{
+ def:'**Diabetische Ketoazidose (DKA)** und **hyperosmolares hyperglykämisches Syndrom (HHS)** sind lebensbedrohliche Entgleisungen bei Insulinmangel mit extremer Hyperglykämie und ausgeprägter Exsikkose. DKA: Ketose + metabolische Azidose (v. a. Typ 1). HHS: Hyperosmolalität ohne relevante Ketose (v. a. Typ 2, ältere Menschen). Mischbilder kommen vor.',
+ etio:[
+  '**DKA:** absoluter Insulinmangel. Häufig Erstmanifestation eines Typ-1-Diabetes oder ausgelassenes Insulin bzw. Pumpendefekt.',
+  '**HHS:** relativer Insulinmangel bei Typ 2. Das Restinsulin reicht, um die Ketogenese zu bremsen, nicht aber die Hyperglykämie.',
+  '**Auslöser:** Infekt (Pneumonie, Harnwegsinfekt), Herzinfarkt, Schlaganfall, Pankreatitis, Alkohol, Steroide, Diuretika, Dehydratation. **SGLT2-Hemmer** können eine DKA mit nahezu normalem Blutzucker auslösen („euglykämische DKA“).',
+  '**Pathophysiologie:** Insulinmangel plus Gegenspieler (Glukagon, Katecholamine, Cortisol) → Glukoneogenese und Glykogenolyse ↑, Glukoseaufnahme in die Zellen ↓ → Hyperglykämie.',
+  '**Osmotische Diurese:** Über der Nierenschwelle (ca. 180 mg/dl) wird Glukose renal ausgeschieden und zieht Wasser und Elektrolyte mit. Folge: Hypovolämie (DKA etwa 5–6 l, HHS bis 8–10 l Defizit), Tachykardie, Nierenfunktion ↓.',
+  '**Ketose (DKA):** Lipolyse → freie Fettsäuren → Ketonkörper (β-Hydroxybutyrat, Acetoacetat). Sie sind Säuren: Anionenlücken-Azidose, die Atmung kompensiert (Kussmaul).',
+  '**Kalium:** Das Gesamtkörperkalium ist stark erniedrigt (renale Verluste). Das Serumkalium ist initial aber normal oder hoch, weil Azidose und Insulinmangel Kalium aus den Zellen verschieben. Unter Insulin und Volumen fällt es steil ab.',
+  '**Natrium:** Hohe Glukose zieht Wasser in den Extrazellulärraum und verdünnt Natrium (Pseudohyponatriämie). Korrigiertes Na⁺ ≈ gemessenes Na⁺ + 1,6 mmol/l je 100 mg/dl Glukose über 100.'
+ ],
+ sym:[
+  '**Allgemein:** Polyurie, Polydipsie, Gewichtsverlust, Schwäche, Müdigkeit. Zeichen der Exsikkose: trockene Schleimhäute, stehende Hautfalten, Tachykardie, Hypotonie, Oligurie.',
+  '**DKA:** Entwicklung über Stunden bis wenige Tage. Übelkeit, Erbrechen, Bauchschmerzen (Pseudoperitonitis), tiefe Kussmaul-Atmung, Azetongeruch, Somnolenz bis Koma.',
+  '**HHS:** Entwicklung über Tage bis Wochen. Meist keine Kussmaul-Atmung und kein Azetongeruch; im Vordergrund stehen schwere Exsikkose und neurologische Zeichen (Verwirrtheit, Somnolenz, Krampf, fokale Ausfälle).',
+  '**Warnzeichen:** Bewusstseinsstörung, Schock, schwere Azidose (Atemerschöpfung), Hypothermie.'
+ ],
+ dx:[
+  '**Blutzucker** (Kapillar) und **Ketone** (Urinstreifen; im Krankenhaus β-Hydroxybutyrat im Blut). Das Messgerät zeigt bei sehr hohen Werten „HI“.',
+  '**DKA:** BZ meist >250 mg/dl (bei SGLT2-Hemmer auch niedriger), Ketone positiv bzw. β-Hydroxybutyrat >3 mmol/l, pH <7,3, Bikarbonat <18 mmol/l, Anionenlücke ↑.',
+  '**HHS:** BZ meist >600 mg/dl, effektive Osmolalität >320 mOsm/kg, pH >7,3, Bikarbonat >15 mmol/l, nur wenig Ketone.',
+  '**Klinik (BGA/Labor):** Kalium (entscheidend vor Insulin!), Natrium (korrigieren), Kreatinin/Harnstoff, Laktat, Phosphat, Blutbild, CRP, Lipase.',
+  '**Auslöser suchen:** 12-Kanal-EKG (Ischämie, Hyper-/Hypokaliämiezeichen), Troponin, Infektfokus (Urin, Thorax), bei Frauen im gebärfähigen Alter Schwangerschaftstest.',
+  '**Differenzialdiagnosen der Azidose:** Laktatazidose, alkoholische Ketoazidose, Hungerketose, Intoxikation (Salicylat, Methanol, Ethylenglykol), Urämie.',
+  '**Präklinisch machbar:** BZ, Urinketone, GCS, Atemmuster/Azetongeruch, Hautturgor, RR/Puls, EKG, Temperatur; auf Hypoglykämie als Ursache der Bewusstseinsstörung prüfen.'
+ ],
+ tx:[
+  '**ABCDE** und Monitoring (EKG, SpO₂, RR), Sauerstoff nur bei Hypoxie, großlumiger i.v.-Zugang (ggf. zweiter).',
+  '**Volumen zuerst:** Erwachsene balancierte Vollelektrolytlösung oder NaCl 0,9 % ca. 1 l in der ersten Stunde (15–20 ml/kg), danach nach Kreislauf und Klinik weiter. Bei Herz- oder Niereninsuffizienz kleinere Boli und regelmäßig reevaluieren.',
+  '**Insulin präklinisch nicht beginnen.** Zuerst muss das Serumkalium bekannt sein (Klinik).',
+  '**Bewusstseinsstörung:** Atemweg schützen, Seitenlage; Intubation möglichst vermeiden. Bei unvermeidbarer Beatmung hohes Atemminutenvolumen einstellen, weil sonst die Kompensation der Azidose wegfällt und der pH abstürzt.',
+  '**Übelkeit/Erbrechen:** Antiemetikum, bei Bewusstseinsstörung Aspirationsschutz.',
+  '**Hypothermie vermeiden**, Blutzucker und Vitalzeichen im Verlauf kontrollieren.',
+  '**Zielklinik** mit Intensiv-/Überwachungsplatz wählen und vorab informieren (Verdacht DKA/HHS, Kreislauf, Bewusstsein).'
+ ],
+ tx2:[
+  '**Volumen:** weiter nach Bilanz und Hämodynamik; HHS braucht oft deutlich mehr (Defizit bis 10 l), aber langsamer über 24–48 h.',
+  '**Kalium vor Insulin:** K⁺ <3,3 mmol/l → Insulin pausieren und Kalium ersetzen. K⁺ 3,3–5,3 mmol/l → Kalium in die Infusion (ca. 20–30 mmol/h), Insulin starten. K⁺ >5,3 mmol/l → kein Kalium, Kontrolle alle 1–2 h.',
+  '**Insulin (DKA):** Normalinsulin über Perfusor, ca. 0,1 IE/kg/h. Ziel: BZ-Abfall 50–75 mg/dl pro Stunde. Wenn BZ <250 mg/dl, Glukose 5–10 % zusätzlich geben und Insulin weiterlaufen lassen, bis die Ketose beseitigt ist.',
+  '**Insulin (HHS):** erst nach den ersten Volumengaben, wenn der BZ nicht ausreichend fällt, und niedriger dosiert. Osmolalität nicht schneller als ca. 3–8 mOsm/kg/h senken.',
+  '**Bikarbonat** nur bei schwerer Azidose (pH <6,9), nicht routinemäßig. **Phosphat** nur bei schwerem Mangel.',
+  '**Auslöser behandeln** (Infekt, ACS …), **Thromboseprophylaxe** (besonders bei HHS), BZ, K⁺, BGA anfangs stündlich kontrollieren.',
+  '**Übergang auf subkutanes Insulin** erst bei geschlossener Ketose und essfähigem Patienten; Insulinperfusor 1–2 h überlappend weiterlaufen lassen.'
+ ],
+ meds:[
+  '**Balancierte Vollelektrolytlösung oder NaCl 0,9 %:** Mittel der ersten Wahl, 1 l in der ersten Stunde.',
+  '**Normalinsulin:** Perfusor, ca. 0,1 IE/kg/h, erst in der Klinik nach Kaliumkontrolle.',
+  '**Kaliumchlorid:** nach Serumkalium, über Perfusor (zentral oder verdünnt peripher).',
+  '**Glukose 5–10 %:** bei BZ <250 mg/dl unter laufender Insulintherapie (DKA).',
+  '**Natriumbikarbonat:** nur bei pH <6,9.',
+  '**Antiemetikum** (z. B. Ondansetron) und **Heparin** (niedermolekular, Prophylaxe) nach Bedarf.'
+ ],
+ kids:[
+  '**Hirnödem** ist die gefürchtetste Komplikation bei Kindern mit DKA, meist 4–12 h nach Therapiebeginn: Kopfschmerz, Bradykardie, Blutdruckanstieg, Verwirrtheit, Bewusstseinsabfall.',
+  '**Volumen vorsichtig:** initial ca. 10 ml/kg über 30–60 min, keine schnellen Großboli; Defizit über 24–48 h ausgleichen.',
+  '**Insulin ohne Bolus** (ca. 0,05–0,1 IE/kg/h) und erst nach der ersten Volumengabe.',
+  '**Bei Hirnödem-Verdacht:** Therapie unterbrechen/anpassen, Oberkörper hoch, Mannitol oder hypertone NaCl-Lösung, Intensivstation.'
+ ],
+ cave:[
+  '**Insulin vor dem Kaliumwert** → schwere Hypokaliämie mit Rhythmusstörungen.',
+  '**Zu schneller Abfall von BZ oder Osmolalität** → Hirnödem (v. a. Kinder und Jugendliche).',
+  '**Volumenüberladung** bei Herzinsuffizienz oder Niereninsuffizienz; Reevaluation nach jedem Bolus.',
+  '**Große Mengen NaCl 0,9 %** begünstigen eine hyperchlorämische Azidose; balancierte Lösungen sind eine gute Alternative.',
+  '**Intubation und Beatmung** ohne hohes Atemminutenvolumen → pH-Absturz.',
+  '**Euglykämische DKA** unter SGLT2-Hemmer: normaler BZ schließt eine DKA nicht aus.',
+  '**Bauchschmerz und Erbrechen** sind oft DKA-bedingt, aber nach Pankreatitis und akutem Abdomen als Auslöser suchen.',
+  '**Natrium** nicht ungeprüft bewerten: Pseudohyponatriämie, immer korrigieren.',
+  '**Hypoglykämie** unter Insulin: BZ stündlich kontrollieren, rechtzeitig Glukose zugeben.'
+ ],
+ merke:[
+  '**DKA = Insulinmangel + Ketose + Azidose. HHS = Hyperosmolalität + Exsikkose, kaum Ketose.**',
+  '**Reihenfolge: Volumen → Kalium → Insulin.**',
+  '**Das Serumkalium täuscht:** Gesamtkörperkalium ↓, Serumkalium initial normal/hoch, Abfall unter Therapie.',
+  '**Kussmaul-Atmung ist Kompensation:** Nicht dämpfen, Intubation vermeiden.',
+  '**Auslöser suchen** (Infekt, ausgelassenes Insulin, Infarkt, SGLT2-Hemmer).'
+ ],
+ ex:[
+  ['Was unterscheidet DKA und HHS?','DKA: absoluter Insulinmangel, Ketose und Azidose (pH <7,3, HCO₃⁻ <18), BZ meist >250 mg/dl, eher Typ 1. HHS: relativer Insulinmangel, BZ meist >600 mg/dl, Osmolalität >320 mOsm/kg, kaum Ketose, eher älter mit Typ 2, ausgeprägtere Exsikkose.'],
+  ['Warum Insulin erst nach dem Kaliumwert?','Insulin und Volumen verschieben Kalium in die Zellen und senken das Serumkalium. Bei Gesamtkörperdefizit droht eine schwere Hypokaliämie mit Arrhythmien. Ab K⁺ <3,3 mmol/l kein Insulin, erst Kalium ersetzen.'],
+  ['Warum soll man bei DKA möglichst nicht intubieren?','Der Patient kompensiert die metabolische Azidose durch Hyperventilation (Kussmaul). Unter Narkose und kontrollierter Beatmung mit zu kleinem Atemminutenvolumen steigt pCO₂, der pH fällt weiter ab. Wenn unvermeidbar, hohes AMV einstellen.']
+ ]
+}
+};
+const ex=window.EXAMQ||(window.EXAMQ={});
+(window.TOPICS||[]).forEach(t=>{
+  const d=D[t.id]; if(!d) return;
+  t.deep=1;
+  ['def','etio','sym','dx','tx','tx2','meds','kids','cave','merke'].forEach(k=>{ if(d[k]) t[k]=d[k]; });
+  if(d.ex) ex[t.id]=d.ex;
+});
+window.DEEP=D;
+})();
 </script>
 <script>(function(){
 'use strict';
@@ -1762,38 +2044,83 @@ function disc(){return '<p class="disclaimer">Lernhilfe zur Prüfungsvorbereitun
 
 /* ---------- Start ---------- */
 const QUICK=[['als','Reanimation','#D4231C','ERC 2025 ALS'],['acs','ACS / STEMI','#E4572E','EKG, Reperfusion'],['anaphylaxie','Anaphylaxie','#1E88E5','Adrenalin i.m.'],['polytrauma','Polytrauma','#F57C00','xABCDE, TXA'],['stroke','Schlaganfall','#7E57C2','BE-FAST, Lyse'],['krampf','Status epilepticus','#00897B','Benzodiazepine'],['tachy','Tachykardie','#8E24AA','Instabil → Kardioversion'],['_ekg','EKG-Training','#111827','17 Rhythmen + Quiz']];
+function weakCat(){
+  const now=Date.now(); let best=null;
+  CARD_CATS.forEach(c=>{
+    const pool=CARDS.filter(x=>x.cat===c); if(!pool.length) return;
+    let seen=0,weak=0; pool.forEach(x=>{const r=srs[x.id]; if(r){seen++; if((r.b||0)<=1) weak++;}});
+    const sc=weak>0?{k:'weak',v:weak/Math.max(1,seen)+weak/1000}:{k:'few',v:1-seen/pool.length};
+    const cand={c,seen,weak,total:pool.length,kind:sc.k,v:sc.v};
+    if(!best||(cand.kind==='weak'&&best.kind!=='weak')||(cand.kind===best.kind&&cand.v>best.v)) best=cand;
+  });
+  return best;
+}
+function planBuf(){return store.get('planBuf',0);}
+function planOut(){
+  const st=stats(), exam=store.get('exam',''), goal=newLimit(), nw=st.nw, buf=planBuf();
+  const fmtD=d=>d.toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric'});
+  const fin=Math.ceil(nw/Math.max(1,goal)), finDate=new Date(Date.now()+fin*DAY);
+  let h=`<div class="plan-r"><b>${nw}</b> Karten noch ungelernt. Mit <b>${goal}</b> neuen Karten/Tag bist du in <b>${fin}</b> ${fin===1?'Tag':'Tagen'} durch (${fmtD(finDate)}).</div>`;
+  if(!exam) return h+'<div class="small muted" style="margin-top:6px">Prüfungsdatum eintragen, dann berechne ich, wie viele neue Karten pro Tag nötig sind.</div>';
+  const d=Math.ceil((new Date(exam+'T08:00:00')-new Date())/DAY);
+  if(d<0) return h+'<div class="small muted" style="margin-top:6px">Das Prüfungsdatum liegt in der Vergangenheit.</div>';
+  const usable=Math.max(1,d-buf), need=Math.ceil(nw/usable);
+  const late=fin-usable;
+  const min=Math.round(need*0.5);
+  h+=`<div class="plan-need"><span>Bis zur Prüfung nötig</span><b>${need}</b><span>neue Karten/Tag</span></div>
+  <div class="small muted">${d} ${d===1?'Tag':'Tage'} bis zur Prüfung${buf?`, davon ${buf} nur zum Wiederholen → ${usable} Lerntage`:''}. Reine Lernzeit für neue Karten ca. ${min} Min/Tag (bei ~30 s pro Karte), dazu kommen die Wiederholungen.</div>`;
+  h+=late>0?`<div class="plan-bad">Mit deinem Ziel reichst du nicht: ca. ${late} ${late===1?'Tag':'Tage'} zu spät. Erhöhe auf mindestens ${need}/Tag.</div>`:`<div class="plan-ok">Dein Ziel reicht: du bist ca. ${-late} ${-late===1?'Tag':'Tage'} vor Ende der Lernphase fertig.</div>`;
+  if(goal!==need) h+=`<div style="margin-top:8px"><button class="btn small primary" data-a="planapply" data-v="${need}">Empfehlung übernehmen (${need}/Tag)</button></div>`;
+  return h;
+}
 function vStart(){
   const st=stats(), exam=store.get('exam','');
+  const done=Object.keys(learned).filter(k=>learned[k]).length;
+  const left=Math.max(0,newLimit()-newToday());
   let cdHero='';
   if(exam){
     const d=Math.ceil((new Date(exam+'T08:00:00')-new Date())/DAY);
-    if(d>=0){ const per=Math.ceil(st.nw/Math.max(1,d)); cdHero=`<div class="cd"><span>Prüfung in</span><b>${d}</b><span>${d===1?'Tag':'Tagen'} · ${per} neue Karten/Tag</span></div>`; }
+    if(d>=0){ const per=Math.ceil(st.nw/Math.max(1,d-planBuf())); cdHero=`<div class="cd"><span>Prüfung in</span><b>${d}</b><span>${d===1?'Tag':'Tagen'} · ${per} neue Karten/Tag</span></div>`; }
   }
-  const done=Object.keys(learned).filter(k=>learned[k]).length;
-  const cats=CARD_CATS.map(c=>{const s=stats(c);return `<div class="catrow"><span>${esc(c)}</span><span class="mono small muted">${s.seen}/${s.total}</span><div class="bar"><i style="width:${s.total?Math.round(100*s.seen/s.total):0}%"></i></div></div>`;}).join('');
+  const todo=st.due+Math.min(left,st.nw);
+  const lastId=store.get('lastTopic',''), last=TOPICS.find(t=>t.id===lastId);
+  const next=CAT_ORDER.reduce((r,c)=>r||TOPICS.find(t=>t.cat===c&&!learned[t.id]),null);
+  const wk=weakCat();
+  const tools=[['timer','CPR-Timer','Reanimation mit Protokoll'],['ekg','EKG-Training','Rhythmen & Quiz'],['kind','Kinder','Gewicht → Dosen'],['dosis','Dosisrechner','mg/kg, Perfusor']];
+  const cats=CARD_CATS.map(c=>{const x=stats(c);return `<div class="catrow"><span>${dot(c)}${esc(c)}</span><span class="mono small muted">${x.seen}/${x.total}</span><div class="bar"><i style="width:${x.total?Math.round(100*x.seen/x.total):0}%"></i></div></div>`;}).join('');
   return `<div class="stack">
-  <div class="hero"><div class="eyebrow">Zusatz-Weiterbildung</div><h1>Notfallmedizin</h1>
-  <p>${TOPICS.length} Themen nach Leitlinien, ${DRUGS.length} Medikamente, ${CARDS.length} Lernkarten und Tools für den Rettungsdienst.</p>${cdHero}</div>
-  <div><div class="grp-h" style="margin-top:2px">Schnellzugriff</div><div class="quick">${QUICK.map(q=>`<button class="qt" style="--c:${q[2]}" data-a="${q[0]==='_ekg'?'goekg':'topic'}" data-v="${q[0]}"><b>${q[1]}</b><span>${q[3]}</span></button>`).join('')}</div></div>
-  <div class="stats"><div class="stat"><b>${st.due}</b><span>fällig heute</span></div><div class="stat"><b>${st.nw}</b><span>neu</span></div><div class="stat"><b>${st.mas}</b><span>sicher gelernt</span></div><div class="stat"><b>${done}/${TOPICS.length}</b><span>Themen gelesen</span></div></div>
-  <div class="row"><button class="btn primary" data-a="startlearn">Jetzt lernen</button><button class="btn" data-a="tab" data-v="themen">Themen</button><button class="btn" data-a="tab" data-v="tools">CPR-Timer</button></div>
-  <div class="card"><h3>Prüfungsdatum</h3><div class="row" style="margin-top:8px"><input type="date" id="exam" value="${esc(exam)}" style="border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:7px 10px"><label class="small muted">Neue Karten/Tag
-  <select id="newlim" style="border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:6px 8px">${[10,20,30,50].map(n=>`<option ${newLimit()===n?'selected':''}>${n}</option>`).join('')}</select></label></div></div>
-  <div><div class="grp-h">Fortschritt nach Bereich</div><div class="list">${cats}</div></div>
+  <div class="hero"><div class="eyebrow">Zusatz-Weiterbildung Notfallmedizin</div><h1>Heute</h1>
+  <p>${todo>0?`<b>${todo}</b> Karten warten: ${st.due} zur Wiederholung, ${Math.min(left,st.nw)} neu.`:'Tagesziel erreicht. Stark!'}</p>${cdHero}
+  <div class="row" style="margin-top:12px"><button class="btn primary" data-a="startlearn" style="background:#fff;color:#B3160F;border-color:#fff">${todo>0?'Jetzt lernen':'Trotzdem üben'}</button></div></div>
+  <div class="stats"><div class="stat"><b>${st.due}</b><span>fällig</span></div><div class="stat"><b>${st.nw}</b><span>neu</span></div><div class="stat"><b>${st.mas}</b><span>sicher</span></div><div class="stat"><b>${done}/${TOPICS.length}</b><span>Themen gelesen</span></div></div>
+  <div class="card plan"><h3 style="margin:0 0 8px">Lernplaner</h3>
+   <div class="plan-g"><label class="small muted">Prüfungsdatum<input type="date" id="exam" value="${esc(exam)}"></label>
+   <label class="small muted">Nur wiederholen in den letzten<select id="buf">${[0,3,7,10,14].map(n=>`<option value="${n}" ${planBuf()===n?'selected':''}>${n===0?'0 Tagen (kein Puffer)':n+' Tagen'}</option>`).join('')}</select></label></div>
+   <div class="small muted" style="margin-top:10px">Neue Karten pro Tag (mein Ziel)</div>
+   <div class="stepper"><button class="btn small" data-a="goal" data-v="-5">−5</button><button class="btn small" data-a="goal" data-v="-1">−1</button><input type="number" id="newlim" inputmode="numeric" min="1" max="300" value="${newLimit()}"><button class="btn small" data-a="goal" data-v="1">+1</button><button class="btn small" data-a="goal" data-v="5">+5</button></div>
+   <div id="plan-out">${planOut()}</div></div>
+  <div><div class="grp-h" style="margin-top:2px">Weitermachen</div><div class="list">
+   ${last?`<button class="item" data-a="topic" data-v="${last.id}"><b>${esc(last.t)}</b><span class="chev">›</span><span class="sub">Zuletzt geöffnet · ${esc(last.cat)}</span></button>`:''}
+   ${next&&(!last||next.id!==last.id)?`<button class="item" data-a="topic" data-v="${next.id}"><b>${esc(next.t)}</b><span class="chev">›</span><span class="sub">Nächstes ungelesenes Thema · ${esc(next.cat)}</span></button>`:''}
+   ${wk?`<button class="item" data-a="learncat" data-v="${esc(wk.c)}"><b>${esc(wk.c)}</b><span class="chev">›</span><span class="sub">${wk.kind==='weak'?`Schwächster Bereich: ${wk.weak} Karten mit Fehlern`:'Noch wenig gelernt'} · 40 Karten üben</span></button>`:''}
+  </div></div>
+  <div><div class="grp-h">Im Einsatz</div><div class="quick">${tools.map(q=>`<button class="qt" data-a="gotool" data-v="${q[0]}"><b>${q[1]}</b><span>${q[2]}</span></button>`).join('')}</div></div>
+  <div><div class="grp-h">Notfall-Schnellzugriff</div><div class="quick">${QUICK.filter(q=>q[0]!=='_ekg').map(q=>`<button class="qt" style="--c:${q[2]}" data-a="topic" data-v="${q[0]}"><b>${q[1]}</b><span>${q[3]}</span></button>`).join('')}</div></div>
+  <details class="chapd"><summary>Fortschritt nach Bereich</summary><div class="list" style="margin-top:8px">${cats}</div></details>
   ${disc()}</div>`;
 }
-
-/* ---------- Themen ---------- */
 function vTopics(){
-  const cats=['Alle'].concat(CAT_ORDER.filter(c=>TOPICS.some(t=>t.cat===c)));
-  const list=TOPICS.filter(t=>S.cat==='Alle'||t.cat===S.cat);
-  let html='';
-  CAT_ORDER.forEach(c=>{
-    const items=list.filter(t=>t.cat===c); if(!items.length) return;
-    html+=`<div class="grp-h">${dot(c)}${esc(c)}</div><div class="list">`+items.map(t=>`<button class="item" data-a="topic" data-v="${t.id}"><b>${esc(t.t)}</b><span class="chev">${learned[t.id]?'<span class="pill ok">gelesen</span>':'›'}</span><span class="sub">${esc(t.s)}</span></button>`).join('')+'</div>';
-  });
-  return `<div class="stack"><div><div class="eyebrow">Erkrankungen & Vorgehen</div><h1 class="h1">Themen</h1><p class="lead">Nach deutschen und europäischen Leitlinien aufgebaut: Definition, Vorgehen, Medikamente, Cave, Merksätze.</p></div>
-  <div class="chips">${cats.map(c=>`<button class="chip" data-a="cat" data-v="${esc(c)}" aria-pressed="${S.cat===c}">${esc(c)}</button>`).join('')}</div>${html}${disc()}</div>`;
+  const open=S.topOpen||(S.topOpen=store.get('topOpen',{}));
+  const cats=CAT_ORDER.filter(c=>TOPICS.some(t=>t.cat===c));
+  const allOpen=cats.every(c=>open[c]);
+  const html=cats.map(c=>{
+    const items=TOPICS.filter(t=>t.cat===c), rd=items.filter(t=>learned[t.id]).length, o=!!open[c];
+    const body=o?`<div class="list chap-b">`+items.map(t=>`<button class="item" data-a="topic" data-v="${t.id}"><b>${esc(t.t)}</b><span class="chev">${learned[t.id]?'<span class="pill ok">gelesen</span>':'›'}</span><span class="sub">${esc(t.s)}</span></button>`).join('')+'</div>':'';
+    return `<div class="chap ${o?'open':''}"><button class="chap-h" data-a="chap" data-v="${esc(c)}" aria-expanded="${o}">${dot(c)}<span class="chap-n">${esc(c)}</span><span class="mono small muted">${rd}/${items.length}</span><span class="chap-c">${o?'▾':'▸'}</span><div class="bar"><i style="width:${Math.round(100*rd/items.length)}%"></i></div></button>${body}</div>`;
+  }).join('');
+  return `<div class="stack"><div><div class="eyebrow">Erkrankungen & Vorgehen</div><h1 class="h1">Themen</h1><p class="lead">${TOPICS.length} Themen in ${cats.length} Kapiteln. Jedes Thema: Definition, Diagnostik, Vorgehen, Medikamente, Cave, Merksätze.</p></div>
+  <div class="row"><button class="btn small" data-a="chapall" data-v="${allOpen?0:1}">${allOpen?'Alle zuklappen':'Alle aufklappen'}</button></div>
+  <div class="chaps">${html}</div>${disc()}</div>`;
 }
 function sec(title,cls,inner){return inner?`<div class="box ${cls||''}"><h3>${title}</h3>${inner}</div>`:'';}
 function ul(a){return a&&a.length?'<ul class="clean">'+a.map(x=>`<li>${fmt(x)}</li>`).join('')+'</ul>':'';}
@@ -1807,8 +2134,11 @@ function vTopic(id){
   <div><div class="eyebrow">${dot(t.cat)}${esc(t.cat)}</div><h1 class="h1">${esc(t.t)}</h1></div>
   ${sec('Definition','def',`<p style="margin:0">${fmt(t.def)}</p>`)}
   <div class="cols">
-  ${sec('Erkennen / Diagnostik','',ul(t.dx))}
-  ${sec('Vorgehen','',steps)}
+  ${sec('Ätiologie & Pathophysiologie','etio',ul(t.etio))}
+  ${sec('Symptome','sym',ul(t.sym))}
+  ${sec(t.deep?'Diagnostik':'Erkennen / Diagnostik','',ul(t.dx))}
+  ${sec(t.deep?'Notfalltherapie (präklinisch)':'Vorgehen','',steps)}
+  ${sec('Weiterführende Therapie (Klinik)','',ul(t.tx2))}
   ${sec('Medikamente','',ul(t.meds))}
   ${sec('Kinder','kids',ul(t.kids))}
   ${sec('Cave','cave',ul(t.cave))}
@@ -1972,7 +2302,7 @@ function rate(r){
 }
 
 /* ---------- Tools ---------- */
-const TOOLS=[['timer','CPR-Timer'],['ekg','EKG'],['kind','Kinder'],['gcs','GCS'],['dosis','Dosis'],['scores','Scores'],['abk','Abkürzungen']];
+const TOOLS=[['timer','Timer'],['ekg','EKG'],['kind','Kinder'],['gcs','GCS'],['dosis','Dosis'],['scores','Scores'],['abk','Abkürzungen']];
 function vTools(){
   const seg=`<div class="seg" role="tablist">${TOOLS.map(t=>`<button role="tab" data-a="tool" data-v="${t[0]}" aria-selected="${S.tool===t[0]}">${t[1]}</button>`).join('')}</div>`;
   let body='';
@@ -2208,7 +2538,7 @@ function toolEkg(){
   if(EK.mode==='quiz') return seg+ekgQuiz();
   if(EK.sel){const r=EKG.find(x=>x.id===EK.sel);return `<button class="back" data-a="e-list">‹ Alle Rhythmen</button>${ekgSvg(r,EK.off||0)}${ekgInfo(r)}`;}
   const list=EKG.filter(r=>EK.grp==='Alle'||r.g===EK.grp);
-  return seg+`<div class="chips">${EKG_GRPS.map(g=>`<button class="chip" data-a="e-grp" data-v="${g}" aria-pressed="${EK.grp===g}">${g}</button>`).join('')}</div>
+  return seg+`<div class="chips wrapchips">${EKG_GRPS.map(g=>`<button class="chip" data-a="e-grp" data-v="${g}" aria-pressed="${EK.grp===g}">${g}</button>`).join('')}</div>
   <div class="list">${list.map(r=>`<button class="item" data-a="e-open" data-v="${r.id}"><b>${esc(r.n)}</b><span class="chev">›</span><span class="sub">${esc(r.g)} · ${esc(r.rate)}</span></button>`).join('')}</div>`;
 }
 function newEkgQ(){
@@ -2243,7 +2573,12 @@ document.addEventListener('click',e=>{
   else if(a==='cat'){S.cat=v;render();}
   else if(a==='dcls'||a==='dgrp'){S.dgrp=v;render();window.scrollTo(0,0);}
   else if(a==='dsort'){S.dsort=v;store.set('dsort',v);render();}
-  else if(a==='topic') go('themen',{type:'topic',id:v},true);
+  else if(a==='topic'){ store.set('lastTopic',v); go('themen',{type:'topic',id:v},true); }
+  else if(a==='chap'){ S.topOpen=S.topOpen||store.get('topOpen',{}); S.topOpen[v]=!S.topOpen[v]; store.set('topOpen',S.topOpen); render(); }
+  else if(a==='chapall'){ S.topOpen={}; if(v==='1') CAT_ORDER.forEach(c=>S.topOpen[c]=true); store.set('topOpen',S.topOpen); render(); }
+  else if(a==='goal'||a==='planapply'){ const cur=newLimit(); const nv=a==='planapply'?parseInt(v,10):cur+parseInt(v,10); store.set('newLimit',Math.max(1,Math.min(300,nv||1))); const i=$('#newlim'); if(i) i.value=newLimit(); const o=$('#plan-out'); if(o) o.innerHTML=planOut(); }
+  else if(a==='gotool'){ S.tool=v; if(v==='ekg'){EK.mode='learn';EK.sel=null;} go('tools',null); }
+  else if(a==='learncat'){ L.cat=v; L.mode='all'; L.folder=null; S.tab='lernen'; S.view=null; buildQueue(); render(); window.scrollTo(0,0); setHash('lernen'); }
   else if(a==='drug') go('med',{type:'drug',id:v},true);
   else if(a==='learned'){learned[v]=!learned[v];store.set('learned',learned);render();}
   else if(a==='topiccards'){L.cat=v;L.active=false;go('lernen',null,true);}
@@ -2270,14 +2605,17 @@ document.addEventListener('input',e=>{
   const t=e.target;
   if(t.dataset&&t.dataset.note){ const v=t.value; if(v.trim()) notes[t.dataset.note]=v; else delete notes[t.dataset.note]; store.set('notes',notes); return; }
   if(t.id==='q'){ S.q=t.value; if(S.q.trim().length>=2){ S.view={type:'search'}; } else if(S.view&&S.view.type==='search'){ S.view=null; } render(); const q=$('#q'); q.focus(); return; }
-  if(t.id==='exam'){store.set('exam',t.value);return;}
+  if(t.id==='exam'){store.set('exam',t.value);const o=$('#plan-out'); if(o) o.innerHTML=planOut(); return;}
+  if(t.id==='newlim'){ const n=parseInt(t.value,10); if(n>=1){ store.set('newLimit',Math.min(300,n)); const o=$('#plan-out'); if(o) o.innerHTML=planOut(); } return; }
   if(t.id==='k-age'||t.id==='k-unit'||t.id==='k-kg'){ const k={age:$('#k-age').value,unit:$('#k-unit').value,kg:$('#k-kg').value}; store.set('kid',k); $('#k-out').innerHTML=kidOut(k); return; }
   if(t.dataset.gcs){ const g=store.get('gcs',{e:4,v:5,m:6}); g[t.dataset.gcs]=parseInt(t.value,10); store.set('gcs',g); render(); return; }
   if(t.dataset.dose){ const d=store.get('dose',{kg:'70',mgkg:'',conc:''}); d[t.dataset.dose]=t.value; store.set('dose',d); $('#dose-out').innerHTML=doseOut(d); return; }
   if(t.dataset.perf){ const p=store.get('perf',{kg:'70',ug:'',mg:'5',ml:'50'}); p[t.dataset.perf]=t.value; store.set('perf',p); $('#perf-out').innerHTML=perfOut(p); return; }
 });
 document.addEventListener('change',e=>{
-  if(e.target.id==='newlim') store.set('newLimit',parseInt(e.target.value,10));
+  if(e.target.id==='newlim'){ const n=parseInt(e.target.value,10); store.set('newLimit',n>=1?Math.min(300,n):20); e.target.value=newLimit(); }
+  if(e.target.id==='buf'){ store.set('planBuf',parseInt(e.target.value,10)||0); const o=$('#plan-out'); if(o) o.innerHTML=planOut(); }
+  if(e.target.id==='exam') render();
   if(e.target.id==='k-unit') e.target.dispatchEvent(new Event('input',{bubbles:true}));
 });
 
