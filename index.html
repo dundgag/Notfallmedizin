@@ -136,7 +136,7 @@ ol.steps li{counter-increment:s;display:grid;grid-template-columns:28px 1fr;gap:
 ol.steps li::before{content:counter(s);font-family:var(--f-display);font-weight:700;width:26px;height:26px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center}
 .fx{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px}
 .fx div{background:var(--surface2);border-radius:10px;padding:10px 12px;font-size:15.5px}
-.fx b{display:block;font-family:var(--f-display);text-transform:uppercase;letter-spacing:.06em;font-size:.85rem;color:var(--muted)}
+.fx>div>b:first-child{display:block;font-family:var(--f-display);text-transform:uppercase;letter-spacing:.06em;font-size:.85rem;color:var(--muted)}
 .srclist{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:6px;font-size:15px}
 .srclist a{color:var(--accent);overflow-wrap:anywhere}
 h1,h2,h3,b{overflow-wrap:anywhere}
@@ -408,7 +408,7 @@ button,.tab,.chip,.item,.opt{touch-action:manipulation;-webkit-user-select:none;
 .more-g{color:var(--muted);font-size:13px;margin-bottom:6px}
 .more-r{padding:8px 0;border-top:1px solid color-mix(in srgb,var(--ink) 8%,transparent)}
 .more-r:first-of-type{border-top:0}
-.more-r b{display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.more-r>b{display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
 
 /* Favoriten & Notizen */
 .wrapchips{flex-wrap:wrap;overflow:visible}
