@@ -10291,22 +10291,23 @@ const TABS=[
 let S={tab:'start',view:null,stack:[],cat:'Alle',q:'',tool:'timer'};
 let srs=store.get('srs',{});
 let learned=store.get('learned',{});
-let favs=store.get('fav',{}), notes=store.get('notes',{});
-function folderCards(k){ return CARDS.filter(c=>k==='fav'?favs[c.id]:(notes[c.id]&&notes[c.id].trim())); }
+let favs=store.get('fav',{}), notes=store.get('notes',{}), hid=store.get('hid',{});
+const activeCards=()=>CARDS.filter(c=>!hid[c.id]);
+function folderCards(k){ return CARDS.filter(c=>k==='hid'?hid[c.id]:(!hid[c.id]&&(k==='fav'?favs[c.id]:(notes[c.id]&&notes[c.id].trim())))); }
 function noteBox(c){
   const n=notes[c.id]||'';
   if(!n&&!L.noteOpen) return `<button class="btn small" data-a="notetoggle">📝 Notiz hinzufügen</button>`;
   return `<div class="notebox"><div class="more-h">📝 Meine Notiz</div><textarea data-note="${c.id}" rows="3" placeholder="Eigene Notiz zu dieser Karte …">${esc(n)}</textarea></div>`;
 }
 function folderTiles(){
-  return `<div class="folders"><button class="fold" data-a="folder" data-v="fav"><span>★</span><b>Favoriten</b><small>${folderCards('fav').length} Karten</small></button><button class="fold" data-a="folder" data-v="notes"><span>📝</span><b>Notizen</b><small>${folderCards('notes').length} Karten</small></button></div>`;
+  return `<div class="folders"><button class="fold" data-a="folder" data-v="fav"><span>★</span><b>Favoriten</b><small>${folderCards('fav').length} Karten</small></button><button class="fold" data-a="folder" data-v="notes"><span>📝</span><b>Notizen</b><small>${folderCards('notes').length} Karten</small></button><button class="fold" data-a="folder" data-v="hid"><span>🚫</span><b>Ausgeblendet</b><small>${folderCards('hid').length} Karten</small></button></div>`;
 }
 function vFolder(){
-  const k=L.folder, list=folderCards(k), title=k==='fav'?'★ Favoriten':'📝 Notizen';
+  const k=L.folder, list=folderCards(k), title=k==='fav'?'★ Favoriten':k==='hid'?'🚫 Ausgeblendet':'📝 Notizen';
   return `<button class="back" data-a="folderback">‹ Zurück</button>
   <h2 class="h1" style="font-size:1.7rem">${title} <span class="muted small">(${list.length})</span></h2>
-  ${list.length?`<button class="btn primary" data-a="startfolder">Alle ${list.length} Karten lernen</button>`:`<p class="lead">Noch leer. ${k==='fav'?'Tippe beim Lernen auf ☆, um eine Karte als Favorit zu speichern.':'Füge beim Lernen über „Notiz hinzufügen“ eine Notiz hinzu.'}</p>`}
-  <div class="stack">${list.map(c=>`<details class="fcard"><summary><span class="pill">${dot(c.cat)}${esc(c.cat)}</span><b>${esc(c.q)}</b></summary><div class="ans"><div class="ans-h">✓ Antwort</div>${fmt(c.a)}</div>${moreInfo(c)}<div class="notebox"><div class="more-h">📝 Notiz</div><textarea data-note="${c.id}" rows="3" placeholder="Eigene Notiz …">${esc(notes[c.id]||'')}</textarea></div><div class="row"><button class="btn small" data-a="fav" data-v="${c.id}">${favs[c.id]?'★ Favorit entfernen':'☆ Als Favorit speichern'}</button></div></details>`).join('')}</div>`;
+  ${list.length?(k==='hid'?'<p class="small muted">Diese Karten erscheinen nicht mehr beim Lernen.</p>':`<button class="btn primary" data-a="startfolder">Alle ${list.length} Karten lernen</button>`):`<p class="lead">${k==='hid'?'Keine Karten ausgeblendet. Tippe beim Lernen auf „Nicht mehr lernen“, um eine Karte hier abzulegen.':'Noch leer. '}${k==='hid'?'':k==='fav'?'Tippe beim Lernen auf ☆, um eine Karte als Favorit zu speichern.':'Füge beim Lernen über „Notiz hinzufügen“ eine Notiz hinzu.'}</p>`}
+  <div class="stack">${list.map(c=>`<details class="fcard"><summary><span class="pill">${dot(c.cat)}${esc(c.cat)}</span><b>${esc(c.q)}</b></summary><div class="ans"><div class="ans-h">✓ Antwort</div>${fmt(c.a)}</div>${moreInfo(c)}<div class="notebox"><div class="more-h">📝 Notiz</div><textarea data-note="${c.id}" rows="3" placeholder="Eigene Notiz …">${esc(notes[c.id]||'')}</textarea></div><div class="row">${k==='hid'?`<button class="btn small" data-a="unhide" data-v="${c.id}">↩ Wieder lernen</button>`:`<button class="btn small" data-a="fav" data-v="${c.id}">${favs[c.id]?'★ Favorit entfernen':'☆ Als Favorit speichern'}</button>`}</div></details>`).join('')}</div>`;
 }
 let L={mode:'due',cat:'Alle',queue:[],i:0,shown:false,done:0,active:false,folder:null,noteOpen:false};
 
@@ -10326,7 +10327,7 @@ function newLimit(){return store.get('newLimit',20);}
 function newToday(){const o=store.get('newToday',{});return o.k===todayKey()?o.n:0;}
 function bumpNew(){const o=store.get('newToday',{});store.set('newToday',{k:todayKey(),n:(o.k===todayKey()?o.n:0)+1});}
 function stats(cat){
-  const pool=CARDS.filter(c=>!cat||cat==='Alle'||c.cat===cat), now=Date.now();
+  const pool=activeCards().filter(c=>!cat||cat==='Alle'||c.cat===cat), now=Date.now();
   let nw=0,due=0,mas=0;
   pool.forEach(c=>{const s=srs[c.id]; if(!s) nw++; else {if(s.d<=now) due++; if(s.b>=4) mas++;}});
   return {total:pool.length,nw,due,mas,seen:pool.length-nw};
@@ -10576,7 +10577,7 @@ const IV=[0,1,2,5,10,21,45];
 function ivLabel(d){return d===0?'<10 min':(d===1?'1 Tag':d+' Tage');}
 function buildQueue(){
   const now=Date.now();
-  let pool=L.folder?folderCards(L.folder):CARDS.filter(c=>L.cat==='Alle'||c.cat===L.cat), q=[];
+  let pool=L.folder?folderCards(L.folder):activeCards().filter(c=>L.cat==='Alle'||c.cat===L.cat), q=[];
   if(L.mode==='due'){
     const due=pool.filter(c=>srs[c.id]&&srs[c.id].d<=now);
     const nw=shuffle(pool.filter(c=>!srs[c.id])).slice(0,Math.max(0,newLimit()-newToday()));
@@ -10641,7 +10642,8 @@ function vLearn(){
       <div class="card flash">${c.ekg?ekgSvg(EKG.find(x=>x.id===c.ekg),c.off):''}<div class="q">${fmt(c.q)}</div>${L.shown?`<div class="a ans"><div class="ans-h">✓ Richtige Antwort</div>${fmt(c.a)}</div>${moreInfo(c)}`:'<div class="muted small">Erst überlegen, dann aufdecken.</div>'}</div>
       ${L.shown&&L.mode==='exam'?`<div class="rate"><button class="r0" data-a="ex" data-v="0">Nicht gewusst</button><button class="r3" data-a="ex" data-v="1">Gewusst</button></div>`:L.shown?`<div class="rate"><button class="r0" data-a="rate" data-v="0">Nochmal<small>${lab[0]}</small></button><button class="r1" data-a="rate" data-v="1">Schwer<small>${lab[1]}</small></button><button class="r2" data-a="rate" data-v="2">Gut<small>${lab[2]}</small></button><button class="r3" data-a="rate" data-v="3">Leicht<small>${lab[3]}</small></button></div>`:`<button class="btn primary" style="width:100%;justify-content:center;padding:14px" data-a="reveal">Antwort zeigen</button>`}
       ${noteBox(c)}
-      <div class="row" style="justify-content:space-between">${topicOf(c)?`<button class="btn small" data-a="art" data-v="${topicOf(c)}">📖 Ganzen Artikel ansehen</button>`:'<span></span>'}<button class="back" data-a="stoplearn">Sitzung beenden</button></div>`;
+      <div class="row" style="justify-content:space-between">${topicOf(c)?`<button class="btn small" data-a="art" data-v="${topicOf(c)}">📖 Ganzen Artikel ansehen</button>`:'<span></span>'}<button class="back" data-a="stoplearn">Sitzung beenden</button></div>
+      <button class="btn small" data-a="hide" data-v="${c.id}">🚫 Nicht mehr lernen</button>`;
     }
   } else if(L.folder){
     body=vFolder();
@@ -10959,7 +10961,7 @@ function eAct(a,v){
 let altK=store.get('alt',{});
 let AL={cat:'Alle',mode:'all',active:false,queue:[],i:0,shown:false,done:0,confirm:false};
 function altList(){ return (window.ALT||[]).map((c,i)=>Object.assign({id:'a'+i},c)); }
-function altPool(){ const l=altList().filter(c=>AL.cat==='Alle'||c.c===AL.cat); return AL.mode==='open'?l.filter(c=>!altK[c.id]):l; }
+function altPool(){ const l=altList().filter(c=>altK[c.id]!==2&&(AL.cat==='Alle'||c.c===AL.cat)); return AL.mode==='open'?l.filter(c=>!altK[c.id]):l; }
 function vAlt(){
   const all=altList(), cats=['Alle'].concat([...new Set(all.map(c=>c.c))].sort());
   let body='';
@@ -10972,10 +10974,10 @@ function vAlt(){
       <div class="bar"><i style="width:${Math.round(100*AL.i/AL.queue.length)}%"></i></div>
       <div class="card flash"><div class="small muted" style="margin-bottom:6px">${c.n>1?'In '+c.n+' Protokollen gefragt':'In 1 Protokoll gefragt'}</div><div class="q">${fmt(c.q)}</div>${AL.shown?`<div class="a ans"><div class="ans-h">✓ Antwort</div>${fmt(c.a)}</div>`:'<div class="muted small">Erst überlegen, dann aufdecken.</div>'}</div>
       ${AL.shown?`<div class="rate"><button class="r0" data-a="altr" data-v="0">Nicht gewusst</button><button class="r3" data-a="altr" data-v="1">Gewusst</button></div>`:`<button class="btn primary" style="width:100%;justify-content:center;padding:14px" data-a="altshow">Antwort zeigen</button>`}
-      <div class="row" style="justify-content:flex-end"><button class="back" data-a="altstop">Sitzung beenden</button></div>`;
+      <div class="row" style="justify-content:space-between"><button class="btn small" data-a="althide">🚫 Nicht mehr üben</button><button class="back" data-a="altstop">Sitzung beenden</button></div>`;
     }
   } else {
-    const known=all.filter(c=>altK[c.id]).length, pool=altPool();
+    const known=all.filter(c=>altK[c.id]===1).length, hidn=all.filter(c=>altK[c.id]===2).length, pool=altPool();
     const opts=cats.map(c=>{const n=all.filter(x=>c==='Alle'||x.c===c).length;return `<option value="${esc(c)}" ${AL.cat===c?'selected':''}>${c==='Alle'?'Alle Fachgebiete':esc(c)} (${n})</option>`;}).join('');
     body=`<div class="card lcard"><h3>Fragen aus Prüfungsprotokollen</h3>
     <p class="small muted" style="margin:0 0 8px">Aus ${(window.ALT_META||{}).prot||'85'} Altprotokollen zusammengeführt: Doppelte sind nur einmal enthalten, die häufigsten Fragen kommen zuerst. Antworten stammen aus den Protokollen bzw. sind nach bestem Wissen ergänzt und nicht an Leitlinien geprüft – im Zweifel nachlesen.</p>
@@ -10983,7 +10985,7 @@ function vAlt(){
     <div class="lbl">Welche Karten</div>
     <div class="modes"><button class="mode" data-a="altmode" data-v="all" aria-pressed="${AL.mode==='all'}"><b>Alle</b><span>häufigste zuerst</span></button><button class="mode" data-a="altmode" data-v="open" aria-pressed="${AL.mode==='open'}"><b>Nur offene</b><span>noch nicht gewusst</span></button></div>
     <button class="btn primary" style="width:100%;justify-content:center;padding:14px" data-a="altstart" ${pool.length?'':'disabled'}>${pool.length} Karten üben</button></div>
-    <div class="card lcard"><h3>Stand</h3><div class="kv"><span>Gewusst</span><b>${known}</b></div><div class="kv"><span>Offen</span><b>${all.length-known}</b></div><div class="kv"><span>Karten gesamt</span><b>${all.length}</b></div>
+    <div class="card lcard"><h3>Stand</h3><div class="kv"><span>Gewusst</span><b>${known}</b></div><div class="kv"><span>Offen</span><b>${all.length-known-hidn}</b></div><div class="kv"><span>Ausgeblendet</span><b>${hidn}</b></div>${hidn?`<button class="btn small" data-a="altunhide">Ausgeblendete wieder aktivieren</button>`:''}<div class="kv"><span>Karten gesamt</span><b>${all.length}</b></div>
     <button class="btn small" style="margin-top:8px" data-a="altreset">${AL.confirm?'Wirklich löschen? Nochmal tippen':'Fortschritt zurücksetzen'}</button></div>`;
   }
   return `<div class="stack"><div><div class="eyebrow">Echte Prüfungsfragen</div><h1 class="h1">Altfragen</h1></div>${body}</div>`;
@@ -10999,6 +11001,8 @@ document.addEventListener('click',e=>{
   else if(a==='altstop'){AL.active=false;render();}
   else if(a==='altshow'){AL.shown=true;render();}
   else if(a==='altr'){ const c=AL.queue[AL.i]; if(c){ if(v==='1'){altK[c.id]=1;} else {delete altK[c.id]; AL.queue.push(c);} store.set('alt',altK); AL.done++; AL.i++; AL.shown=false; render(); } }
+  else if(a==='althide'){ const c=AL.queue[AL.i]; if(c){ altK[c.id]=2; store.set('alt',altK); AL.queue=AL.queue.filter((x,j)=>x.id!==c.id||j<AL.i); AL.shown=false; render(); } }
+  else if(a==='altunhide'){ Object.keys(altK).forEach(k=>{if(altK[k]===2)delete altK[k];}); store.set('alt',altK); render(); }
   else if(a==='altreset'){ if(AL.confirm){altK={};store.set('alt',altK);AL.confirm=false;} else AL.confirm=true; render(); }
   else if(a==='back') back();
   else if(a==='cat'){S.cat=v;render();}
@@ -11023,6 +11027,8 @@ document.addEventListener('click',e=>{
   else if(a==='artclose'){ L.art=null; render(); window.scrollTo(0,L.scrollY||0); }
   else if(a==='fav'){ if(favs[v]) delete favs[v]; else favs[v]=1; store.set('fav',favs); render(); }
   else if(a==='notetoggle'){L.noteOpen=true;render();const ta=document.querySelector('textarea[data-note]'); if(ta) ta.focus();}
+  else if(a==='hide'){ hid[v]=1; store.set('hid',hid); const k=L.queue.findIndex((c,j)=>j>=L.i&&c.id===v); L.queue=L.queue.filter((c,j)=>c.id!==v||j<L.i); L.shown=false; L.noteOpen=false; render(); }
+  else if(a==='unhide'){ delete hid[v]; store.set('hid',hid); render(); }
   else if(a==='folder'){L.folder=v;render();window.scrollTo(0,0);}
   else if(a==='folderback'){L.folder=null;render();window.scrollTo(0,0);}
   else if(a==='startfolder'){buildQueue();render();window.scrollTo(0,0);}
