@@ -68,7 +68,7 @@ h1,h2,h3{font-family:var(--f-display);font-weight:700;letter-spacing:.01em;line-
 
 /* Tabs */
 .tabs{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
-.tabs .wrap{display:grid;grid-template-columns:repeat(5,1fr);padding-inline:2px}
+.tabs .wrap{display:grid;grid-template-columns:repeat(6,1fr);padding-inline:2px}
 .tab{background:none;border:0;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 0 8px;color:var(--muted);font-size:11px;font-weight:600;min-width:0}
 .tab svg{width:24px;height:24px}
 .tab[aria-current="true"]{color:var(--accent)}
@@ -9094,7 +9094,1151 @@ hygiene:[
  ['Vorgehen nach Nadelstichverletzung?','**Ausbluten lassen, desinfizieren,** Meldung an den D-Arzt, PEP prüfen; spitze Gegenstände direkt in den Abwurfbehälter, nicht rückstecken.']
 ]
 });})();
-</script><script>(function(){
+</script><script>window.ALT_META={prot:85};
+window.ALT=[
+{
+"c": "Organisation",
+"q": "Du bist erstintreffender Notarzt bei MANV/Großbrand/Unfall: Aufgaben und erste Schritte?",
+"a": "**SSSS**: Scene (Lage aus der Ferne erfassen), Safety (Eigenschutz, Windrichtung, NEF mit Abstand), Situation (Anzahl/Art der Verletzten), Support. Rückmeldung an Leitstelle, Nachforderung.\nBis zum LNA kommissarisch LNA (medizinische Leitung), NEF-Fahrer/Sanitäter als OrgL. Kontakt zum Feuerwehr-Einsatzleiter (gelbe Weste). Patientenablage/Behandlungsplatz/Rettungsmittelhalteplatz festlegen, Transportorganisation. Bei vermisster Person Suche mit Polizei/Feuerwehr. Nicht in die Gefahrenzone laufen.",
+"n": 11
+},
+{
+"c": "Neurologie",
+"q": "Unklare Bewusstlosigkeit (z. B. Patient auf Parkbank): Differenzialdiagnosen und Vorgehen?",
+"a": "AEIOU-TIPS: Alkohol, Epilepsie, Insulin (Hypo-/Hyperglykämie), Opiate/Intox, Unterkühlung/Urämie, Trauma, Infekt, Psych, Schlaganfall/SAB; zusätzlich Herz (HRST, Infarkt, LAE), CO. xABCDE, **BZ**, Pupillen, Temperatur, Fremdanamnese/Umfeld, Medikamentenpackungen. Hypothermie beachten, Fixierungsfehler vermeiden, Überwachung in Klinik.",
+"n": 10
+},
+{
+"c": "Toxikologie",
+"q": "CO-Intoxikation: Therapie?",
+"a": "cABCDE, sofort **100 % O2** über Reservoirmaske (15 l/min; ggf. NIV oder ITN mit FiO2 1,0), Monitoring, Zugang, COHb per BGA. COHb-HWZ: Raumluft ca. 4–6 h, 100 % O2 ca. 1 h, HBO deutlich kürzer. Alle Symptomatischen in die Klinik; bei Rauchgas ggf. Hydroxocobalamin.",
+"n": 10
+},
+{
+"c": "Kardiovaskulär",
+"q": "Stabile regelmäßige Schmalkomplextachykardie (AVNRT, HF ~160–200/min, junger Patient): Vorgehen?",
+"a": "xABCDE, Monitor, 12-Kanal-EKG, i.v.-Zugang. Erst **vagale Manöver** (modifiziertes Valsalva mit Beinhochlagerung, Spritze pusten, kaltes Wasser), dann **Adenosin 6 mg**, ggf. 12 mg (18 mg) als schneller Bolus mit NaCl-Flush. Vorher aufklären (Hitze, Beklemmung, kurze Asystolie). Alternativ Verapamil/Betablocker. Instabil: synchronisierte Kardioversion. Zielklinik Kardiologie.",
+"n": 9
+},
+{
+"c": "Kardiovaskulär",
+"q": "Akuttherapie und Diagnostik beim ACS (Medikamente, Dosierung, Zielklinik)?",
+"a": "12-Kanal-EKG (Hinterwand: rechte/hintere Ableitungen). **ASS 150–300 mg**, **Heparin 5000 IE**, Analgesie Morphin 3–5 mg fraktioniert (kein Esketamin), ggf. Midazolam 2–3 mg, Nitro 0,4 mg s.l. nur bei ausreichendem RR, O2 nur bei SpO2 <90 %. STEMI → Herzkatheter-Klinik voranmelden. Älterer Patient mit Oberbauchschmerz: an Hinterwandinfarkt denken.",
+"n": 9
+},
+{
+"c": "Toxikologie",
+"q": "CO-Intoxikation: Verhalten an der Einsatzstelle (z. B. Keller mit mehreren Bewusstlosen, CO-Alarm)?",
+"a": "**Eigenschutz**: CO-Warner mitführen; bei Alarm sofort zurück/raus, Gefahrenbereich nicht betreten. Leitstelle informieren, Verstärkung (Feuerwehr zur Belüftung/Rettung unter Atemschutz, weitere RTW/NEF, ggf. RTH). Betroffene ins Freie, 100 % O2, COHb messen, Kritischsten zuerst. Alle Betroffenen (auch Kinder, Nachbarn) als Patienten betrachten, im Zweifel mitnehmen; auch an Rauchgasinhalation denken.",
+"n": 9
+},
+{
+"c": "Organisation",
+"q": "Welches Vorgehen gilt bei jedem Einsatz?",
+"a": "Vor Ort **4S** (Sicherheit, Szene, Situation, Support), dann **xABCDE**; Anamnese nach SAMPLER.",
+"n": 8
+},
+{
+"c": "Pädiatrie",
+"q": "Pseudokrupp: Pathophysiologie, Klinik, Therapie und warum hilft kalte Luft?",
+"a": "Virale subglottische Schwellung (6 Mo–3 J): bellender Husten, **inspiratorischer Stridor**, meist wenig Fieber. Kälte: Vasokonstriktion → Abschwellung. Therapie: Ruhe, Kind in Position seiner Wahl/auf Mutters Schoß, O2, **Adrenalin vernebelt** (ca. 3 ml unverdünnt bzw. 2–4 mg), Prednisolon rektal 100 mg. Keine Racheninspektion; bei hohem Fieber an Epiglottitis denken, Atemweg zurückhaltend.",
+"n": 8
+},
+{
+"c": "Analgesie",
+"q": "Welche Analgosedierung nutzt du vor der Reposition (z. B. 90-kg-Patient mit Sprunggelenksfraktur) und was bei älterer Patientin mit kardialer Erkrankung?",
+"a": "Esketamin 0,25–0,5 mg/kg (80 kg ≈ 20–40 mg) + Midazolam 2–3 mg, nachtitrieren; spontan atmend, kreislaufstabil, gut steuerbar. Unter Esketamin äußern Patienten oft noch Schmerzen, erinnern sich aber meist nicht. Bei Erdnuss-/Sojaallergie kein Propofol.\nBei KHK/kardialer Erkrankung stattdessen Fentanyl (oder Nalbuphin); Opioid allein deckt die Repositionsspitze schlecht ab.\nExit bei Atemdepression: Kommandoatmung, assistierte Beatmung, Naloxon titriert.\nReposition achsengerecht unter Zug, pDMS vor und nach Reposition, dann Vakuum-/SamSplint.",
+"n": 7
+},
+{
+"c": "Atemweg",
+"q": "Präklinische Intubation: Was sagst du dem Team, wie bereitest du vor, und was ist anders als im OP?",
+"a": "Indikation nennen (z. B. GCS 4–5, Schutzintubation). Wenn möglich im Rettungsmittel statt draußen/in der Wohnung (Lagerung, Wärme, Equipment).\nVorher bereitstellen: Sauger, Videolaryngoskop (1. Versuch), Tubus mit Führungsstab/Bougie, SGA (i-gel), Koniotomie-Set, Katecholamine; Rückfallebenen laut benennen, Dosierungen absprechen.\nAnders als im OP: ungünstige Arbeitshöhe, nicht nüchtern (modifizierte RSI), Team nicht eingespielt → klare Anweisungen, Checkliste, mehr Zeit.\nBei SpO2 <90 % Maskenbeatmung, dann SGA; bei CICO chirurgischer Atemweg.",
+"n": 7
+},
+{
+"c": "Toxikologie",
+"q": "Warum ist die SpO2 bei CO-Intoxikation trügerisch, und wie sicherst du die Diagnose?",
+"a": "Standard-Pulsoxymeter erfasst COHb wie O2Hb → SpO2 scheinbar normal. Diagnostik: CO-Oximetrie (SpCO-Sensor), BGA mit CO-Oxymetrie, CO-Warngerät für die Umgebung.",
+"n": 7
+},
+{
+"c": "Trauma",
+"q": "Kritische Blutung: Eskalation und Maßnahmen (Autobahnunfall)?",
+"a": "Nach 4S zuerst **x**: direkte Kompression → Druckverband/hämostatisches Packing (Chitosan) → **Tourniquet** (5–7 cm proximal der Wunde, nie über Gelenken, ggf. zweites; Zeit notieren, präklinisch nicht lösen). Beckenverletzung → **C**: Beckenschlinge. Großlumige Zugänge, **TXA 1 g i.v.** (<3 h), Calcium bei Massivtransfusion, Wärmeerhalt.",
+"n": 7
+},
+{
+"c": "Trauma",
+"q": "Spannungspneumothorax: Zeichen, Entlastung, Landmarken?",
+"a": "Zeichen: einseitig abgeschwächtes/fehlendes Atemgeräusch, hypersonorer Klopfschall, Dyspnoe/Hypoxie, Tachykardie, Hypotonie, gestaute Halsvenen (auch bei Tamponade!); Sono: fehlendes Lungengleiten. Entlastung: Nadel nach **Monaldi** (2./3. ICR MCL; leicht lateralisieren, A. thoracica interna) oder Minithorakostomie/**Bülau** (4./5. ICR vordere/mittlere Axillarlinie, Triangle of Safety; bei kräftigen Patienten oft besser). Nadel-Nachteile: Dislokation, Abknicken, Verstopfung, zu kurz. Im Verlauf Drainage.",
+"n": 7
+},
+{
+"c": "Pädiatrie",
+"q": "Krampfanfall beim Kind: Medikamente, Wege und Dosierung?",
+"a": "Anfall >5 min unterbrechen: Midazolam bukkal/nasal 0,2–0,3 mg/kg (nasal max. ca. 1 ml/Nasenloch) bzw. i.v./i.o. 0,05–0,1 mg/kg; **Diazepam rektal 5 mg (<15 kg), 10 mg (>15 kg)**. BZ messen. Bei verschleimtem Kind nasal/bukkal weniger praktikabel.",
+"n": 6
+},
+{
+"c": "Pädiatrie",
+"q": "Fieberkrampf: Entstehung, einfach vs. kompliziert, Therapie?",
+"a": "Auslöser: rascher Temperaturanstieg (nicht absolute Höhe), 6 Mo–5 J, kein Epileptiker. Einfach: generalisiert, <15 min, einmalig in 24 h (meist bei Eintreffen vorbei, ca. 90 %). Kompliziert: fokal, >15 min, wiederholt, Todd-Parese. Therapie: untersuchen, Fieber senken (Paracetamol, Ibuprofen 10 mg/kg), Klinik; anhaltend: Benzodiazepin wie oben.",
+"n": 6
+},
+{
+"c": "Pädiatrie",
+"q": "Welche Kindernotfälle sind häufig und was macht sie besonders?",
+"a": "Häufig: Fieberkrampf, Atemwegsinfekte (Pseudokrupp, Epiglottitis, Bronchiolitis), Aspiration/Fremdkörper, Verbrühung/Verbrennung, Intoxikation, Ertrinken, Allergie, Trauma. Besonders: seltene Einsätze, ungewohnte Dosierungen, eingeschränkte Anamnese, Eltern als zweite Baustelle. Dosierung nach Gewicht (Formel, Broselow); Wege: i.n., i.o., rektal.",
+"n": 6
+},
+{
+"c": "Reanimation",
+"q": "Reanimationsalgorithmus Erwachsene (ERC 2025): Kernpunkte?",
+"a": "- Kompressionen 100–120/min, 5–6 cm, 30:2 bis Atemweg gesichert\n- Defibrillierbar (VF/pVT): bei beobachtetem Arrest bis zu 3 Schocks in Folge, sonst 1 Schock, dann 2 min CPR; **Adrenalin 1 mg + Amiodaron 300 mg** nach dem 3. Schock\n- Nicht defibrillierbar: Adrenalin 1 mg so früh wie möglich, dann alle 3–5 min\n- Reversible Ursachen suchen (4H/HITS); bei refraktärem VF Vektorwechsel (a.-p.)",
+"n": 6
+},
+{
+"c": "Reanimation",
+"q": "Adrenalin und Amiodaron in der Reanimation: Dosierungen Erwachsene/Kinder?",
+"a": "Erwachsene: Adrenalin 1 mg i.v./i.o. alle 3–5 min; Amiodaron 300 mg nach 3. Schock, 150 mg nach 5. Schock. Kinder: Adrenalin **10 µg/kg** (Säuglinge ggf. 1:100 verdünnen), Amiodaron **5 mg/kg**. Amiodaron verdünnt, kein schneller Bolus; Lidocain als gleichwertige Alternative.",
+"n": 6
+},
+{
+"c": "Trauma",
+"q": "Polytrauma: Definition und Hinweise auf Schwerverletzte (Kinematik)?",
+"a": "Verletzungen mehrerer Körperregionen, eine oder die Kombination lebensbedrohlich (ISS ≥16). Hinweise: Sturz >3 m, Geschwindigkeitsdelta >30 km/h (nicht nur Geschwindigkeit), Intrusion >30 cm (in einer Prüfung 20 cm genannt), Todesfall im selben Fahrzeug, Ejektion, Fußgänger/Zweirad-Kollision. Heute maßgeblich vor allem physiologische/anatomische Kriterien.",
+"n": 6
+},
+{
+"c": "Umwelt & Thermisch",
+"q": "Verbrennung: Kühlung, Analgesie, Volumen und Wärmeerhalt präklinisch?",
+"a": "Kühlen nur kleine Flächen max. ca. 10 min mit 15–20 °C Wasser, sonst Hypothermiegefahr; Wärmeerhalt, steril abdecken. Analgesie früh i.v.: Opioid (Fentanyl) und/oder (Es-)Ketamin, ggf. Midazolam. Volumen restriktiv: Parkland präklinisch **nicht**, 2 großlumige Zugänge (nicht durch verbrannte Haut), Kristalloid grob 1 l, nicht überinfundieren (Ödem, Beatmungsprobleme). Verbrennungsschock entwickelt sich über Stunden bis ~72 h.",
+"n": 6
+},
+{
+"c": "Umwelt & Thermisch",
+"q": "Wie schätzt du Ausdehnung und Grad einer Verbrennung ab?",
+"a": "**Neunerregel** (Erwachsene: Kopf 9 %, je Arm 9 %, Rumpf vorn 18 %, hinten 18 %, je Bein 18 %, Genital 1 %; Kind: Kopf größer); **Handfläche** inkl. Finger ≈ 1 % KOF. Grade: 1 Rötung; 2a schmerzhaft rosa/Blasen; 2b weiß-rot, weniger schmerzhaft; 3 weiß/schwarz, schmerzlos (Nekrose); 4 Verkohlung.",
+"n": 6
+},
+{
+"c": "Internistische Notfälle",
+"q": "Big Five des Thoraxschmerzes und Einteilung des ACS?",
+"a": "ACS, Lungenembolie, Aortensyndrom/-dissektion, Spannungspneumothorax, Ösophagusruptur (Boerhaave). ACS: instabile Angina pectoris, NSTEMI, STEMI.",
+"n": 5
+},
+{
+"c": "Neurologie",
+"q": "Blutdruckmanagement beim Schlaganfall präklinisch – wann senken, wie stark, warum?",
+"a": "Ischämisch/unklar: **permissive Hypertonie** (Penumbra-Perfusion), präklinisch lassen sich ischämisch und hämorrhagisch nicht trennen. Senken nur bei sehr hohen Werten (>ca. 220/110–120 mmHg), vorsichtig fraktioniert (z. B. Urapidil), max. ca. 20 %. Lyse-Kandidaten vor Lyse <185/110; Blutung ca. 160–180 sys. Keine präklinische Antikoagulation/TAH.",
+"n": 5
+},
+{
+"c": "Psychiatrie & Recht",
+"q": "PsychKG NRW: Voraussetzungen, wer entscheidet, Rolle des Notarztes?",
+"a": "Unterbringung bei gegenwärtiger erheblicher Eigen-/Fremdgefährdung, nicht anders abwendbar (Intoxikation oder erfolglose Deeskalation allein reichen nicht). Notarzt erstellt ärztliches Zeugnis/medizinische Indikation (fehlende Absprachefähigkeit, kein milderes Mittel); **Ordnungsamt** ordnet an, **Polizei** verbringt.",
+"n": 5
+},
+{
+"c": "Pädiatrie",
+"q": "Kind mit Fraktur: Analgesie, Dosierung, Applikationswege?",
+"a": "Altersgerecht untersuchen, Schmerzskala, Eltern einbeziehen. Intranasal (MAD) Esketamin ca. 1–2 mg/kg ± Midazolam 0,2 mg/kg; alternativ i.v./i.o./i.m./bukkal. Dann Reposition (bevorzugt im RTW), Immobilisation, ggf. Vakuummatratze. Kein i.v.-Zugang zwingend nötig.",
+"n": 5
+},
+{
+"c": "Toxikologie",
+"q": "Wie wirkt CO pathophysiologisch, und wann denkt man daran?",
+"a": "CO bindet mit viel höherer Affinität als O2 an Hb (COHb), verschiebt die O2-Bindungskurve nach links und hemmt die Zytochromoxidase → Gewebehypoxie, Laktatazidose. Denken bei: mehreren Bewusstlosen, Brand, defekter Gastherme/Heizung, Shisha-Bar, Keller; Symptome: Kopfschmerz, Schwindel, Benommenheit, Bewusstseinsstörung.",
+"n": 5
+},
+{
+"c": "Toxikologie",
+"q": "COHb-Werte und Risikogruppen bei CO-Intoxikation?",
+"a": "Pathologisch: >5 % bei Nichtrauchern, >10 % bei Rauchern. Klinikeinweisung aller Symptomatischen; HBO erwägen ab ca. 25–30 % bzw. bei neurologischen/kardialen Symptomen. Risiko: Schwangere (Fet), Kinder, Ältere, Herz- und Lungenkranke.",
+"n": 5
+},
+{
+"c": "Trauma",
+"q": "Verkehrsunfall/Polytrauma (Motorrad, Sturz aus großer Höhe): Vorgehen?",
+"a": "SSSS (Absicherung durch Polizei/Feuerwehr, Anzahl Verletzter → MANV?), Rückmeldung Leitstelle. cABCDE mit HWS-Immobilisation, schnelle Trauma-Untersuchung (im RTW wiederholen), Wärmeerhalt, Beckenschlinge bei Verdacht, Blutungskontrolle, bei Verschlechterung Atemweg sichern/Pneu entlasten, ggf. RTH. Zielklinik: Traumazentrum/Neurochirurgie.",
+"n": 5
+},
+{
+"c": "Umwelt & Thermisch",
+"q": "Verbrennungspatient: Vorgehen und wann Schwerbrandverletztenzentrum?",
+"a": "xABCDE, 100 % O2 (CO-Intox möglich), Wärmeerhalt, früh RTH. Zentrum bei: 2b/3 ab ca. 10 % KOF (Kinder >5 %, Ältere früher), Grad 3, Gesicht/Hände/Füße/Genitale/Gelenke, Inhalationstrauma, Strom-/Chemie-/Blitzverletzung, Begleitverletzungen, Risikogruppen/Vorerkrankungen.",
+"n": 5
+},
+{
+"c": "Atemweg",
+"q": "Welche Medikamente nutzt du für die präklinische Narkose/RSI, und worauf achtest du?",
+"a": "Z. B. Esketamin + Midazolam (oder Etomidat) + Rocuronium (längere HWZ, weniger NW als Succinylcholin, kein Hyperkaliämierisiko; antagonisierbar mit Sugammadex). Alternative: Propofol + Fentanyl. RR-Abfall einkalkulieren (z. B. Akrinor). Tubus Erwachsene ≥7,5.",
+"n": 4
+},
+{
+"c": "Fallbeispiele",
+"q": "Fall: Mann mit Rauchgas und Verbrennungen am Stamm wird von der Feuerwehr in den RTW gebracht. Wie gehen Sie vor?",
+"a": "Eigenschutz/4S, cABCDE: Blutung/Verbrennung, Atemweg (Ruß?) → 100 % O2 über Maske 15 l; Auskultation; SpO2 unzuverlässig (CO) → COHb messen; Monitoring, Zugänge, Volumen; GCS, BZ, Temperatur; Analgesie. Ausmaß schätzen, Zentrumskriterien prüfen, früh RTH; Atemweg bei Inhalationstrauma erwägen; an CO und Zyanid denken.",
+"n": 4
+},
+{
+"c": "Geburtshilfe",
+"q": "Welche geburtshilflichen Notfälle/Komplikationen sollten Sie kennen?",
+"a": "Früh: Abort, EUG. Spät: (Prä-)Eklampsie/HELLP, Plazentalösung (Schmerz, dunkle Blutung), Placenta praevia (schmerzlos, hell), Uterusatonie/-ruptur, Blasensprung, Nabelschnurvorfall, Schulterdystokie, Fruchtwasserembolie, TVT/LAE, V.-cava-Kompression (Linksseitenlage).",
+"n": 4
+},
+{
+"c": "Geburtshilfe",
+"q": "Nabelschnurvorfall und Schulterdystokie: Maßnahmen?",
+"a": "Nabelschnurvorfall: Kopf manuell zurückhalten, Knie-Ellenbogen-/Beckenhochlage, Schnur feucht halten, Tokolyse, schnell Sectio (Gefahr Kompression → Hypoxie). Schulterdystokie: **McRoberts** + suprasymphysärer Druck, kein Fundusdruck, nie am Kind ziehen. Schneller Transport.",
+"n": 4
+},
+{
+"c": "Internistische Notfälle",
+"q": "Welche Schockformen gibt es, mit Ursache und Therapieprinzip?",
+"a": "Hypovolämisch (Blutung; Volumen, Blutstillung), kardiogen (Pumpversagen; Katecholamine, Ursache beheben), obstruktiv (LAE, Tamponade, Spannungspneu; Ursache beseitigen), distributiv (Sepsis, Anaphylaxie, neurogen; Volumen, Vasopressor, ggf. Adrenalin).",
+"n": 4
+},
+{
+"c": "Internistische Notfälle",
+"q": "Anaphylaxie: Stadien, Therapie (Adrenalin i.m. mit Dosis) und Transport?",
+"a": "Schweregrade I–IV. Allergenstopp, Beine hoch, **Adrenalin i.m.** (lateraler Oberschenkel): Erwachsene 500 µg, Kinder 6–12 J 300 µg, <6 J 150 µg. Dazu Volumen, O2, bei Stridor/Bronchospasmus Adrenalin- bzw. Salbutamol-Inhalation, Prednisolon, H1-Blocker (Dimetinden). Transport mit Notarzt wegen Rebound.",
+"n": 4
+},
+{
+"c": "Kardiovaskulär",
+"q": "Notarzteinsatz, Altenheimpatient mit Vigilanzminderung: EKG zeigt P-Wellen ohne feste Beziehung zu den QRS-Komplexen. Diagnose und präklinisches Vorgehen?",
+"a": "**AV-Block III°.** Bei Instabilität (Hypotonie, Vigilanzminderung): Adrenalin fraktioniert als Push-Dose (ca. 10–20 µg), alternativ Dobutamin/Perfusor; **Atropin wirkt beim AV-III meist nicht**. Dann **transkutanes Pacing** mit Analgesie, Transport in Klinik mit Schrittmacher-Implantation (invasive Kardiologie); ersatzweise transvenöse temporäre Stimulation.",
+"n": 4
+},
+{
+"c": "Kardiovaskulär",
+"q": "Instabile Bradykardie (z. B. HF 30, RR 80/60, neurologisch auffällig): Vorgehen und Atropin – Dosis, wann sinnlos?",
+"a": "cABCDE, Defi-Elektroden, EKG (AV-Block?). **Atropin 0,5 mg i.v.** (nicht weniger: paradoxe Bradykardie), Wiederholung bis max. 3 mg. Bei AV-Block III° mit Ersatzrhythmus meist wirkungslos. Dann Adrenalin (Perfusor oder 10-µg-Boli), anschließend transkutanes Pacing mit Analgosedierung.",
+"n": 4
+},
+{
+"c": "Kardiovaskulär",
+"q": "Adenosin: Wirkung, Applikation, Vorsicht und Kontraindikationen?",
+"a": "Blockiert kurz den AV-Knoten (A1-Rezeptor), HWZ <10 s → schneller Bolus aus der Hand mit Flush, möglichst zentralnah, EKG-Streifen laufen lassen. Patient vorwarnen (Wärme, Brustdruck, Pause/Asystolie). **KI:** Asthma/Bronchospastik/schwere COPD, AV-Block II°/III°, Sick-Sinus-Syndrom.",
+"n": 4
+},
+{
+"c": "Kardiovaskulär",
+"q": "Welche Kriterien definieren eine instabile Tachykardie, und was tun (z. B. 80-Jähriger, HF 160, RR 80 sys., GCS 9, breit)?",
+"a": "Instabil bei: Schock/Hypotonie (RRsys <90), Bewusstseinsstörung/Synkope, Ischämiezeichen, akute Herzinsuffizienz. Ein Kriterium genügt → **synchronisierte Kardioversion** (SYNC-Modus, R-Zacken-getriggert) in Analgosedierung, Elektroden wie bei Defibrillation, Energie niedrig beginnen und steigern (ggf. bis 3 Versuche), dann Amiodaron.",
+"n": 4
+},
+{
+"c": "Kardiovaskulär",
+"q": "Breitkomplextachykardie/VT: Differenzialdiagnosen, Unterschied VT und VF, Therapie bei instabiler und stabiler VT?",
+"a": "VT: geordnete Kreisbewegung, kann Auswurf haben. VF: ungeordnet, nie Auswurf → Defibrillation. Instabile VT (z. B. RR 80/60) → synchronisierte Kardioversion (ca. 120–150 J biphasisch) in Analgosedierung; pulslos → Reanimation. **Stabile VT:** Amiodaron 300 mg als Kurzinfusion (kein Bolus: Hypotonie), alternativ Kardioversion. Extrakardiale Ursachen (Hyperkaliämie, Intox) bedenken.",
+"n": 4
+},
+{
+"c": "Neurologie",
+"q": "Wie ist der GCS aufgebaut, wie wird das SHT eingeteilt, und wann intubiert man?",
+"a": "GCS 3–15: Augen 1–4, verbal 1–5, motorisch 1–6. SHT leicht 13–15, mittel 9–12, **schwer ≤8**. GCS ≤8 ist keine automatische Intubationsindikation (z. B. Alkohol); entscheidend sind Aspiration, Oxygenierung, Verlauf. Bei D immer GCS, Pupillen, BZ und Reevaluation.",
+"n": 4
+},
+{
+"c": "Neurologie",
+"q": "Schlaganfall: Häufigkeit ischämisch/hämorrhagisch und Schnelltest?",
+"a": "Ca. 80–85 % ischämisch, 15–20 % hämorrhagisch. **BE-FAST:** Balance, Eyes, Face, Arm, Speech, Time.",
+"n": 4
+},
+{
+"c": "Reanimation",
+"q": "Ertrunkenes Kind (3–5 Jahre): Vorgehen?",
+"a": "Hypoxischer Stillstand (eher PEA/Asystolie): **5 initiale Beatmungen**, dann 15:2, Kompression 1/3 Thorax, 100–120/min; Atemweg per SGA (i-gel/LMA); i.v., sonst i.o.; Wärmeerhalt; bei Hypothermie ggf. ECMO-Wiedererwärmung.",
+"n": 4
+},
+{
+"c": "Trauma",
+"q": "Wann reponierst du Frakturen/Luxationen präklinisch (z. B. Sprunggelenk)?",
+"a": "Fraktur: grob disloziert, offen, große Röhrenknochen, pDMS gestört oder langer Transport. Luxationen: Patella und Sprunggelenk reponieren; Schulter/Hüfte/Knie nach Trauma in der Regel nicht. pDMS vor/nach Reposition, steril abdecken, schienen; früh versuchen, Team einbinden.",
+"n": 4
+},
+{
+"c": "Atemweg",
+"q": "Woran erkennst du einen schwierigen Atemweg und wo intubierst du bevorzugt?",
+"a": "Hinweise: eingeschränkte Mundöffnung, kurzer Hals, Mallampati hoch, Tumoren/Voroperationen, Trauma. Möglichst unter guten Bedingungen intubieren: Klinik/ZNA mit Backup vor RTW vor Straße, sofern stabil und Zeit vorhanden.",
+"n": 3
+},
+{
+"c": "Atemweg",
+"q": "Was ist beim Kindesatemweg anders?",
+"a": "Engste Stelle subglottisch (Ringknorpel, trichterförmiger Kehlkopf), großer Hinterkopf → Schnüffelstellung statt Überstrecken. Tubus Neugeborenes 3–3,5 mm. Pseudokrupp bei Erwachsenen sehr selten.",
+"n": 3
+},
+{
+"c": "Atemwege & Atmung",
+"q": "Spannungspneumothorax: Zeichen, Entlastung, Drainage präklinisch?",
+"a": "Einseitig abgeschwächtes Atemgeräusch, Hypoxie, Hypotonie, Tachykardie, gestaute Halsvenen, Druckanstieg bei Beatmung. Entlastung per Minithorakotomie/Thoraxdrainage (Nadel als Notlösung). Drainage bei Spannungspneu, Pneu mit Instabilität/Beatmung und bei Reanimation nach Thoraxtrauma.",
+"n": 3
+},
+{
+"c": "Geburtshilfe",
+"q": "Präeklampsie/Eklampsie: Therapie?",
+"a": "**Magnesium 4–6 g i.v.** über 15–20 min, dann Erhaltungsdosis; Blutdrucksenkung gezielt und zurückhaltend (Urapidil, Nifedipin oral, Labetalol); Transport.",
+"n": 3
+},
+{
+"c": "Internistische Notfälle",
+"q": "Meldebild Dialysepraxis bzw. Dialysepatient mit breiten Komplexen und Bradykardie: Verdacht und Sofortmaßnahme?",
+"a": "**Hyperkaliämie.** Calciumgluconat langsam i.v., dann Insulin/Glukose, Salbutamol, ggf. Natriumbikarbonat. Weitere Risiken: Volumenüberlastung/Lungenödem, Shunt-/Katheterinfektion. Calcium auch bei Magnesium-Überdosierung (Antidot) und Flusssäureverätzung.",
+"n": 3
+},
+{
+"c": "Kardiovaskulär",
+"q": "Wie führen Sie ein externes (transkutanes) Pacing durch?",
+"a": "Patient aufklären, Analgesie (z. B. Fentanyl 0,1 mg) bzw. Sedierung. Haut trocken, Patches **anterior-posterior** oder anterior-apikal. Frequenz ca. 70/min einstellen, Stromstärke langsam steigern, bis jedem Spike ein QRS mit T-Welle und **tastbarem Puls** folgt (elektrisch ≠ mechanisch → Puls peripher tasten), dann etwas darüber einstellen. Im Transport Artefakte beachten und Puls regelmäßig kontrollieren. So kurz wie möglich pacen (max. ca. 24 h).",
+"n": 3
+},
+{
+"c": "Kardiovaskulär",
+"q": "Hypertensiver Notfall mit Lungenödem: Welche Maßnahmen und welcher Blutdruckzielbereich?",
+"a": "Oberkörper hoch, O2, venöser Zugang, **Urapidil i.v. fraktioniert**, ggf. Nitro, Morphin zur Anxiolyse. Bei Hypoxie **NIV mit hohem PEEP** (ca. 8–10 mbar); sonst Reservoirmaske. Bei Endorganschaden zügig senken (Protokolle: Zielbereich systolisch etwa 140–180 mmHg), Transport mit Notarzt.",
+"n": 3
+},
+{
+"c": "Kardiovaskulär",
+"q": "Tachykardes Vorhofflimmern im Notfall: Vorgehen?",
+"a": "Stabil: Frequenzkontrolle (z.B. Metoprolol i.v., ggf. Magnesium), keine Rhythmisierung präklinisch. Instabil: synchronisierte Kardioversion in Analgosedierung (bei niedriger Energie beginnen, steigern). Zielklinik mit Monitor/Kardiologie.",
+"n": 3
+},
+{
+"c": "Kardiovaskulär",
+"q": "Unterschied Kardioversion und Defibrillation? Wie teilt man Tachykardien/Rhythmusstörungen ein?",
+"a": "Kardioversion: **R-Zacken-synchronisiert**, nicht in die vulnerable Phase (T-Welle); Defibrillation unsynchronisiert beim VF/pVT. Einteilung: schmal/breit, regelmäßig/unregelmäßig, stabil/instabil (schmal regelmäßig: AVNRT; schmal unregelmäßig: Vorhofflimmern; breit regelmäßig: VT). Gefährlich: VT, VF.",
+"n": 3
+},
+{
+"c": "Medikamente",
+"q": "Ketamin/Esketamin: Wirkung und Vorteile?",
+"a": "NMDA-Rezeptor-Antagonist, dissoziative Anästhesie mit Analgesie. Vorteile: erhaltene Atmung und Schutzreflexe in niedriger Dosis, kreislaufstabil, Bronchodilatation. Cave: Schmerzsteigerung bei Kindern ohne Midazolam, Halluzinationen. Midazolam wirkt nicht analgetisch.",
+"n": 3
+},
+{
+"c": "Neurologie",
+"q": "Schlaganfall mit Hemiparese, last seen well vor 2 h: Vorgehen und Zielklinik?",
+"a": "cABCDE inkl. Temperatur und BZ, neurologische Untersuchung, **time is brain**, genaue Zeit „last known well“ und Angehörigenkontakt. DD: Todd-Parese, Hypoglykämie, Sepsis. Stroke-Unit mit CT und Lysemöglichkeit anfahren und voranmelden; bei weit entferntem Thrombektomiezentrum zeitnahe Lyse in der näheren Klinik, ggf. Sekundärverlegung. Atemwegssicherung nur bei GCS ≤8.",
+"n": 3
+},
+{
+"c": "Neurologie",
+"q": "Generalisierter Krampfanfall beim Erwachsenen, der anhält: Stufenschema?",
+"a": "Eigenschutz, Atemweg/O2, BZ. **Midazolam 10 mg** nasal (MAD, beide Nasenlöcher) oder i.m., ggf. wiederholen; i.v. nur bei Zugang. Danach Levetiracetam 60 mg/kg (max. 4,5 g) als Kurzinfusion, bei Therapieresistenz Narkose (Propofol ± Esketamin) und Intubation.",
+"n": 3
+},
+{
+"c": "Organisation",
+"q": "Wie sichtest du bei einem MANV, und wie ist die Einteilung?",
+"a": "**mSTaRT**; Gehfähige zunächst grün, Sichtung wiederholen. I rot (sofort), II gelb (aufgeschoben dringlich), III grün (leicht), IV blau (abwartend/Palliation), schwarz (tot). Rot wird zuerst behandelt.",
+"n": 3
+},
+{
+"c": "Organisation",
+"q": "Übergabe im Schockraum: Was ist wichtig? (kritisch vs. stabil)",
+"a": "Strukturierte Übergabe, Wiederholung durch den Empfänger (**Closed-Loop**), klarer Zeitpunkt des Zuständigkeitswechsels; CRM-Prinzipien (z. B. 10-für-10, Team-Time-Out). Bei akut kritischen Patienten hört nur eine Person zu, während das Team bereits arbeitet.",
+"n": 3
+},
+{
+"c": "Pädiatrie",
+"q": "Intraossärer Zugang beim Kind: Orte, Komplikationen, Liegedauer?",
+"a": "Proximale Tibia, proximaler Humerus, distaler Femur (distale Tibia gilt als falsch). Komplikationen: Fehllage/Paravasat, Kompartmentsyndrom, Nekrose, Infektion. Nadellänge nach Gewicht (schwarze Markierung bei Knochenkontakt sichtbar). Liegedauer laut Prüfer bis 72 h. Zuerst i.v. versuchen (ca. 1 min).",
+"n": 3
+},
+{
+"c": "Pädiatrie",
+"q": "Normwerte Gewicht bei Kindern?",
+"a": "Reifgeborenes 3–3,5 kg (Verdopplung/Verdreifachung im 1. Jahr), 1 J ca. 10 kg, 3 J ca. 15 kg, 5 J ca. 18 kg; Faustformel 2 × (Alter + 4) kg.",
+"n": 3
+},
+{
+"c": "Reanimation",
+"q": "Defibrillierbare vs. nicht defibrillierbare Rhythmen: Prognose und typische Ursachen?",
+"a": "Defibrillierbar: VF/pulslose VT (bessere Prognose, initiales VF gut). Nicht defibrillierbar: Asystolie/PEA.\n- Lungenembolie: PEA\n- ACS, Elektrounfall: Kammerflimmern\n- Hypothermie: Asystolie/VF",
+"n": 3
+},
+{
+"c": "Reanimation",
+"q": "Wie unterscheiden sich Erwachsene, Kinder und Neugeborene bei der Reanimation?",
+"a": "- Erwachsene: 5–6 cm tief, 100–120/min, 30:2, Adrenalin 1 mg\n- Kinder: 1/3 Thoraxdurchmesser, zuerst 5 Beatmungen, dann 15:2, Adrenalin 10 µg/kg\n- Neugeborene: Beatmung zuerst, dann 3:1 (ca. 90 Kompressionen + 30 Beatmungen/min)",
+"n": 3
+},
+{
+"c": "Reanimation",
+"q": "Kinderreanimation: Dosierungen ohne Kinderlineal?",
+"a": "Gewicht ca. **2 × (Alter + 4) kg**; Adrenalin 10 µg/kg, Amiodaron 5 mg/kg; Schock 4 J/kg (Eskalation bis 8 J/kg möglich); Tubus cuffed Alter/4 + 3,5.",
+"n": 3
+},
+{
+"c": "Reanimation",
+"q": "Neugeborenenreanimation: Ablauf?",
+"a": "Abtrocknen/Wärme, **5 initiale Beatmungen**; HF <100: beatmen; HF <60 trotz 30 s effektiver Beatmung: Kompressionen **3:1**; ggf. Adrenalin 10–30 µg/kg. AF 40–60/min, HF >100/min.",
+"n": 3
+},
+{
+"c": "Reanimation",
+"q": "Traumatische Reanimation: Prioritäten und Besonderheiten?",
+"a": "Reversible Ursachen zuerst: Blutungsstopp (Tourniquet, Beckenschlinge), Volumen/Blut, **beidseitige Thoraxentlastung** (Thorakostomie schneller als Drainage; Spannungspneu oft übersehen), Notfallsono (Tamponade), Atemweg. Adrenalin tritt zurück. Clamshell/REBOA nur mit Erfahrung. Abbruch bei Erfolglosigkeit nach ca. 30 min im Konsens.",
+"n": 3
+},
+{
+"c": "Reanimation",
+"q": "Wann dürfen/müssen Sie nicht reanimieren bzw. abbrechen, und woher bekommen Sie Informationen?",
+"a": "Sichere Todeszeichen (Totenflecken, -starre, Fäulnis, mit dem Leben unvereinbare Verletzungen), fehlender Eigenschutz, DNR/Patientenverfügung: keine Pflicht, auch nicht auf Wunsch der Angehörigen; empathisch erklären. Infos: Angehörige, Pflegedienst/Stammblatt, Hausarzt, Arztbriefe, Medikamentenpackungen, Notfalldose. Regelungen landesabhängig.",
+"n": 3
+},
+{
+"c": "Reanimation",
+"q": "Nach ROSC: Ziele, Maßnahmen und Zielklinik?",
+"a": "cABCDE, Normoxie (SpO2 94–98 %), Normokapnie, Normotonie/MAP stabilisieren, **12-Kanal-EKG**, Ursachensuche (Infarkt), BZ, Fieber vermeiden; Zielklinik: **Cardiac Arrest Center** (24/7 PCI).",
+"n": 3
+},
+{
+"c": "Toxikologie",
+"q": "Wann HBO bei CO-Intoxikation, und welche Zielklinik?",
+"a": "HBO bei Bewusstlosigkeit/neurologischen Ausfällen, kardialer Beteiligung, Schwangerschaft oder hohen COHb-Werten (ab ca. 25–30 %). Zielklinik: nächste Klinik mit BGA (z. B. mit Hubschrauberlandeplatz), ggf. Verlegung in Druckkammer; Organisation über die Leitstelle.",
+"n": 3
+},
+{
+"c": "Trauma",
+"q": "Große Blutungsräume und Volumenziel beim Polytrauma?",
+"a": "Thorax, Abdomen/Retroperitoneum, Becken, Oberschenkel/Röhrenknochen (und außen). **Permissive Hypotension** (syst. ca. 80–90 mmHg, MAD ~65), Volumen zurückhaltend; bei SHT höheres Ziel (syst. >100 mmHg), ein anzupassender Kompromiss.",
+"n": 3
+},
+{
+"c": "Trauma",
+"q": "Wie legst du präklinisch eine Thoraxdrainage?",
+"a": "Analgosedierung i.v. (Lokalanästhesie präklinisch ohne Stellenwert), Desinfektion/Abdecken, 4./5. ICR vordere/mittlere Axillarlinie, Hautschnitt, stumpf über den Rippenoberrand, Pleura eröffnen, Fingerprobe, Drain ohne Trokar, fixieren, Ventil/Beutel, Lage kontrollieren.",
+"n": 3
+},
+{
+"c": "Trauma",
+"q": "Stichverletzung des Thorax: Vorgehen und Erstversorgung?",
+"a": "Blutung stillen (Druck, Chitosan), offene Wunde mit **Chest Seal (Ventil)**, TXA. Spannungs-/Hämatothorax beachten: bei Hypoxie (z. B. AF 35, SpO2 88 %) entlasten, Differenzierung per Sono. Oberthorax: Verletzung großer Gefäße (A. subclavia) bedenken. Permissive Volumentherapie, schneller Transport.",
+"n": 3
+},
+{
+"c": "Trauma",
+"q": "Schweres SHT: Einstufung, Atemwegssicherung, Ziele, Beatmung?",
+"a": "GCS 3–8 = schwer. Hypoxie und Hypotonie vermeiden (RRsys ≥110 mmHg), Oberkörper 30°, Normokapnie (etCO2 35–40; Hypokapnie → Ischämie, Hyperkapnie → Hirndruck ↑). Anisokorie = Einklemmungszeichen. Intubation bei GCS ≤8 (im RTW, RSI), vor kurzer Strecke keine Zeit verlieren. Tubus mit Klebeband fixieren (Halteschlinge staut venösen Abfluss → Hirndruck). Zielklinik mit Neurochirurgie.",
+"n": 3
+},
+{
+"c": "Trauma",
+"q": "Warum Wärmeerhalt beim Traumapatienten, und wo wird untersucht?",
+"a": "Letale Trias: Hypothermie, Azidose, Koagulopathie. Untersuchung (Entkleiden) im warmen Rettungsmittel, Decken, Wärmepack; Intubation ebenfalls bevorzugt im RTW.",
+"n": 3
+},
+{
+"c": "Trauma",
+"q": "Wie immobilisierst du einen Traumapatienten?",
+"a": "HWS-Orthese bei Kinematik, manuelle In-line-Stabilisierung/Headblocks, Schaufeltrage, Spineboard oder Vakuummatratze (Oberkörper hoch möglich bei SHT).",
+"n": 3
+},
+{
+"c": "Umwelt & Thermisch",
+"q": "Rauchgasinhalation: Woran erkennst du ein Inhalationstrauma, und intubierst du früh?",
+"a": "Zeichen: Ruß im Mund-Rachen/Gesicht, versengte Haare/Brauen, Heiserkeit, Stridor, Husten. Sofort 100 % O2. Atemweg durch zunehmende Schwellung gefährdet → frühe Intubation erwägen (v. a. bei RTH-Transport/Symptomen); schwieriger Atemweg: Videolaryngoskop, kleinere Tuben.",
+"n": 3
+},
+{
+"c": "Atemweg",
+"q": "NIV präklinisch: Indikation, Einstellung, Besonderheiten?",
+"a": "Kardiales Lungenödem, COPD-Exazerbation. Einstellung z. B. PEEP ~5, Unterstützungsdruck ~7 (nach Klinik anpassen). Schonender Transport, ITS-Kapazität klären; bei Ablehnung durch die Klinik auf Erstversorgungspflicht bestehen.",
+"n": 2
+},
+{
+"c": "Atemwege & Atmung",
+"q": "Exazerbierte COPD (SpO2 91 % bzw. 78 %): Therapie, O2-Ziel und praktische NIV?",
+"a": "O2 nur titriert, Ziel-SpO2 88–92 %. **Salbutamol + Ipratropium** vernebelt, **Prednisolon** ca. 50 mg, ggf. Adrenalin-Vernebelung. Bei schwerer Hypoxie **NIV** (im RTW starten, aufklären, Maske erst vorhalten, Gurte langsam, selbst halten lassen). Sono: Seashore-Zeichen normal, Barcode = Pneumothorax. Zielklinik mit Innerer Station.",
+"n": 2
+},
+{
+"c": "Atemwege & Atmung",
+"q": "Wie therapierst du einen akuten Asthmaanfall und was ist der Unterschied zur COPD?",
+"a": "Asthma: reversible Obstruktion; COPD: nicht vollständig reversibel. Therapie: Sitzhaltung, O2, Salbutamol (+ Ipratropium) inhalativ, Prednisolon 50-100 mg i.v., ggf. Magnesium 2 g, Terbutalin s.c., Adrenalin bei Erschöpfung.",
+"n": 2
+},
+{
+"c": "Geburtshilfe",
+"q": "Geburt vor Ort/im PKW: Ablauf?",
+"a": "Wenn Kopf sichtbar: Geburt vor Ort; Zugang, Kopf kontrolliert führen, Dammschutz, Schulter entwickeln, abnabeln, Kind abtrocknen/warm halten, Plazenta abwarten, Transport.",
+"n": 2
+},
+{
+"c": "Geburtshilfe",
+"q": "Neugeborenes nach Geburt: Versorgung und Beurteilung?",
+"a": "Warm halten, tief halten, abnabeln nach ca. 1 min (erste Klemme eine Handbreit vom Kind). **APGAR** (Atmung, Puls, Grundtonus, Aussehen, Reflexe; 1/5/10 min) und Assessment-Dreieck. HF <100: Beatmung; <60 trotz Beatmung: Kompressionen. Präduktale SpO2 (rechte Hand) nach 10 min ca. 90 %.",
+"n": 2
+},
+{
+"c": "Geburtshilfe",
+"q": "Vorzeitige Wehen und Tokolyse: Vorgehen?",
+"a": "Vor 37+0 Perinatalzentrum anfahren, Mutterpass prüfen. Tokolyse mit β2-Mimetikum (Fenoterol), ggf. Magnesium. Geburt vor Ort bei sichtbarem Kopf/fortgeschrittenem Befund, sonst Tokolyse und Transport.",
+"n": 2
+},
+{
+"c": "Geburtshilfe",
+"q": "Plazenta praevia: Definition und Konsequenzen?",
+"a": "Plazenta vor/über dem Muttermund → Blutungsgefahr (Verblutung bei Wehen). Klinik voranmelden, Tokolyse, zwei großlumige Zugänge, Transport auf der linken Seite.",
+"n": 2
+},
+{
+"c": "Geburtshilfe",
+"q": "Was steht im Mutterpass?",
+"a": "Termin/SSW, Verlauf, Vorerkrankungen, Allergien, Blutgruppe/Rhesus, Plazentalage, geplante Sectio und Risiken.",
+"n": 2
+},
+{
+"c": "Internistische Notfälle",
+"q": "Varizenblutung bei Leberzirrhose: Therapie?",
+"a": "cABCDE, 2 großlumige Zugänge, **permissive Hypotension**, **Terlipressin 2 mg i.v.** (V1-Agonist, senkt Pfortaderdruck), alternativ Octreotid/Somatostatin. Kein Nitro, TXA nicht empfohlen, Ballonsonde obsolet. Zügig in Klinik zur Endoskopie; Intubation nur bei klarer Indikation.",
+"n": 2
+},
+{
+"c": "Kardiovaskulär",
+"q": "Wann gibst du beim ACS Sauerstoff und wann Nitro nicht?",
+"a": "O2 nur bei SpO2 unter 90 % (bzw. Dyspnoe). Nitro nicht bei beschwerdefreiem Patienten, Hypotonie, Bradykardie, rechtsventrikulärem Infarkt oder PDE-5-Hemmer-Einnahme (Sildenafil).",
+"n": 2
+},
+{
+"c": "Kardiovaskulär",
+"q": "Was fällt im EKG bei einem Hinterwandinfarkt auf und was fehlt ggf.?",
+"a": "ST-Hebungen in II, III und aVF. Brustwandableitungen sind für die Diagnose nicht zwingend, aber zur Dokumentation und zum Ausschluss eines rechtsventrikulären Infarkts (rechtspräkordiale Ableitungen) sinnvoll.",
+"n": 2
+},
+{
+"c": "Medikamente",
+"q": "Mechanismus und Einsatz von Tranexamsäure?",
+"a": "Antifibrinolytikum: hemmt Plasminbindung, stabilisiert Fibringerinnsel. 1 g i.v. über 10 min, möglichst innerhalb 3 h nach Trauma. Transport nicht verzögern.",
+"n": 2
+},
+{
+"c": "Neurologie",
+"q": "Was ist die SAB, wie präsentiert sie sich und wie behandelst du den Blutdruck?",
+"a": "Blutung aus einem Aneurysma. Leitsymptom: Vernichtungskopfschmerz (oft vorher Warnkopfschmerz), Bewusstseinsstörung. Blutdruck normoton halten, Normokapnie (nicht wie beim SHT hochhalten). Klinik mit 24h-CT, Neurochirurgie und Neuroradiologie (Coiling/Clipping).",
+"n": 2
+},
+{
+"c": "Neurologie",
+"q": "Hypoglykämie: Therapie präklinisch?",
+"a": "BZ <60 mg/dl mit Symptomen: Glukose 20 % fraktioniert i.v. (z.B. 8–16 g, nach Wirkung), Wirkkontrolle. Bei ausbleibender Besserung andere Ursachen suchen (Intox, Alkohol, Unterkühlung). Unterkühlte Patienten im vorgewärmten RTW untersuchen; Überwachung in der Klinik. G40 % ist hyperosmolar und wird gemieden (Venenreizung, Nekrose bei Paravasat).",
+"n": 2
+},
+{
+"c": "Neurologie",
+"q": "Bewusstloser Motorradfahrer mit schwerem SHT, RR 190/90: Blutdruck senken? Wie lagern und sichern?",
+"a": "**Nicht senken** (zerebraler Perfusionsdruck). Achsengerechte Rettung mit Schaufeltrage, Vakuummatratze, **Headblocks statt Stiff Neck** (venöser Abfluss), Oberkörper leicht hoch. Schutzintubation bei GCS ≤8 mit Videolaryngoskop und Rückfallebenen, Normoxie/Normokapnie, früh Rettungshubschrauber.",
+"n": 2
+},
+{
+"c": "Neurologie",
+"q": "Krampfanfall, Patient verweigert Transport: rechtliches Vorgehen (Erwachsener, 13-Jähriger)?",
+"a": "Postiktal oft nicht einwilligungsfähig → Verweigerung nicht bindend. Kein Autofahren (Eigen-/Fremdgefährdung), Garantenstellung. Aufklären, Fahrverbot erklären, überzeugen; notfalls **rechtfertigender Notstand** mit Polizei/Ordnungsamt (kein PsychKG). 13-Jähriger: kein Aufenthaltsbestimmungsrecht → Sorgeberechtigte informieren, Transport; Kinder allein zu Hause über Polizei/Jugendamt klären.",
+"n": 2
+},
+{
+"c": "Organisation",
+"q": "Unfall mit mehreren eingeklemmten Personen im PKW – was denkst du auf der Anfahrt?",
+"a": "SSSS, Eigenschutz, Zugänglichkeit des Fahrzeugs, Anzahl Patienten, Verletzungsmuster, mögliche MANV-Lage, Verstärkung (Feuerwehr, weitere RTW, RTH); Absprache mit NEF-Fahrer und Notfallsanitätern.",
+"n": 2
+},
+{
+"c": "Organisation",
+"q": "Eingeklemmter Patient: schonende oder Crash-Rettung?",
+"a": "Wach und stabil → **schonende Rettung**, Absprache mit der Feuerwehr (Zeitvorgabe). Crash-Rettung bei akut vital bedrohlichem, nicht beherrschbarem Problem (z. B. C-Problem) oder Verschlechterung; dabei werden zusätzliche Verletzungen/Wirbelsäulenbelastung in Kauf genommen. Eigenschutz zuerst, Feuerwehr betritt Fahrzeug erst nach Freigabe. Kritisch: Becken-/Extremitätenblutung.",
+"n": 2
+},
+{
+"c": "Organisation",
+"q": "Krankenhaus rot/Engpass gemeldet: darf ein Notfallpatient abgelehnt werden?",
+"a": "Nein, es besteht Versorgungsauftrag/Erstversorgungspflicht; eine Engpassmeldung ist keine Abmeldung für Notfälle. Risiken: keine freien Kapazitäten, verzögerte Übernahme. Bei Ablehnung auf Erstversorgungspflicht verweisen, Leitstelle einbinden.",
+"n": 2
+},
+{
+"c": "Organisation",
+"q": "Unterschied Retten und Bergen?",
+"a": "Retten = Lebende aus unmittelbarer Gefahr bringen; Bergen = Verstorbene (ggf. Sachwerte, Tiere) verlegen ohne unmittelbare Lebensgefahr.",
+"n": 2
+},
+{
+"c": "Psychiatrie & Recht",
+"q": "Patient ohne Einsichtsfähigkeit/psychische Ausnahmesituation: Vorgehen?",
+"a": "Eigenschutz, nicht allein nähern, Deeskalation/„talk down“, Polizei/Ordnungsamt. Unterbringung nach PsychKG nur bei psychischer Erkrankung mit akuter Eigen-/Fremdgefährdung. Bei fehlender Einwilligungsfähigkeit Notfallbehandlung im mutmaßlichen Willen; Zwang/Injektionen nur wenn unumgänglich. Alternativ intranasal Midazolam statt i.v.",
+"n": 2
+},
+{
+"c": "Pädiatrie",
+"q": "Knopfbatterie verschluckt: warum gefährlich, was tun?",
+"a": "Schleimhautverätzung (Hydroxid durch Strom), Ösophagusperforation/Aortenfistel innerhalb von Stunden. Nicht erbrechen lassen, nüchtern lassen, zügig in Klinik mit Endoskopie. Weitere Aspirationsgefahr: Nüsse, Münzen, Spielzeug, Weintrauben.",
+"n": 2
+},
+{
+"c": "Pädiatrie",
+"q": "Physiologische Unterschiede Kind vs. Erwachsener?",
+"a": "Höhere Frequenzen (Neugeborenes AF 40–60, HF 120–160), kleines Volumen bei großer Körperoberfläche (Auskühlung, Exsikkose, Verbrennungen; Neunerregel anders), AZV 6–8 ml/kg. Beim Neugeborenen ist RR bei gutem Puls zweitrangig.",
+"n": 2
+},
+{
+"c": "Pädiatrie",
+"q": "Pädiatrisches Assessment-Dreieck und respiratorischer Stress beim Kind?",
+"a": "Dreieck: Aussehen/Bewusstsein, Atemarbeit, Hautkolorit/Zirkulation (auf einen Blick). Resp. Stress: Konzentration aufs Atmen, Apathie/kein Schreien, Einziehungen, Atemhilfsmuskulatur, Nasenflügeln.",
+"n": 2
+},
+{
+"c": "Reanimation",
+"q": "Amiodaron: Wirkung?",
+"a": "Antiarrhythmikum, v. a. Kaliumkanalblocker (Klasse III).",
+"n": 2
+},
+{
+"c": "Reanimation",
+"q": "Welche Neuerungen bringt ERC 2025 bei Defibrillation, Atemweg und Leitlinie allgemein?",
+"a": "- 3 Schocks in Folge bei beobachtetem Arrest, Pads anterior-lateral, bei refraktärem VF Vektorwechsel\n- Atemweg: SGA (i-gel) gleichwertige Option, Intubation nur durch Geübte\n- Energie 150–200 J biphasisch (geräteabhängig)\nDetails bitte in ERC-/GRC-Leitlinien 2025 nachlesen (nicht vollständig gesichert).",
+"n": 2
+},
+{
+"c": "Reanimation",
+"q": "Kinderreanimation (z. B. 9 Monate): Besonderheiten und Umgang mit den Eltern?",
+"a": "5 initiale Beatmungen, 15:2, Druckpunkt untere Sternumhälfte (Säugling: 2 Finger bzw. Zangengriff bei 2 Helfern), Tiefe ca. 1/3. Basics zuerst (Drücken, Pads, Beatmung, Zugang). Eine Person für die Eltern abstellen; bei sicheren Todeszeichen medizinisch korrekt einstellen, ggf. Transport zum psychischen Schutz der Eltern erwägen.",
+"n": 2
+},
+{
+"c": "Reanimation",
+"q": "Reanimation in der Schwangerschaft: Besonderheiten?",
+"a": "Uterus manuell nach links verlagern, Kompressionen auf festem Untergrund, frühe Atemwegssicherung (RSI, erfahrener Operator, Videolaryngoskop, Bougie), normale Defibrillation. Notsectio nach ERC 2025 weniger dringlich gewichtet (früher ≤4–5 min); schneller Transport in geeignete Klinik.",
+"n": 2
+},
+{
+"c": "Reanimation",
+"q": "Hypotherme Reanimation: Besonderheiten?",
+"a": "„Nobody is dead until warm and dead.“ <30 °C: keine Medikamente, max. 3 Schocks; 30–35 °C: Medikamentenintervall verdoppeln. Längere Reanimation, schonende Lagerung, aktive Wiedererwärmung (ECLS/ECMO-Klinik).",
+"n": 2
+},
+{
+"c": "Reanimation",
+"q": "Wann ECPR/vaECMO bzw. prolongierte Reanimation?",
+"a": "Beobachteter Arrest, kurze No-Flow-Zeit, frühe Laienreanimation, schockbarer Rhythmus, Alter <65–75, etCO2 >10 mmHg, keine schwere Komorbidität, reversible Ursache (Hypothermie, Intoxikation, LAE, Infarkt). ECMO-Zentrum voranmelden, Transport mit mechanischer Reanimationshilfe.",
+"n": 2
+},
+{
+"c": "Reanimation",
+"q": "Nach ROSC fällt die Sättigung oder der Kreislauf bricht erneut ein: woran denken?",
+"a": "An (Spannungs-)Pneumothorax, z. B. durch CPR-Rippenfrakturen: auskultieren, ggf. entlasten/Thoraxdrainage.",
+"n": 2
+},
+{
+"c": "Reanimation",
+"q": "Woran erkennt man eine gute Reanimation, wie objektivieren und wann Transport unter Rea?",
+"a": "CPR-Feedback-Geräte (Tiefe, Frequenz, Entlastung) und **Kapnographie** (etCO2 als Qualitäts-/ROSC-Marker, plötzlicher Anstieg). Länger reanimieren bei reversiblen Ursachen (LAE, Hypothermie, Intoxikation); Transport unter Rea nur bei klarer Indikation.",
+"n": 2
+},
+{
+"c": "Reanimation",
+"q": "Reversible Ursachen eines Kreislaufstillstands (4H/HITS) mit je einer Maßnahme?",
+"a": "- Hypoxie: Oxygenierung/Atemweg\n- Hypovolämie: Volumen, Blutungsstopp\n- Hyper-/Hypokaliämie, Metabolik: Calcium, Bikarbonat\n- Hypo-/Hyperthermie: Wiedererwärmung, ECMO\n- Tamponade: Entlastung\n- Intoxikation: Antidot\n- Thromboembolie: Lyse\n- Spannungspneu: Entlastung",
+"n": 2
+},
+{
+"c": "Reanimation",
+"q": "Vermutete Hyperkaliämie im Kreislaufstillstand: Therapie?",
+"a": "Calcium i.v. (Membranstabilisierung) und Natriumbikarbonat; zusätzlich Glukose/Insulin und Salbutamol sobald möglich.",
+"n": 2
+},
+{
+"c": "Reanimation",
+"q": "Wann Natriumbikarbonat bzw. Magnesium in der Reanimation?",
+"a": "Bikarbonat: TCA-Intoxikation (Na-Kanalblockade) und Hyperkaliämie, nicht routinemäßig. Magnesium: Torsade de pointes (2 g i.v.).",
+"n": 2
+},
+{
+"c": "Reanimation",
+"q": "Warum ist die Reanimation bei Intoxikation (z. B. Zyanid) ohne Antidot sinnlos, was geben?",
+"a": "Zellatmung blockiert, Sauerstoff nicht verwertbar. Antidot Zyanid/Rauchgas: **Hydroxocobalamin** (Cyanokit) 5 g i.v.",
+"n": 2
+},
+{
+"c": "Toxikologie",
+"q": "Nenne drei Antidote und wofür sie gebraucht werden.",
+"a": "Naloxon: Opioide (kurze HWZ, Rebound möglich); Flumazenil: Benzodiazepine (0,1-mg-Schritte, Ampulle 0,5 mg/5 ml); Hydroxocobalamin: Zyanid/Rauchgas.",
+"n": 2
+},
+{
+"c": "Trauma",
+"q": "Wo legst du die Beckenschlinge an, und warum nicht zu hoch?",
+"a": "Auf Höhe der Trochanteren (häufig zu hoch angelegt). Zu hoch wirkt sie nicht und komprimiert das Abdomen. Beckenblutung meist venös (Plexus am Sakrum), bis ca. 3–5 l Blutverlust.",
+"n": 2
+},
+{
+"c": "Trauma",
+"q": "Perikardtamponade bei Trauma: Zeichen und Therapie?",
+"a": "Halsvenenstauung, Hypotonie, Tachykardie, abgeschwächte Herztöne (Beck-Trias), im Sono Perikarderguss. Entlastung per Perikardiozentese bzw. Notfallthorakotomie (Clamshell) nur mit Expertise; schneller Transport ins Zentrum.",
+"n": 2
+},
+{
+"c": "Umwelt & Thermisch",
+"q": "Hitzeerkrankungen: Welche ist am schlimmsten, wie therapierst du?",
+"a": "**Hitzschlag** (Kerntemperatur >40 °C mit ZNS-Symptomen): aktiv kühlen, Volumen. Folgen: Rhabdomyolyse, Nierenversagen, Leberschaden, DIC.",
+"n": 2
+},
+{
+"c": "Analgesie",
+"q": "Kind mit Unterarmfraktur: Analgesie?",
+"a": "Ruhigstellen, pDMS kontrollieren. Z. B. Fentanyl intranasal oder Esketamin i.v. nach kg, weil rasch wirksam; ohne venösen Zugang ist die nasale Gabe vorteilhaft.",
+"n": 1
+},
+{
+"c": "Analgesie",
+"q": "Was gibst du bei nasaler Gabe von Ketamin und Midazolam zuerst?",
+"a": "Ketamin zuerst, da Midazolam nasal schmerzhaft/brennend ist.",
+"n": 1
+},
+{
+"c": "Analgesie",
+"q": "Schmerz im Rettungsdienst: Wirkung auf den Körper und häufige Ursachen?",
+"a": "Sympathikusaktivierung (HF ↑, RR ↑, O2-Verbrauch ↑), Schonatmung/Tachypnoe. Häufigste Ursachen: Trauma, gefolgt von Thorax- und Abdominalschmerz.",
+"n": 1
+},
+{
+"c": "Atemweg",
+"q": "Intubation unter Zeitdruck: Präoxygenierung und Ablauf?",
+"a": "100 % O2 über dichte Maske (ca. 3–5 min): Stickstoff wird ausgewaschen, FRC dient als O2-Reservoir → längere Apnoetoleranz. Absaugung bereit, geeigneten Ort wählen (RTW statt Wohnung), Medikamente und Spritzengrößen vorab klären.",
+"n": 1
+},
+{
+"c": "Atemweg",
+"q": "Wie führen Sie eine Koniotomie durch?",
+"a": "Skalpell-Bougie-Technik: Membrana cricothyroidea tasten, Larynx fixieren, horizontale Stichinzision, Skalpell um 90° drehen, Bougie einführen, Tubus aufschieben, Lage mit etCO2 prüfen. Alternativ Punktionssets.",
+"n": 1
+},
+{
+"c": "Atemwege & Atmung",
+"q": "Stridor: inspiratorisch vs. exspiratorisch?",
+"a": "Inspiratorisch: Verengung der oberen/extrathorakalen Atemwege (Krupp, Epiglottitis). Exspiratorisch: untere/intrathorakale Verengung (Asthma, Fremdkörper).",
+"n": 1
+},
+{
+"c": "Atemwege & Atmung",
+"q": "FiO2 bei Raumluft, Maske ohne und mit Reservoir?",
+"a": "Raumluft 21 %; Maske ohne Reservoir ca. 50–60 %; mit Reservoir ca. 10 % mehr (rund 70 %+). Reservoir: Ausatemluft ist noch O2-reich und mischt sich zu.",
+"n": 1
+},
+{
+"c": "Atemwege & Atmung",
+"q": "Kind mit verschluckter Knopfbatterie: Warum gefährlich, was tun?",
+"a": "Verätzung der Schleimhaut durch Strom/Laugenbildung → Ösophagusperforation innerhalb weniger Stunden. Nüchtern lassen, kein Erbrechen provozieren, **schnell in Klinik** (Röntgen/Endoskopie).",
+"n": 1
+},
+{
+"c": "Geburtshilfe",
+"q": "Schwangere nach Verkehrsunfall: Grundsätze?",
+"a": "Linksseitenlage/Uterusverlagerung, Versorgung wie Nicht-Schwangere nach ABCDE, Transport auch bei leichten Verletzungen (CTG, Sono).",
+"n": 1
+},
+{
+"c": "Internistische Notfälle",
+"q": "Akutes Lungenödem: Therapie?",
+"a": "Oberkörper hoch, Beine tief, O2, CPAP, Furosemid fraktioniert (20–40 mg), Nitro bei ausreichendem RR, ggf. Morphin. Nebenwirkungen Furosemid: Hypotonie, Elektrolytverschiebungen, Ototoxizität bei schneller Bolusgabe. Nitro-KI: Hypotonie, Rechtsherzinfarkt, PDE-5-Hemmer (auch Frauen bei pulmonaler Hypertonie).",
+"n": 1
+},
+{
+"c": "Internistische Notfälle",
+"q": "Urosepsis/Sepsis bei älterer Patientin: Vorgehen?",
+"a": "Fokus (Pneumonie, HWI), qSOFA (AF ≥22, RRsys ≤100, Vigilanzminderung) bewerten. Diagnostik: Urinstatus/-kultur, Blutkulturen, Röntgen/Thorax, Laktat. Antibiotika früh nach Abnahme der Kulturen, Volumen. Schmerztherapie nach WHO-Schema (Cave Metamizol: Agranulozytose); nicht auf den Facharzt warten.",
+"n": 1
+},
+{
+"c": "Kardiovaskulär",
+"q": "Nennen Sie typische Ursachen eines höhergradigen AV-Blocks.",
+"a": "KHK/ACS (v. a. Hinterwandinfarkt), β-Blocker- bzw. andere Medikamentenintoxikation, Elektrolytstörungen, strukturelle Herzerkrankungen.",
+"n": 1
+},
+{
+"c": "Kardiovaskulär",
+"q": "Aortendissektion: warum präklinisch schwer zu diagnostizieren?",
+"a": "Sehr variables Bild je nach Lokalisation: Vernichtungsschmerz, Blutdruckdifferenz/Pulsdefizit, neurologische/abdominelle Symptome, Synkope. EKG-Veränderungen bei Beteiligung der Koronarien (STEMI-Bild). Therapie: Schmerzkontrolle, Blutdruck/Herzfrequenz senken, Zielklinik mit Herzchirurgie/Gefäßchirurgie, keine Antikoagulation.",
+"n": 1
+},
+{
+"c": "Kardiovaskulär",
+"q": "Wirkung von Adrenalin und Noradrenalin an den Rezeptoren?",
+"a": "Adrenalin: α1 (Vasokonstriktion), β1 (Inotropie/Chronotropie), β2 (Bronchodilatation). Noradrenalin: vor allem α1 (und β1) mit RR-Anstieg und reflektorischer Bradykardie.",
+"n": 1
+},
+{
+"c": "Kardiovaskulär",
+"q": "Warum ist Nitro bei rechtsventrikulärem Infarkt kontraindiziert?",
+"a": "Nitro senkt die Vorlast. Der rechte Ventrikel ist aber vorlastabhängig, es droht ein schwerer Blutdruckabfall.",
+"n": 1
+},
+{
+"c": "Kardiovaskulär",
+"q": "Was gibst du beim ACS bei Patienten unter NOAK?",
+"a": "STEMI: ASS + Heparin. NSTEMI: ASS, Heparin nur nach strenger Nutzen-Risiko-Abwägung.",
+"n": 1
+},
+{
+"c": "Kardiovaskulär",
+"q": "Die Zielklinik lehnt den Herzinfarkt-Patienten mit Hinweis auf besetzten Herzkatheter ab. Was tust du?",
+"a": "Nicht ablehnen lassen: Kardiologen/Dienstarzt verbinden lassen, Situation erklären, ggf. andere Klinik anfragen oder RTH einbeziehen.",
+"n": 1
+},
+{
+"c": "Kardiovaskulär",
+"q": "Schockformen und Therapie des hämorrhagischen/septischen Schocks?",
+"a": "Hypovolämisch, kardiogen, obstruktiv, distributiv (septisch, anaphylaktisch, neurogen). Hämorrhagisch: Blutstillung, TXA 1 g, zwei großlumige Zugänge, permissive Hypotension. Septisch: Vasodilatation/Kapillarleck, Volumen, Noradrenalin, früh Antibiotika, Zielklinik.",
+"n": 1
+},
+{
+"c": "Medikamente",
+"q": "Warum Urapidil und nicht Nitro beim hypertensiven Notfall?",
+"a": "Urapidil: **α1-Blockade** im **arteriellen** Gefäßgebiet (plus zentrale Wirkung) → Nachlastsenkung gut steuerbar. Nitro wirkt vor allem **venös** (Vorlastsenkung) und kann Reflextachykardie auslösen; Urapidil ist zudem aus der Klinik gut vertraut.",
+"n": 1
+},
+{
+"c": "Medikamente",
+"q": "Welche Analgetika bei Angina pectoris, und was ist zu meiden?",
+"a": "Morphin i.v. titriert; Esketamin wird vermieden (Tachykardie/höherer O2-Bedarf). Typische Opioid-Nebenwirkungen: Übelkeit/Erbrechen, Atemdepression, Hypotonie.",
+"n": 1
+},
+{
+"c": "Medikamente",
+"q": "Esketamin und Midazolam: Wirkung und Nebenwirkungen?",
+"a": "Esketamin: NMDA-Antagonist, Sympathikusaktivierung (HF, RR, O2-Bedarf ↑), Halluzinationen/Albträume; Abkömmling von Phencyclidin (PCP). Midazolam: Atemdepression/Apnoe, paradoxe Reaktion.",
+"n": 1
+},
+{
+"c": "Medikamente",
+"q": "Welche Applikationswege gibt es im Rettungsdienst?",
+"a": "i.v., i.o., i.m., s.c., p.o., s.l., bukkal, nasal (Midazolam, Opioide, Esketamin), rektal, inhalativ, transdermal.",
+"n": 1
+},
+{
+"c": "Medikamente",
+"q": "Analgesie bei Koliken?",
+"a": "Gallenkolik: Metamizol, Spasmolyse mit Butylscopolamin; bei Eskalation Morphin/Fentanyl (Piritramid laut Prüfer wegen Emesis weniger günstig). Nierenkolik: Butylscopolamin hier wenig wirksam (Kapseldehnung).",
+"n": 1
+},
+{
+"c": "Medikamente",
+"q": "Weitere Atropin-Indikation und Besonderheit?",
+"a": "Bei Alkylphosphatvergiftung werden hohe Atropin-Dosen eingesetzt (andere Ampullen/Konzentrationen); bei Bradykardie 0,5 mg, max. 3 mg.",
+"n": 1
+},
+{
+"c": "Medikamente",
+"q": "Intraossärer Zugang: Lokalisation, Vorgehen?",
+"a": "Primär proximaler Humerus oder proximale Tibia. Vor dem Flush bei wachen Patienten Lidocain 2 % (ca. 40 mg) wegen Schmerz, dann Flush; Medikamente anschließend verabreichen. Cave: Lidocain-Allergie, höhergradige AV-Blockierungen.",
+"n": 1
+},
+{
+"c": "Narkose",
+"q": "Besonderheiten von Esketamin?",
+"a": "Dissoziative Anästhesie, Schutzreflexe weitgehend erhalten, Sympathikusstimulation, psychomimetische Nebenwirkungen (Benzodiazepin kombinieren).",
+"n": 1
+},
+{
+"c": "Narkose",
+"q": "Propofol bei akutem Alkoholkonsum?",
+"a": "Verstärkte Sedierung, erhöhtes Risiko für Atem- und Kreislaufdepression → vorsichtig dosieren.",
+"n": 1
+},
+{
+"c": "Narkose",
+"q": "Wie gehst du bei Mundöffnung 1,5 cm (Z. n. Mundbodenkarzinom) und Ileus vor?",
+"a": "Erwartet schwieriger Atemweg: fiberoptische Wachintubation mit Lokalanästhesie, Spontanatmung erhalten, minimale Sedierung. Aspirationsrisiko beim Ileus beachten.",
+"n": 1
+},
+{
+"c": "Narkose",
+"q": "TIVA oder volatile Anästhetika bei Hirndruck und warum? Welches Monitoring?",
+"a": "TIVA bevorzugt: Volatile erhöhen ab ca. 1 MAC den zerebralen Blutfluss. Monitoring: invasive arterielle Druckmessung, MAD wichtigster Parameter (CPP = MAP − ICP), außerdem ZVK, Relaxometrie, Temperatur.",
+"n": 1
+},
+{
+"c": "Narkose",
+"q": "Wie wirken Thiopental und Mannitol auf den Hirndruck?",
+"a": "Thiopental: senkt zerebralen Sauerstoffverbrauch, Blutfluss und HZV, damit ICP. Mannitol: osmotisch, zieht Wasser aus dem Hirngewebe.",
+"n": 1
+},
+{
+"c": "Narkose",
+"q": "Was ist eine LAST und wie behandelst du sie?",
+"a": "Lokalanästhetika-Intoxikation: zuerst ZNS (periorale Taubheit, Krampf), dann Kardio (Rhythmusstörungen, Kreislaufstillstand). Injektion stoppen, Hilfe holen, O2/Atemweg, Krampf mit Benzodiazepin, Lipidemulsion 20 % (1,5 ml/kg Bolus, dann Infusion), Azidose vermeiden, Adrenalin nur niedrig dosiert.",
+"n": 1
+},
+{
+"c": "Narkose",
+"q": "Warum wirken Lokalanästhetika in entzündetem Gewebe schlecht?",
+"a": "Saurer pH: es überwiegt die protonierte Form, die die Membran nicht passieren kann (Ion Trapping); weniger LA erreicht den intrazellulären Natriumkanal.",
+"n": 1
+},
+{
+"c": "Narkose",
+"q": "Postpunktioneller Kopfschmerz nach PDA: Ursache und Therapie?",
+"a": "Liquorverlust/Liquorunterdrucksyndrom, lageabhängiger Kopfschmerz. Bettruhe, Flüssigkeit, Koffein, Analgetika; bei Persistenz epiduraler Blood Patch (Eigenblut).",
+"n": 1
+},
+{
+"c": "Neurologie",
+"q": "Stiffneck beim SHT? Welche Kompartimente spielen intrakraniell eine Rolle?",
+"a": "Ein zu enger Stiffneck kann den venösen Abfluss behindern und den Hirndruck steigern; daher manuelle Inline-Stabilisation/lockere Immobilisation. Kompartimente (Monro-Kellie): Hirngewebe, Liquor, Blutvolumen.",
+"n": 1
+},
+{
+"c": "Neurologie",
+"q": "Jüngerer Patient mit akuter Armparese, desorientiert: Verdachtsdiagnosen und Besonderheiten bei SAB/ICB?",
+"a": "DD: SAB/ICB, Ischämie (selten in dem Alter), komplizierte Migräne, Enzephalitis/Meningitis, MS-Schub, Hypoglykämie, Intoxikation. Hirnblutungen: ICB, SAB, Subdural-, Epiduralblutung. Bei SAB: Vernichtungskopfschmerz, EKG-Veränderungen möglich (ST-Hebung, QT-Verlängerung, Bradykardie). Oberkörper 30° hoch, Zielklinik mit Neurochirurgie/Neuroradiologie.",
+"n": 1
+},
+{
+"c": "Neurologie",
+"q": "Klinische Hirndruckzeichen beim Transport?",
+"a": "Anisokorie (mydriatische Pupille ipsilateral zur Läsion), Hemiparese kontralateral (Pyramidenbahnkreuzung in der Medulla), **Cushing-Trias**: RR-Anstieg, Bradykardie, unregelmäßige Atmung.",
+"n": 1
+},
+{
+"c": "Neurologie",
+"q": "Intubation bei Krampfstatus: Relaxans und Besonderheiten?",
+"a": "RSI im RTW, nicht in der Öffentlichkeit, Team briefen. Eher **kein Succinylcholin** (Rhabdomyolyse/Hyperkaliämie) → Rocuronium. Der Krampf geht zerebral weiter, deshalb Anfallsunterdrückung/Sedierung fortführen. Plan B: SGA.",
+"n": 1
+},
+{
+"c": "Neurologie",
+"q": "Ursachen eines Krampfanfalls und akut behandelbare Auslöser?",
+"a": "Zerebral: Epilepsie, Blutung, Stroke, Abszess, Tumor. Metabolisch/endokrin: Hypoglykämie, Elektrolytstörungen. Auch Fieber, Hypoxie, Intoxikationen. Akut: BZ messen/behandeln, Fieber senken.",
+"n": 1
+},
+{
+"c": "Neurologie",
+"q": "Wie unterscheidest du zentrale und periphere Fazialisparese?",
+"a": "Zentral: Stirn ist ausgespart (Stirnrunzeln möglich). Peripher: Stirn mitbetroffen, Lidschluss gestört.",
+"n": 1
+},
+{
+"c": "Neurologie",
+"q": "Wie therapiert man den ischämischen Insult in der Klinik und wie lang ist das Zeitfenster?",
+"a": "Systemische Lyse (bis 4,5 h) und/oder mechanische Thrombektomie. Bei Thrombektomie, v. a. Basilaristhrombose, deutlich längeres Fenster.",
+"n": 1
+},
+{
+"c": "Neurologie",
+"q": "Wie entsteht eine Pupillendifferenz bei einseitiger intrakranieller Blutung?",
+"a": "Einseitiger Hirndruck drückt den N. oculomotorius ab, die Pupille wird weit (Einklemmungszeichen).",
+"n": 1
+},
+{
+"c": "Neurologie",
+"q": "Welche Maßnahmen senken den Hirndruck und was gilt für Mannitol und Hyperventilation?",
+"a": "Oberkörper hoch, Narkosevertiefung, Mannitol oder hypertone NaCl, ggf. EVD. Mannitol wirkt osmotisch und braucht intakte Blut-Hirn-Schranke, nicht bei Lungenödem. Hyperventilation nur kurz bei Einklemmung (Vasokonstriktion, Ischämie).",
+"n": 1
+},
+{
+"c": "Neurologie",
+"q": "Junge Patientin nach Langstreckenflug mit Beinschwellung, Tachypnoe und Aphasie/Hemiparese: Pathophysiologischer Zusammenhang?",
+"a": "Immobilisation → tiefe Beinvenenthrombose → Embolie; **paradoxe Embolie über ein offenes Foramen ovale** führt zum ischämischen Schlaganfall. Lyse wegen V.a. Apoplex kontraindiziert → Stabilisierung der Vitalwerte, schneller Transport.",
+"n": 1
+},
+{
+"c": "Organisation",
+"q": "Welche zeitkritischen Krankheitsbilder gibt es im Rettungsdienst?",
+"a": "Apoplex, Sepsis, Polytrauma, ACS, Reanimation.",
+"n": 1
+},
+{
+"c": "Organisation",
+"q": "Unterschied LNA und ÄLRD?",
+"a": "LNA = medizinischer Einsatzleiter bei MANV; ÄLRD = organisatorische/strukturelle Verantwortung.",
+"n": 1
+},
+{
+"c": "Organisation",
+"q": "Einsatz in verwahrloster Wohnung (Messie): worauf achten Sie?",
+"a": "Eigenschutz: gefährliche Gegenstände, Tiere, Ungeziefer, Kanülen/Spritzen, Hygiene; Schutzkleidung; Anamnese (SAMPLER) trotz widriger Umstände.",
+"n": 1
+},
+{
+"c": "Organisation",
+"q": "Medikamentenfehler (z. B. falsche Atropinspritze): Verantwortung und Prävention?",
+"a": "Verantwortlich ist der Applizierende. Vermeidung: 6-R-Regel, Vier-Augen-Prinzip, CRM/Closed-Loop, Spritzen beschriften.",
+"n": 1
+},
+{
+"c": "Organisation",
+"q": "Warum steigen die Einsatzzahlen im Rettungsdienst, und welche Folgen hat das?",
+"a": "Hausärzte und 116117 schlecht erreichbar, der Rettungsdienst wird zum Ausweg; Notaufnahmen zusätzlich belastet durch Spezialisierung und Klinikschließungen.",
+"n": 1
+},
+{
+"c": "Organisation",
+"q": "Was ist das Rendezvous-Verfahren und welche Vorteile hat es?",
+"a": "RTW und NEF treffen sich bzw. Notarzt wird nachgefordert. Vorteil: mehr RTW als NEF, Notarzt früher wieder verfügbar.",
+"n": 1
+},
+{
+"c": "Organisation",
+"q": "Wann alarmierst du den RTH und welche Vorteile hat er?",
+"a": "Möglichst früh (lange Ausrück-/Anflugzeit). Vorteile: Transport in Spezialzentren (Polytrauma, Verbrennung), schonender Transport z. B. bei Wirbelsäulentrauma.",
+"n": 1
+},
+{
+"c": "Organisation",
+"q": "Sturz in Kellerschacht: Was tust du an der Einsatzstelle?",
+"a": "Eigenschutz zuerst: nicht ungesichert absteigen, Feuerwehr nachfordern; Gefahren (Strom, Werkzeug, Gase, instabile Struktur). Dann cABCDE, Atemwegsmanagement je nach Dauer der Rettung und Bedingungen.",
+"n": 1
+},
+{
+"c": "Psychiatrie & Recht",
+"q": "Todesfeststellung: sichere Todeszeichen, wann keine Leichenschau?",
+"a": "Sichere Zeichen: Totenflecken, Totenstarre, Fäulnis, mit dem Leben unvereinbare Verletzungen. Bei nicht natürlichem/ungeklärtem Tod Polizei hinzuziehen; keine Leichenschau, wenn die Einsatzstelle nicht sicher ist.",
+"n": 1
+},
+{
+"c": "Psychiatrie & Recht",
+"q": "Patientenverfügung/Vorsorgevollmacht bei Einsatz im Altenheim: Vorgehen?",
+"a": "Zuerst Behandlungswunsch klären: Patientenverfügung, Vorsorgevollmacht, Betreuer, Hausarzt/zuletzt behandelnde Klinik kontaktieren, Pflegeüberleitungsbogen. Im Zweifel Lebenserhaltung bis Willen geklärt; Therapieziel dokumentieren.",
+"n": 1
+},
+{
+"c": "Psychiatrie & Recht",
+"q": "Unruhiger psychotischer Patient ohne i.v.-Zugang: Medikamente?",
+"a": "Midazolam/Esketamin i.m./i.n. oder **Haloperidol i.m.**; i.v. off-label, QT-Verlängerung/VT → Monitoring.",
+"n": 1
+},
+{
+"c": "Psychiatrie & Recht",
+"q": "Ein Patient mit Brustschmerzen verweigert die Mitfahrt. Darfst du ihn zwingen?",
+"a": "Nein, wenn er einwilligungsfähig ist. Aufklärung über Folgen und Tragweite; bei Betreuten Betreuer kontaktieren, sonst mutmaßlicher Wille. Dokumentieren.",
+"n": 1
+},
+{
+"c": "Psychiatrie & Recht",
+"q": "Was bedeutet Garantenstellung und wie verhältst du dich, wenn Eltern bei einem verletzten Kind die Mitfahrt ablehnen?",
+"a": "Als Notarzt hast du Garantenstellung (Verstoß: z. B. fahrlässige Körperverletzung). Eltern gegenüber ihrem Kind ebenfalls. Aufklären, bei Weigerung Kind trotzdem mitnehmen, notfalls mit Polizei. Der Wille des Kindes hängt von der Einsichtsfähigkeit ab (einzelfallabhängig).",
+"n": 1
+},
+{
+"c": "Pädiatrie",
+"q": "Kind (5 J., ca. 18 kg) im Status epilepticus, i.v. nicht möglich?",
+"a": "Status ab >5 min: Midazolam nasal/bukkal oder Diazepam rektal, dann i.o.-Zugang; bei weiterem Krampf Narkose/Intubation (Tubus ca. 4,5 cuffed bzw. 5,0 uncuffed). Dosierungen schon auf der Anfahrt bereit haben.",
+"n": 1
+},
+{
+"c": "Pädiatrie",
+"q": "Wie ist ein Kindernotfallkoffer aufgebaut?",
+"a": "Nach **ABC-Schema** (Atemweg, Beatmung, Kreislauf/Zugang, Medikamente) mit altersgestaffelten Größen.",
+"n": 1
+},
+{
+"c": "Reanimation",
+"q": "Welches Monitoring ist bei reanimationspflichtigem Patienten am wichtigsten?",
+"a": "Der **Defibrillator** mit EKG-Rhythmusanalyse: schockbar ja/nein entscheidet das Vorgehen.",
+"n": 1
+},
+{
+"c": "Reanimation",
+"q": "Wird präklinisch nach ROSC gekühlt?",
+"a": "Nein, keine routinemäßige präklinische Kühlung. Fieber vermeiden; Temperaturmanagement in der Klinik.",
+"n": 1
+},
+{
+"c": "Reanimation",
+"q": "Laienreanimation und Rettungskette?",
+"a": "Notruf, sofort **Thoraxkompressionen**, AED holen, Hilfe organisieren, Ersthelfer-Apps; Laienbeatmung oft ineffektiv.",
+"n": 1
+},
+{
+"c": "Reanimation",
+"q": "Wann wird unter Reanimation lysiert?",
+"a": "Bei **Lungenembolie**; nicht bei STEMI (PCI in 120 min möglich).",
+"n": 1
+},
+{
+"c": "Reanimation",
+"q": "Welche Flüssigkeit bei Hypovolämie im Kreislaufstillstand, was vermeiden?",
+"a": "Balancierte **Vollelektrolytlösung**; kein NaCl 0,9 % (hyperchlorämische Azidose), keine Glukose 5 % (freies Wasser).",
+"n": 1
+},
+{
+"c": "Reanimation",
+"q": "Erhängungsversuch: Prognose und Verletzungen?",
+"a": "Zyanose gilt als eher gutes Zeichen. Bedenken: Dens-Fraktur, Karotisdissektion, HWS-Verletzung. Atemweg schwieriger (verschobene Strukturen): SGA/Larynxtubus als Alternativen.",
+"n": 1
+},
+{
+"c": "Toxikologie",
+"q": "Drei CO-Patienten, ein Notarzt: Wen behandelst du zuerst?",
+"a": "Den **bewusstlosen** Patienten (Atemweg, Beatmung, O2).",
+"n": 1
+},
+{
+"c": "Toxikologie",
+"q": "Neben CO: Welches Gift entsteht noch bei Bränden, und wie behandelt man es?",
+"a": "Blausäure (Zyanid) hemmt die Atmungskette. Antidot der Wahl: **Hydroxocobalamin** (Cyanokit, 5 g i.v. beim Erwachsenen). Alternative 4-DMAP (3–4 mg/kg, bildet MetHb) plus Natriumthiosulfat; Cave: MetHb-Bildner bei gleichzeitiger CO-Intoxikation ungünstig.",
+"n": 1
+},
+{
+"c": "Toxikologie",
+"q": "Kind mit Schaum vor dem Mund, viele Chemikalien in der Wohnung: Was ist dir wichtig?",
+"a": "Giftnotrufzentrale anrufen, Substanzen/Verpackungen mit in die Klinik nehmen, Eigenschutz; danach ABCDE und symptomatische Therapie.",
+"n": 1
+},
+{
+"c": "Trauma",
+"q": "Schockraumkriterien (chirurgisch/internistisch)?",
+"a": "Atemwegssicherung, RR <90 mmHg, Puls >120/min, positive FAST, GCS <12, Temperatur <35 °C, penetrierende Verletzung, Amputation, Frakturen mehrerer proximaler Knochen, Sturz >3 m; internistisch z. B. Non-Trauma-Reanimation, septischer Schock, schwere COPD-Exazerbation unter NIV. Schockraum auch bei kritischem xABCDE-Problem/invasiven Maßnahmen. Delta-v/Deformität allein nicht mehr eigenständig.",
+"n": 1
+},
+{
+"c": "Trauma",
+"q": "Muss jeder Pneumothorax präklinisch entlastet werden?",
+"a": "Nein. Entlastet wird der Spannungspneumothorax (Kreislauf-/Oxygenierungsproblem), vor allem bei beatmeten Patienten; ein stabiler einfacher Pneumothorax wird beobachtet und transportiert.",
+"n": 1
+},
+{
+"c": "Trauma",
+"q": "Stichverletzung rechte Flanke/Abdomen: Vorgehen?",
+"a": "Mortalität steigt rasch → **Load and Go**, 2 großlumige Zugänge, schneller Transport.",
+"n": 1
+},
+{
+"c": "Trauma",
+"q": "Schussverletzung im Wald nachts: Load and Go vs. Stay and Play?",
+"a": "Zuerst Eigenschutz (Polizei, Gefahrenbereich verlassen), Patient aus Gefahrenzone retten, Behandlung im RTW (Schutz/Wärme). Penetrierendes Rumpftrauma: Load and Go, nur lebensrettende Maßnahmen vor Ort, zügig ins Traumazentrum.",
+"n": 1
+},
+{
+"c": "Trauma",
+"q": "Blutdruck bei Blutung plus SHT?",
+"a": "Permissive Hypotonie bei unkontrollierter Blutung, aber bei SHT ausreichenden Perfusionsdruck erhalten – Kompromiss, anpassen.",
+"n": 1
+},
+{
+"c": "Trauma",
+"q": "Blutender Gesichtsschädel (harter Gaumen) mit Schutzreflexen: Atemweg?",
+"a": "Wenn möglich auf invasives Atemwegsmanagement verzichten, solange Blut abgehustet werden kann; Intubation/Koniotomie vorbereiten, aufrecht transportieren.",
+"n": 1
+},
+{
+"c": "Trauma",
+"q": "Neurogener Schock bei HWK-Fraktur/Tetraparese: Zeichen und Therapie?",
+"a": "Hypotonie mit Bradykardie, warme Haut (Sympathikusausfall). Immobilisation, vorsichtig Volumen, ggf. Katecholamine. Initiale Parese prognostisch ungünstig; Prednisolon nicht mehr empfohlen.",
+"n": 1
+},
+{
+"c": "Trauma",
+"q": "Worauf achtest du bei der Vakuumschiene?",
+"a": "Beim Absaugen Gerät an die Extremität andrücken/formen, damit sie in der Position hart wird; danach pDMS kontrollieren.",
+"n": 1
+}
+];
+</script>
+<script>(function(){
 'use strict';
 /* ---------- Helpers ---------- */
 const $=(s,r)=>(r||document).querySelector(s);
@@ -9141,6 +10285,7 @@ const TABS=[
  ['themen','Themen','<path d="M4 5h16M4 12h16M4 19h10"/>'],
  ['med','Medikamente','<rect x="3" y="9" width="18" height="6" rx="3"/><path d="M12 9v6"/>'],
  ['lernen','Lernen','<rect x="4" y="5" width="16" height="14" rx="2"/><path d="M8 10h8M8 14h5"/>'],
+ ['alt','Altfragen','<path d="M5 4h11l3 3v13H5z"/><path d="M9 11h6M9 15h6"/>'],
  ['tools','Tools','<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>']
 ];
 let S={tab:'start',view:null,stack:[],cat:'Alle',q:'',tool:'timer'};
@@ -9219,6 +10364,7 @@ function render(){
   else if(S.tab==='themen') html=S.view&&S.view.type==='topic'?vTopic(S.view.id):vTopics();
   else if(S.tab==='med') html=S.view&&S.view.type==='drug'?vDrug(S.view.id):vDrugs();
   else if(S.tab==='lernen') html=vLearn();
+  else if(S.tab==='alt') html=vAlt();
   else html=vTools();
   app.dataset.tab=S.tab; app.dataset.v=(S.tab==='lernen'&&L.active&&L.art)?'topic':(S.view?S.view.type:'');
   app.innerHTML='<div class="fade">'+html+'</div>';
@@ -9808,11 +10954,52 @@ function eAct(a,v){
   render();
 }
 
+
+/* ---------- Altfragen (Prüfungsprotokolle) ---------- */
+let altK=store.get('alt',{});
+let AL={cat:'Alle',mode:'all',active:false,queue:[],i:0,shown:false,done:0,confirm:false};
+function altList(){ return (window.ALT||[]).map((c,i)=>Object.assign({id:'a'+i},c)); }
+function altPool(){ const l=altList().filter(c=>AL.cat==='Alle'||c.c===AL.cat); return AL.mode==='open'?l.filter(c=>!altK[c.id]):l; }
+function vAlt(){
+  const all=altList(), cats=['Alle'].concat([...new Set(all.map(c=>c.c))].sort());
+  let body='';
+  if(AL.active){
+    if(AL.i>=AL.queue.length){
+      body=`<div class="card"><h3>Fertig! ✓</h3><p class="lead">${AL.done} Karten bearbeitet.</p><div class="row" style="margin-top:10px"><button class="btn primary" data-a="altstart">Nochmal</button><button class="btn" data-a="altstop">Zur Übersicht</button></div></div>`;
+    } else {
+      const c=AL.queue[AL.i];
+      body=`<div class="row" style="justify-content:space-between"><span class="pill">${esc(c.c)}</span><span class="small muted mono">${AL.i+1} / ${AL.queue.length}</span></div>
+      <div class="bar"><i style="width:${Math.round(100*AL.i/AL.queue.length)}%"></i></div>
+      <div class="card flash"><div class="small muted" style="margin-bottom:6px">${c.n>1?'In '+c.n+' Protokollen gefragt':'In 1 Protokoll gefragt'}</div><div class="q">${fmt(c.q)}</div>${AL.shown?`<div class="a ans"><div class="ans-h">✓ Antwort</div>${fmt(c.a)}</div>`:'<div class="muted small">Erst überlegen, dann aufdecken.</div>'}</div>
+      ${AL.shown?`<div class="rate"><button class="r0" data-a="altr" data-v="0">Nicht gewusst</button><button class="r3" data-a="altr" data-v="1">Gewusst</button></div>`:`<button class="btn primary" style="width:100%;justify-content:center;padding:14px" data-a="altshow">Antwort zeigen</button>`}
+      <div class="row" style="justify-content:flex-end"><button class="back" data-a="altstop">Sitzung beenden</button></div>`;
+    }
+  } else {
+    const known=all.filter(c=>altK[c.id]).length, pool=altPool();
+    const opts=cats.map(c=>{const n=all.filter(x=>c==='Alle'||x.c===c).length;return `<option value="${esc(c)}" ${AL.cat===c?'selected':''}>${c==='Alle'?'Alle Fachgebiete':esc(c)} (${n})</option>`;}).join('');
+    body=`<div class="card lcard"><h3>Fragen aus Prüfungsprotokollen</h3>
+    <p class="small muted" style="margin:0 0 8px">Aus ${(window.ALT_META||{}).prot||'85'} Altprotokollen zusammengeführt: Doppelte sind nur einmal enthalten, die häufigsten Fragen kommen zuerst. Antworten stammen aus den Protokollen bzw. sind nach bestem Wissen ergänzt und nicht an Leitlinien geprüft – im Zweifel nachlesen.</p>
+    <label class="lbl" for="altcatsel">Fachgebiet</label><select id="altcatsel" class="sel">${opts}</select>
+    <div class="lbl">Welche Karten</div>
+    <div class="modes"><button class="mode" data-a="altmode" data-v="all" aria-pressed="${AL.mode==='all'}"><b>Alle</b><span>häufigste zuerst</span></button><button class="mode" data-a="altmode" data-v="open" aria-pressed="${AL.mode==='open'}"><b>Nur offene</b><span>noch nicht gewusst</span></button></div>
+    <button class="btn primary" style="width:100%;justify-content:center;padding:14px" data-a="altstart" ${pool.length?'':'disabled'}>${pool.length} Karten üben</button></div>
+    <div class="card lcard"><h3>Stand</h3><div class="kv"><span>Gewusst</span><b>${known}</b></div><div class="kv"><span>Offen</span><b>${all.length-known}</b></div><div class="kv"><span>Karten gesamt</span><b>${all.length}</b></div>
+    <button class="btn small" style="margin-top:8px" data-a="altreset">${AL.confirm?'Wirklich löschen? Nochmal tippen':'Fortschritt zurücksetzen'}</button></div>`;
+  }
+  return `<div class="stack"><div><div class="eyebrow">Echte Prüfungsfragen</div><h1 class="h1">Altfragen</h1></div>${body}</div>`;
+}
+
 /* ---------- Events ---------- */
 document.addEventListener('click',e=>{
   const el=e.target.closest('[data-a]'); if(!el) return;
   const a=el.dataset.a, v=el.dataset.v;
   if(a==='tab'){ if($('#q').value){$('#q').value='';S.q='';} go(v,null); }
+  else if(a==='altmode'){AL.mode=v;render();}
+  else if(a==='altstart'){ const l=altPool().slice(); l.sort((x,y)=>(y.n-x.n)); AL.queue=l; AL.i=0;AL.shown=false;AL.done=0;AL.active=true;render();window.scrollTo(0,0); }
+  else if(a==='altstop'){AL.active=false;render();}
+  else if(a==='altshow'){AL.shown=true;render();}
+  else if(a==='altr'){ const c=AL.queue[AL.i]; if(c){ if(v==='1'){altK[c.id]=1;} else {delete altK[c.id]; AL.queue.push(c);} store.set('alt',altK); AL.done++; AL.i++; AL.shown=false; render(); } }
+  else if(a==='altreset'){ if(AL.confirm){altK={};store.set('alt',altK);AL.confirm=false;} else AL.confirm=true; render(); }
   else if(a==='back') back();
   else if(a==='cat'){S.cat=v;render();}
   else if(a==='dcls'||a==='dgrp'){S.dgrp=v;render();window.scrollTo(0,0);}
@@ -9865,17 +11052,19 @@ document.addEventListener('input',e=>{
 document.addEventListener('change',e=>{
   if(e.target.id==='newlim'){ const n=parseInt(e.target.value,10); store.set('newLimit',n>=1?Math.min(300,n):20); e.target.value=newLimit(); }
   if(e.target.id==='buf'){ store.set('planBuf',parseInt(e.target.value,10)||0); const o=$('#plan-out'); if(o) o.innerHTML=planOut(); }
+  if(e.target.id==='altcatsel'){ AL.cat=e.target.value; render(); }
   if(e.target.id==='lcatsel'){ L.cat=e.target.value; render(); }
   if(e.target.id==='exam') render();
   if(e.target.id==='k-unit') e.target.dispatchEvent(new Event('input',{bubbles:true}));
 });
 
 /* ---------- Wisch-zurück (iOS-Randgeste) ---------- */
-function canBack(){return !!(S.view||S.stack.length||(S.tab==='tools'&&S.tool==='ekg'&&EK.mode==='learn'&&EK.sel)||(S.tab==='lernen'&&(L.active||L.folder)));}
+function canBack(){return !!(S.view||S.stack.length||(S.tab==='tools'&&S.tool==='ekg'&&EK.mode==='learn'&&EK.sel)||(S.tab==='lernen'&&(L.active||L.folder))||(S.tab==='alt'&&AL.active));}
 function doBack(){
   if(S.view&&S.view.type==='search'){$('#q').value='';S.q='';S.view=null;render();return;}
   if(S.tab==='tools'&&S.tool==='ekg'&&EK.mode==='learn'&&EK.sel){EK.sel=null;render();return;}
   if(S.view||S.stack.length){back();return;}
+  if(S.tab==='alt'&&AL.active){AL.active=false;render();return;}
   if(S.tab==='lernen'&&L.active){L.active=false;render();return;}
   if(S.tab==='lernen'&&L.folder){L.folder=null;render();}
 }
